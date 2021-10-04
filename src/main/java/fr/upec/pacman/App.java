@@ -1,7 +1,7 @@
 package fr.upec.pacman;
 
-import javax.swing.*;
-
 public class App {
-    JFrame frame = new JFrame();
+    public static void main(String[] args) {
+        new Gui();
+    }
 }

@@ -1,0 +1,30 @@
+TODO:
+
+1-Interface
+  -Terrain 2D, type labyrinthe
+  -Murs bloquants
+  -Passage vers l'autre côté (warparound)
+  -Vies
+  -Score
+  -Chronomètre (facultatif)
+  
+2-Contrôler le pacman
+  -Bouger dans les 4 sens (flèches directionnelles)
+  -Se bloque dès qu'il atteint un mur
+  -3 vie
+  -5000 pts = +1 life
+  
+3-Entités:
+  -Pacgommes:
+    -Classique bleu
+    -Bonus 4:
+      -Violet: invisible + couleur jaune pâle
+      -Orange: super-pacman
+      -Vert: change le labyrinthe
+      -Quatrième???
+  -Fantômes: 4 de movement aléatoire
+    Si fan touche pacman = -1 vie
+    Si atteint mur then change de direction aléatoirement
+    
+4-Si plus de pacgommes = win
+5-Si 0 vie = lose

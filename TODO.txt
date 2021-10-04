@@ -1,7 +1,7 @@
 TODO:
 
 1-Interface (Fred)
-  -Terrain 2D, type labyrinthe (Fred)
+  -Terrain 2D, type labyrinthe (Fred) (en cours)
   -Murs bloquants (Fred)
   -Passage vers l'autre côté (warparound) (Hamza)
   -Vies (Hamza)

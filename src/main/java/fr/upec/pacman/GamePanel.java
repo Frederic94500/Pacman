@@ -27,7 +27,17 @@ public class GamePanel extends JPanel{
                         g.fillRect(x+7, y+7, size-7*2, size-7*2);
                         break;
                     case I:
-
+                        g.setColor(Color.decode("#9f40ff"));
+                        g.fillRect(x+4, y+4, size-4*2, size-4*2);
+                        break;
+                    case S:
+                        g.setColor(Color.decode("#FFA500"));
+                        g.fillRect(x+4, y+4, size-4*2, size-4*2);
+                        break;
+                    case M:
+                        g.setColor(Color.decode("#2ed12e"));
+                        g.fillRect(x+4, y+4, size-4*2, size-4*2);
+                        break;
                 }
                 x += size;
             }

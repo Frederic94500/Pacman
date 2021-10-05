@@ -8,6 +8,10 @@ public class GameMap {
     private static final Type C = Type.C;
     private Map<Integer, Map<Integer, Type>> map;
 
+    public Map<Integer, Map<Integer, Type>> getMap() {
+        return map;
+    }
+
     public GameMap() {
         final Type[][] gamemap = {
                 {W, W, W, W, W, W, W, W, W, W},

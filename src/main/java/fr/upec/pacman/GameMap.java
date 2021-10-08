@@ -2,6 +2,7 @@ package fr.upec.pacman;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class GameMap {
     private static final Type W = Type.W;
@@ -37,5 +38,9 @@ public class GameMap {
             }
             map.put(i, temp);
         }
+    }
+
+    public void deletePacGum(int x, int y){
+        map.get(x).replace(y, Type.N);
     }
 }

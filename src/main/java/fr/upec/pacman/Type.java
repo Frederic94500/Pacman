@@ -6,7 +6,8 @@ package fr.upec.pacman;
  * I = INVISIBLE
  * S = SUPERPOWER
  * M = MIX
+ * N = NOTHING
  */
 public enum Type {
-    W, C, I, S, M
+    W, C, I, S, M, N
 }

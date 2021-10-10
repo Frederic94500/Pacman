@@ -1,61 +1,56 @@
 package fr.upec.pacman;
 
 public class Pacman {
-    private Game game;
-    private int lives;
 
-    public Pacman(Game game) {
-        this.game = game;
-        this.lives = 3;
-    }
+	
+	private int vie ; 
+	private int points ;
+	private int x ;
+	private int y ; 
+	
+	public Pacman () {
+		 // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain   	
+		setVie(3) ;
+		setPoints(0) ;
+		setX(100) ;
+		setY(50) ;	
+	}
 
-    /**
-     * CECI EST UNE PREIMPLEMENTATION, A SUIVRE AVEC LE MOUVEMENT
-     */
-    public void eatPacGum(){
-        int mapX = this.getX() / 20;
-        int mapY = this.getY() / 20;
-        int increment = 0;
-        switch (game.getGameMap().getTypeInMap(mapX, mapY)){
-            case W:
-                /*Code qui bloque pacman*/
-            case C:
-                /*Code qui fait manger le pacgum, incrémente le score et redessine le terrain*/
-                increment = 100;
-            case I:
-                /*Code qui rend pacman invisible et redessine le terrain*/
-                increment = 300;
-            case S:
-                /*Code qui rend pacman puissant et redessine le terrain*/
-                increment = 500;
-            case M:
-                /*Code qui mélange la map*/
-                increment = 1000;
-            case N:
-                /*Code qui ignore*/
-        }
-        game.getGameMap().deletePacGum(mapX, mapY);
-        game.setScore(game.getScore() + increment);
-        game.getGamePanel().repaint();
-    }
+	
+	
+	public int getPoints() {
+		return points;
+	}
 
-    public void eatInvisible(){
+	public void setPoints(int points) {
+		this.points = points;
+	}
 
-    }
+	public int getVie() {
+		return vie;
+	}
 
-    public void eatSuperPower(){
+	public void setVie(int vie) {
+		this.vie = vie;
+	}
 
-    }
+	public int getX() {
+		return x;
+	}
 
-    public void eatMix(){
+	public void setX(int x) {
+		this.x = x;
+	}
 
-    }
+	public int getY() {
+		return y;
+	}
 
-    public  void gainLife(){
-        if(game.getScore() % 5000)
-    }
-
-    public void loseLife(){
-        lives--;
-    }
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	
+	
+	
 }

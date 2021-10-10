@@ -5,11 +5,11 @@ import javax.swing.*;
 public class Gui {
     public Gui() {
         JFrame frame = new JFrame();
-        var game = new Game();
-
-        frame.setSize(720, 720);
+        frame.setSize(380, 500);
+        frame.setLocationRelativeTo(null);
         frame.setTitle("Pacman");
-        frame.setContentPane(game.getGamePanel());
+        frame.add(new GameView());
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

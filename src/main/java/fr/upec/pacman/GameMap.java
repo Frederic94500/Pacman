@@ -12,10 +12,6 @@ public class GameMap {
     private static final Type M = Type.M;
     private Map<Integer, Map<Integer, Type>> map;
 
-    public Map<Integer, Map<Integer, Type>> getMap() {
-        return map;
-    }
-
     public GameMap() {
         final Type[][] gamemap = {
                 {W, W, W, W, W, W, W, W, W, W, W},
@@ -38,6 +34,14 @@ public class GameMap {
             }
             map.put(i, temp);
         }
+    }
+
+    public Map<Integer, Map<Integer, Type>> getMap() {
+        return map;
+    }
+
+    public Type getTypeInMap(int x, int y){
+        return map.get(x).get(y);
     }
 
     public void deletePacGum(int x, int y){

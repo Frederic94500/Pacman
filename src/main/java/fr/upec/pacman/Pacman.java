@@ -2,16 +2,21 @@ package fr.upec.pacman;
 
 public class Pacman {
     private Game game;
-    private GamePanel gamePanel;
+    private int lives;
+
+    public Pacman(Game game) {
+        this.game = game;
+        this.lives = 3;
+    }
 
     /**
      * CECI EST UNE PREIMPLEMENTATION, A SUIVRE AVEC LE MOUVEMENT
      */
     public void eatPacGum(){
-        int trueX = this.getX() / 20;
-        int trueY = this.getY() / 20;
+        int mapX = this.getX() / 20;
+        int mapY = this.getY() / 20;
         int increment = 0;
-        switch (game.getGameMap().getMap().get(trueX).get(trueY)){
+        switch (game.getGameMap().getTypeInMap(mapX, mapY)){
             case W:
                 /*Code qui bloque pacman*/
             case C:
@@ -29,9 +34,9 @@ public class Pacman {
             case N:
                 /*Code qui ignore*/
         }
-        game.getGameMap().deletePacGum(trueX, trueY);
+        game.getGameMap().deletePacGum(mapX, mapY);
         game.setScore(game.getScore() + increment);
-        gamePanel.repaint();
+        game.getGamePanel().repaint();
     }
 
     public void eatInvisible(){
@@ -44,5 +49,13 @@ public class Pacman {
 
     public void eatMix(){
 
+    }
+
+    public  void gainLife(){
+        if(game.getScore() % 5000)
+    }
+
+    public void loseLife(){
+        lives--;
     }
 }

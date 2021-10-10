@@ -6,8 +6,8 @@ import java.awt.*;
 public class GamePanel extends JPanel{
     private GameMap map;
 
-    public GamePanel() {
-        this.map = new GameMap();
+    public GamePanel(GameMap map) {
+        this.map = map;
     }
 
     @Override

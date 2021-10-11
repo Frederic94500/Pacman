@@ -25,12 +25,12 @@ public class GameView extends JComponent {
     public void paint(Graphics g) {
     	super.paint(g);
         g.setColor(Color.black);
-    	drawtable(g) ;
+    	drawTerrain(g) ;
         image(g);
     }
 
     // Terrain
-    private void drawtable(Graphics g ) {
+    private void drawTerrain(Graphics g ) {
     	g.fill3DRect(0, 0, 360, 360, start);   
     	g.setColor(Color.GRAY);
     	g.fillRect(0, 360, 360, 360);   
@@ -68,16 +68,16 @@ public class GameView extends JComponent {
                     case P:
                         g.drawImage(entity.getPacman(), x, y, null);
                         break;
-                    case Gb:
+                    case GB:
                         g.drawImage(entity.getGhostBlue(), x, y, null);
                         break;
-                    case Gr:
+                    case GR:
                         g.drawImage(entity.getGhostRed(), x, y, null);
                         break;
-                    case Go:
+                    case GO:
                         g.drawImage(entity.getGhostOrange(), x, y, null);
                         break;
-                    case Gp:
+                    case GP:
                         g.drawImage(entity.getGhostPurple(), x, y, null);
                         break;
                 }
@@ -89,7 +89,6 @@ public class GameView extends JComponent {
 
     /**
      * @deprecated Va être supprimé
-     * @param g
      */
     private void image(Graphics g) {
     	// 3 Points de vie 

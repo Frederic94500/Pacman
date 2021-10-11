@@ -4,7 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Pacmove extends KeyAdapter {
+public class PacMove extends KeyAdapter {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		 GameView mapevent = (GameView) e.getSource() ; // recuperer la map en cours 

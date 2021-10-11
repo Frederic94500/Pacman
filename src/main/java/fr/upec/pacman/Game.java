@@ -4,13 +4,13 @@ public class Game {
     private GameMap map;
     private Pacman pacman;
     private GameView view;
-    private Pacmove move;
+    private PacMove move;
 
     public Game() {
         this.map = new GameMap();
         this.pacman = new Pacman();
         this.view = new GameView(this);
-        this.move = new Pacmove();
+        this.move = new PacMove();
     }
 
     public GameMap getMap() {
@@ -25,7 +25,7 @@ public class Game {
         return view;
     }
 
-    public Pacmove getMove() {
+    public PacMove getMove() {
         return move;
     }
 }

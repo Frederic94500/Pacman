@@ -1,10 +1,10 @@
 package fr.upec.pacman;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Pacmove implements KeyListener  {
-
+public class Pacmove extends KeyAdapter {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		 GameView mapevent = (GameView) e.getSource() ; // recuperer la map en cours 
@@ -24,7 +24,4 @@ public class Pacmove implements KeyListener  {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-	
 }

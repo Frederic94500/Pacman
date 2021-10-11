@@ -4,8 +4,10 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+/**
+ * @deprecated image interdite
+ */
 public class ImageSet {
-
 	// Contient les elements graphics du jeux :
 	
 	  private Image heart ;
@@ -34,7 +36,6 @@ public class ImageSet {
 	  
 	  
 	  public ImageSet () {
-		  
 		  setHeart(new ImageIcon ("res/Heart.png").getImage());
 		  setGhostBlue(new ImageIcon ("res/Ghostblue.png").getImage());
 		  setGhostRed(new ImageIcon ("res/GhostRed.png").getImage());

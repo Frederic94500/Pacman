@@ -1,37 +1,33 @@
 package fr.upec.pacman;
 
 public class Pacman {
-
-	
-	private int vie ; 
-	private int points ;
+	private int life;
+	private int score;
 	private int x ;
 	private int y ; 
 	
 	public Pacman () {
-		 // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain   	
-		setVie(3) ;
-		setPoints(0) ;
-		setX(100) ;
-		setY(50) ;	
+		 // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain
+		this.life = 3;
+		this.score = 0;
+		this.x = 100;
+		this.y = 50;
 	}
 
-	
-	
-	public int getPoints() {
-		return points;
+	public int getScore() {
+		return score;
 	}
 
-	public void setPoints(int points) {
-		this.points = points;
+	public void setScore(int score) {
+		this.score = score;
 	}
 
-	public int getVie() {
-		return vie;
+	public int getLife() {
+		return life;
 	}
 
-	public void setVie(int vie) {
-		this.vie = vie;
+	public void setLife(int life) {
+		this.life = life;
 	}
 
 	public int getX() {
@@ -49,8 +45,4 @@ public class Pacman {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	
-	
-	
 }

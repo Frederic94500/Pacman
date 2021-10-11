@@ -1,4 +1,4 @@
-ackage fr.upec.pacman;
+package fr.upec.pacman;
 
 public class Entity {
 }

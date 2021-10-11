@@ -44,11 +44,9 @@ public class GameMap {
         	map [8][0] = W ; map [9][0] = W ; map [9][1] = W ;
         	map [0][8] = W ; map [0][9] = W ; map [1][9] = W ;
         	map [8][9] = W ; map [9][9] = W ; map [9][8] = W ;
-        	 
-        	
-        }
 
         }
+    }
     
     
     public Type [] [] getMap() {

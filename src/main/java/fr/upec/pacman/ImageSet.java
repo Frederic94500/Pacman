@@ -35,12 +35,12 @@ public class ImageSet {
 	  
 	  public ImageSet () {
 		  
-		  setHeart(new ImageIcon ("Heart.png").getImage());
-		  setGhostBlue(new ImageIcon ("Ghostblue.png").getImage());
-		  setGhostRed(new ImageIcon ("GhostRed.png").getImage());
-		  setGhostPurple(new ImageIcon ("GhostPurple.png").getImage());
-		  setGhostOrange(new ImageIcon ("GhostOrange.png").getImage());
-		  setPacman(new ImageIcon ("PacRight.png").getImage());
+		  setHeart(new ImageIcon ("res/Heart.png").getImage());
+		  setGhostBlue(new ImageIcon ("res/Ghostblue.png").getImage());
+		  setGhostRed(new ImageIcon ("res/GhostRed.png").getImage());
+		  setGhostPurple(new ImageIcon ("res/GhostPurple.png").getImage());
+		  setGhostOrange(new ImageIcon ("res/GhostOrange.png").getImage());
+		  setPacman(new ImageIcon ("res/PacRight.png").getImage());
 		  
 	  }
 

@@ -1,4 +1,4 @@
-package fr.upec.pacman;
+/*package fr.upec.pacman;
 
 public class Game {
     private GameMap gameMap;
@@ -32,4 +32,4 @@ public class Game {
     public void setScore(int score) {
         this.score = score;
     }
-}
+}*/

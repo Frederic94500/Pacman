@@ -29,7 +29,6 @@ public class GameMap {
             {W, W, W, W, W, W, W, W, W, W}};
     }
     
-    
     public Type[][] getMap() {
         return map;
     }

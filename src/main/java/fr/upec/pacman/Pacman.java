@@ -6,7 +6,7 @@ public class Pacman {
 	private int x ;
 	private int y ; 
 	
-	public Pacman () {
+	public Pacman() {
 		 // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain
 		this.life = 3;
 		this.score = 0;
@@ -44,5 +44,21 @@ public class Pacman {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public void eatClassic(){
+
+	}
+
+	public void eatInvisible(){
+
+	}
+
+	public void eatSuperPow(){
+
+	}
+
+	public void eatMix(){
+
 	}
 }

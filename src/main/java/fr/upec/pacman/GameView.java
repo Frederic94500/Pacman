@@ -4,23 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameView extends JComponent {
-    private GameMap game;
+    private Game game;
 	public final static int WIDTH = 200;
 	public final static int HEIGHT = 200;
     private boolean start ; // pour commencer la partie 
     private ImageSet entity ; //A enlever (image interdite)
-    private Pacman player ;
 
     //Constructeur 
-    public GameView() {
+    public GameView(Game game) {
     	super();
-    	setStart(false) ;
-    	this.player = new Pacman () ;
-        this.game = new GameMap ( ) ;  // on charge le terrain
-        this.entity = new ImageSet () ; // on charge les images (va être supprimé)
+    	setStart(false);
+        this.game = game;
+        this.entity = new ImageSet(); // on charge les images (va être supprimé)
         setOpaque(true);
 		setSize(WIDTH, HEIGHT);
-		addKeyListener(new Pacmove());
+		addKeyListener(game.getMove());
     }
 
     @Override
@@ -39,11 +37,11 @@ public class GameView extends JComponent {
     		  	
     	int x = 0; int y = 0; int size = 36;
           // x = width y = height  // size taille du block 
-     
-        for (int i = 0 ; i < game.getMap().length ; i++) {
+
+        for (Type[] i: game.getMap().getMap()) {
             x = 0;
-            for (int j = 0 ; j < game.getMap()[i].length ; j++) {
-                switch (game.getMap()[i][j]){
+            for (Type j: i) {
+                switch (j){
                     case W:
                         g.setColor(Color.decode("#2E20BD"));
                         g.fillRect(x, y, size, size);  // Yo Fred jte conseille d'utiliser des cercles pour les pacgommes :p
@@ -65,7 +63,7 @@ public class GameView extends JComponent {
                         g.fillOval(x+10, y+10, size-10*2,size-10*2);
                         break;
                     case N:
-                        g.setColor(Color.WHITE);
+                        g.setColor(Color.GRAY);
                         g.fillRect(x, y, size, size);
                     case P:
                         g.drawImage(entity.getPacman(), x, y, null);
@@ -82,13 +80,17 @@ public class GameView extends JComponent {
                     case Gp:
                         g.drawImage(entity.getGhostPurple(), x, y, null);
                         break;
-                  }
-                  x += size;
-              }
-              y += size;
+                }
+                x += size;
+            }
+            y += size;
         }
     }
 
+    /**
+     * @deprecated Va être supprimé
+     * @param g
+     */
     private void image(Graphics g) {
     	// 3 Points de vie 
     	int x_add = 0  ;
@@ -97,13 +99,12 @@ public class GameView extends JComponent {
     	entity.setHx(x_add); 
     	entity.setHy(y_add);
     	
-        for (int i = 0; i < player.getLife(); i++) {
+        for (int i = 0; i < game.getPacman().getLife(); i++) {
             g.drawImage(entity.getHeart(), entity.getHx(), entity.getHy(), null);
             x_add += 36;
             entity.setHx(x_add);
         }
     }
-
 
 	public boolean isStart() {
 		return start;

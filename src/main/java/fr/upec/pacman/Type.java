@@ -11,5 +11,5 @@ package fr.upec.pacman;
  * G = GHOST
  */
 public enum Type {
-    W, C, I, S, M, N , P ,G
+    W, C, I, S, M, N , P ,Gb , Gr , Go , Gp
 }

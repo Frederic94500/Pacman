@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Gui {
     public Gui() {
         JFrame frame = new JFrame();
-        frame.setSize(380, 500);
+        frame.setSize(375, 435);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Pacman");
         frame.add(new GameView());

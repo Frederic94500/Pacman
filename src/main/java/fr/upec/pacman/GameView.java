@@ -8,16 +8,19 @@ public class GameView extends JComponent{
 	public final static int WIDTH = 200;
 	public final static int HEIGHT = 200;
     private boolean start ; // pour commencer la partie 
-    
-    private JLabel blue ;
-    
+    private ImageSet entity ;
+    private Pacman player ;
 
+    
+    
     //Constructeur 
     public GameView() {
     	super();
     	setStart(false) ;
-        game = new GameMap ( ) ;
-    	setOpaque(true);
+    	player = new Pacman () ;
+        game = new GameMap ( ) ;  // on charge le terrain 
+        entity= new ImageSet () ; // on charge les images
+        setOpaque(true);
 		setSize(WIDTH, HEIGHT);
 		addKeyListener (new Pacmove ()) ;
 		
@@ -30,13 +33,16 @@ public class GameView extends JComponent{
     	super.paint(g);
         g.setColor(Color.black);
     	Drawtable (g) ;
-   
+    	Image (g);
         }
     
 
     // Terrain
     private void  Drawtable (Graphics g ) {
-    	
+    	g.fill3DRect(0, 0, 360, 360, start);   
+    	g.setColor(Color.GRAY);
+    	g.fillRect(0, 360, 360, 360);   
+    		  	
     	int x = 0; int y = 0; int size = 36;
           // x = width y = height  // size taille du block 
      
@@ -46,12 +52,12 @@ public class GameView extends JComponent{
               
               	switch (game.getMap()[i][j]){
                       case W:
-                          g.setColor(Color.BLACK);
+                          g.setColor(Color.decode("#2E20BD"));
                           g.fillRect(x, y, size, size);  // Yo Fred jte conseille d'utiliser des cercles pour les pacgommes :p
                           break;
                       case C:
-                          g.setColor(Color.decode("#2020d4"));
-                          g.fillRect(x+7, y+7, size-7*2, size-7*2);
+                          g.setColor(Color.decode("#EDF033"));                  
+                          g.fillOval(x+7, y+7, size-7*3,size-7*3);
                           break;
                       case I:
                           g.setColor(Color.decode("#9f40ff"));
@@ -69,21 +75,47 @@ public class GameView extends JComponent{
                           g.setColor(Color.WHITE);
                           g.fillRect(x, y, size, size);
                       case P:
-                        //  g.setColor(Color.WHITE);
-                       //   g.fillRect(x, y, size, size);
-                      case G:
-                          //g.setColor(Color.WHITE);
-                        //  g.fillRect(x, y, size, size);
+                          g.drawImage(entity.getPacman(), x, y, null) ;
+                          break;
+                      case Gb:
+                    	   g.drawImage(entity.getGhostBlue(), x, y, null) ;
+                    	   break;
+                      case Gr:
+                   	   g.drawImage(entity.getGhostRed(), x, y, null) ;
+                     	 break;
+                      case Go:
+                   	   g.drawImage(entity.getGhostOrange(), x, y, null) ;
+                   	    break;
+                      case Gp:
+                      	   g.drawImage(entity.getGhostPurple(), x, y, null) ;
+                      	    break;
+                   	   
                   }
                   x += size;
               }
               y += size;
           } 
-    	
+          
     }
     
     
 
+    private void Image (Graphics g) {
+    	// 3 Points de vie 
+    	int x_add = 0  ;
+    	int y_add = 360 ;
+    	
+    	entity.setHx(x_add); 
+    	entity.setHy(y_add);
+    	
+        for (int i = 0 ; i < player.getVie() ; i++) {
+        	
+    	g.drawImage(entity.getHeart(), entity.getHx(), entity.getHy(), null);
+    	x_add += 36  ;
+    	entity.setHx(x_add); 
+        }
+    	
+    }
 
 
 	public boolean isStart() {

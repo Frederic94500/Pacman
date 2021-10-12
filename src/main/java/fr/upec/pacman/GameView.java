@@ -47,7 +47,7 @@ public class GameView extends JComponent {
                         g.fillRect(x, y, size, size);  // Yo Fred jte conseille d'utiliser des cercles pour les pacgommes :p
                         break;
                     case C:
-                        g.setColor(Color.decode("#EDF033"));
+                        g.setColor(Color.decode("#ffffa6"));
                         g.fillOval(x+12, y+12, size-12*2,size-12*2);
                         break;
                     case I:
@@ -66,19 +66,29 @@ public class GameView extends JComponent {
                         g.setColor(Color.GRAY);
                         g.fillRect(x, y, size, size);
                     case P:
-                        g.drawImage(entity.getPacman(), x, y, null);
+                        g.setColor(Color.YELLOW);
+                        g.fillOval(x, y, 36, 36);
+                        //g.drawImage(entity.getPacman(), x, y, null);
                         break;
                     case GB:
-                        g.drawImage(entity.getGhostBlue(), x, y, null);
+                        g.setColor(Color.decode("#ea82e5"));
+                        g.fillRect(x, y, 36, 36);
+                        //g.drawImage(entity.getGhostBlue(), x, y, null);
                         break;
                     case GR:
-                        g.drawImage(entity.getGhostRed(), x, y, null);
+                        g.setColor(Color.decode("#46bfee"));
+                        g.fillRect(x, y, 36, 36);
+                        //g.drawImage(entity.getGhostRed(), x, y, null);
                         break;
                     case GO:
-                        g.drawImage(entity.getGhostOrange(), x, y, null);
+                        g.setColor(Color.decode("#d03e19"));
+                        g.fillRect(x, y, 36, 36);
+                        //g.drawImage(entity.getGhostOrange(), x, y, null);
                         break;
                     case GP:
-                        g.drawImage(entity.getGhostPurple(), x, y, null);
+                        g.setColor(Color.decode("#db851c"));
+                        g.fillRect(x, y, 36, 36);
+                        //g.drawImage(entity.getGhostPurple(), x, y, null);
                         break;
                 }
                 x += size;

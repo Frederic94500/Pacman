@@ -8,7 +8,7 @@ public class Game {
 
     public Game() {
         this.map = new GameMap();
-        this.pacman = new Pacman();
+        this.pacman = new Pacman(this);
         this.view = new GameView(this);
         this.move = new PacMove();
     }

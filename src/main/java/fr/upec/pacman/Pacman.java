@@ -4,14 +4,16 @@ public class Pacman {
 	private int life;
 	private int score;
 	private int x ;
-	private int y ; 
+	private int y ;
+	private Game game;
 	
-	public Pacman() {
+	public Pacman(Game game) {
 		 // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain
 		this.life = 3;
 		this.score = 0;
 		this.x = 100;
 		this.y = 50;
+		this.game = game;
 	}
 
 	public int getScore() {
@@ -47,18 +49,26 @@ public class Pacman {
 	}
 
 	public void eatClassic(){
-
+		score += 100;
+		game.getMap().deleteType(x/36, y/36);
+		game.getView().repaint();
 	}
 
 	public void eatInvisible(){
-
+		score += 300;
+		game.getMap().deleteType(x/36, y/36);
+		game.getView().repaint();
 	}
 
 	public void eatSuperPow(){
-
+		score += 500;
+		game.getMap().deleteType(x/36, y/36);
+		game.getView().repaint();
 	}
 
 	public void eatMix(){
-
+		score += 1000;
+		game.getMap().deleteType(x/36, y/36);
+		game.getView().repaint();
 	}
 }

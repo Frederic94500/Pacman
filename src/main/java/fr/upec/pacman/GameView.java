@@ -7,7 +7,7 @@ public class GameView extends JComponent {
     private Game game;
 	public final static int WIDTH = 200;
 	public final static int HEIGHT = 200;
-    private boolean start ; // pour commencer la partie 
+    private boolean start ; // pour commencer la partie
     private ImageSet entity ; //A enlever (image interdite)
 
     //Constructeur 
@@ -26,11 +26,11 @@ public class GameView extends JComponent {
     	super.paint(g);
         g.setColor(Color.black);
     	drawTerrain(g) ;
-        image(g);
+        drawInterface(g);
     }
 
     // Terrain
-    private void drawTerrain(Graphics g ) {
+    private void drawTerrain(Graphics g) {
     	g.fill3DRect(0, 0, 360, 360, start);   
     	g.setColor(Color.GRAY);
     	g.fillRect(0, 360, 360, 360);   
@@ -44,7 +44,7 @@ public class GameView extends JComponent {
                 switch (j){
                     case W:
                         g.setColor(Color.decode("#2E20BD"));
-                        g.fillRect(x, y, size, size);  // Yo Fred jte conseille d'utiliser des cercles pour les pacgommes :p
+                        g.fillRect(x, y, size, size);
                         break;
                     case C:
                         g.setColor(Color.decode("#ffffa6"));
@@ -66,29 +66,24 @@ public class GameView extends JComponent {
                         g.setColor(Color.GRAY);
                         g.fillRect(x, y, size, size);
                     case P:
-                        g.setColor(Color.YELLOW);
+                        g.setColor(game.getPacman().getColor());
                         g.fillOval(x, y, 36, 36);
-                        //g.drawImage(entity.getPacman(), x, y, null);
                         break;
                     case GB:
                         g.setColor(Color.decode("#ea82e5"));
                         g.fillRect(x, y, 36, 36);
-                        //g.drawImage(entity.getGhostBlue(), x, y, null);
                         break;
                     case GR:
                         g.setColor(Color.decode("#46bfee"));
                         g.fillRect(x, y, 36, 36);
-                        //g.drawImage(entity.getGhostRed(), x, y, null);
                         break;
                     case GO:
                         g.setColor(Color.decode("#d03e19"));
                         g.fillRect(x, y, 36, 36);
-                        //g.drawImage(entity.getGhostOrange(), x, y, null);
                         break;
                     case GP:
                         g.setColor(Color.decode("#db851c"));
                         g.fillRect(x, y, 36, 36);
-                        //g.drawImage(entity.getGhostPurple(), x, y, null);
                         break;
                 }
                 x += size;
@@ -97,10 +92,21 @@ public class GameView extends JComponent {
         }
     }
 
+    public void drawInterface(Graphics g){
+        int x = 0;
+        for (int i = 0; i < game.getPacman().getLife(); i++) {
+            g.setColor(Color.YELLOW);
+            g.fillOval(x, 360, 36, 36);
+            x += 36;
+        }
+        g.setColor(Color.BLACK);
+        g.drawString("Score: " + game.getPacman().getScore(), 0, 410);
+    }
+
     /**
      * @deprecated Va être supprimé
      */
-    private void image(Graphics g) {
+    /*private void image(Graphics g) {
     	// 3 Points de vie 
     	int x_add = 0  ;
     	int y_add = 360 ;
@@ -113,7 +119,7 @@ public class GameView extends JComponent {
             x_add += 36;
             entity.setHx(x_add);
         }
-    }
+    }*/
 
 	public boolean isStart() {
 		return start;

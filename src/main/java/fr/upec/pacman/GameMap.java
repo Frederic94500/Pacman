@@ -33,7 +33,20 @@ public class GameMap {
         return map;
     }
 
-    public void setMap(Type[][] tab) {
-        map = tab;
+    public int[] getPacmanCoords() {
+        int x = 0;
+        int y = 0;
+
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j] == P) {
+                    x = i;
+                    y = j;
+                    break;
+                }
+            }
+        }
+
+        return new int[]{x, y};
     }
 }

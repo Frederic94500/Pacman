@@ -1,2 +1,0 @@
-# Pacman
-Pacman en JavaFX

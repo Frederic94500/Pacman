@@ -15,12 +15,12 @@ public class GameView extends JComponent {
     public GameView() {
         super();
         setStart(false);
-        this.game = new Game();
+        this.game = new Game(this);
         this.entity = new ImageSet(); // on charge les images (va être supprimé)
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
         setEntity() ;
-        this.timer = new Timer(1000, new EnemyAction(entity, this));
+        this.timer = new Timer(2000, new EnemyAction(entity, this));
         timer.start();
     }
 
@@ -32,6 +32,9 @@ public class GameView extends JComponent {
         image(g);
         drawtable(g);
         drawEnemy(g);
+        scoreLife (g) ; 
+       // if (  game.win() ){win(g); }
+        
     }
 
     // Terrain
@@ -137,17 +140,34 @@ public class GameView extends JComponent {
     public void setEntity() { 
 
     	entity.setBx(36 * 2);
-        entity.setBy(36 * 3);
+        entity.setBy(36 * 7);
 
-        entity.setRx(72);
-        entity.setRy(36 * 7);
+        entity.setRx(36*7);
+        entity.setRy(36 * 2);
 
-        entity.setPx(36 * 7);
+        entity.setPx(36 * 2);
         entity.setPy(36 * 2);
 
         entity.setOx(36 * 7);
         entity.setOy(36 * 7);}
+    
+    public ImageSet getEntity() { return entity ;} 
+  
+    public void scoreLife (Graphics g) {
+    	g.setColor(Color.BLACK);
+    	g.drawString("Votre score est de :" +Integer.toString(	game.getPacman().getScore()),0, 380);
+        g.drawString("Il vous reste  :" +Integer.toString(	game.getPacman().getLife()) + " vies",200, 380);
+     
+    }
+    
+    /*private void win (Graphics g) {
+    	g.setColor(Color.BLACK);
+    	
+    	g.drawString("You WIN ",250, 250);
+    	
+    }*/
 }
+
 
 
 

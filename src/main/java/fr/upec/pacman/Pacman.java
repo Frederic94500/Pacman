@@ -3,6 +3,8 @@ package fr.upec.pacman;
 public class Pacman {
     private int life;
     private int score;
+    private boolean alive = true ;
+    private int pacgomme ;
     /*private int x;
     private int y;*/
 
@@ -23,8 +25,19 @@ public class Pacman {
     }
 
     public void setLife(int life) {
-        this.life = life;
+        if (score % 5000 == 0) { this.life += 1 ; }
+        
     }
+    
+    public void loseLife (int bx , int px , int rx , int ox , int pacx) {
+    	if (pacx == px || pacx == rx || pacx == rx || pacx == ox   ) {
+    		life = life - 1 ;
+    	}
+    	if (life == 0) {  setAlive(false) ;}
+    	
+    }
+    
+    
 
     /*public int getX() {
         return x;
@@ -70,4 +83,20 @@ public class Pacman {
     public void eatMix() {
 
     }
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public int getPacgomme() {
+		return pacgomme;
+	}
+
+	public void setPacgomme(int pacgomme) {
+		this.pacgomme = pacgomme;
+	}
 }

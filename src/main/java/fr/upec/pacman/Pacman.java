@@ -1,14 +1,15 @@
 package fr.upec.pacman;
 
-public class Pacman {
+public class Pacman /*extends Entity*/ {
     private int life;
     private int score;
-    private boolean alive = true ;
-    private int pacgomme ;
+    private boolean alive = true;
+    private int pacgum;
     /*private int x;
     private int y;*/
 
-    public Pacman() {
+    public Pacman(/*int x, int y*/) {
+        //super(x, y);
         // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain
         this.life = 3;
         this.score = 0;
@@ -25,16 +26,20 @@ public class Pacman {
     }
 
     public void setLife(int life) {
-        if (score % 5000 == 0) { this.life += 1 ; }
-        
+        if (score % 5000 == 0) {
+            this.life += 1;
+        }
+
     }
-    
-    public void loseLife (int bx , int px , int rx , int ox , int pacx) {
-    	if (pacx == px || pacx == rx || pacx == rx || pacx == ox   ) {
-    		life = life - 1 ;
-    	}
-    	if (life == 0) {  setAlive(false) ;}
-    	
+
+    public void loseLife(int bx, int px, int rx, int ox, int pacx) {
+        if (pacx == px || pacx == rx || pacx == rx || pacx == ox) {
+            life = life - 1;
+        }
+        if (life == 0) {
+            setAlive(false);
+        }
+
     }
     
     
@@ -84,19 +89,19 @@ public class Pacman {
 
     }
 
-	public boolean isAlive() {
-		return alive;
-	}
+    public boolean isAlive() {
+        return alive;
+    }
 
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
 
-	public int getPacgomme() {
-		return pacgomme;
-	}
+    public int getPacgum() {
+        return pacgum;
+    }
 
-	public void setPacgomme(int pacgomme) {
-		this.pacgomme = pacgomme;
-	}
+    public void setPacgum(int pacgum) {
+        this.pacgum = pacgum;
+    }
 }

@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EnemyAction implements ActionListener {
-
     private int vxb = 36;
     private int vyb = 36;
     private int vxp = 36;
@@ -25,7 +24,6 @@ public class EnemyAction implements ActionListener {
         this.p = p;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         // rechercher les enemies :
@@ -33,25 +31,25 @@ public class EnemyAction implements ActionListener {
         // Blue
         if (cmpb % 4 == 0) {
             if (entity.getBx() <= 36 || entity.getBx() >= 36 * 7) {
-                 vxb = vxb * -1; // Inverse axe X
+                vxb = vxb * -1; // Inverse axe X
             }
-            
+
             entity.setBx(entity.getBx() + vxb);
-         
-            
+
+
             cmpb++;
             p.repaint();
         } else {
             if (entity.getBy() < 36 + 1 | entity.getBy() >= 36 * 7 - 1) {
                 // Random direction :
-            	vyb = vyb * -1;
+                vyb = vyb * -1;
             }
             entity.setBy(entity.getBy() + vyb);
-          
+
             cmpb++;
             p.repaint();
         }
-       
+
 
         // Red
         if (cmpr % 3 == 0) {
@@ -59,7 +57,7 @@ public class EnemyAction implements ActionListener {
                 vxr = vxr * -1;
             }
             entity.setRx(entity.getRx() + vxr);
-         
+
             cmpr++;
             p.repaint();
         } else {
@@ -67,38 +65,38 @@ public class EnemyAction implements ActionListener {
                 vyr = vyr * -1;
             }
             entity.setRy(entity.getRy() + vyr);
-           
+
             cmpr++;
             p.repaint();
         }
 
-   
+
         //Purple
         if (cmpp % 5 == 0) {
             if (entity.getPx() <= 36 || entity.getPx() >= 36 * 7) {
                 vxp = vxp * -1;
             }
             entity.setPx(entity.getPx() + vxp);
-         
+
             cmpp++;
             p.repaint();
         } else {
             if (entity.getPy() < 36 + 1 | entity.getPy() >= 36 * 7 - 1) {
-            	vyp = vyp * -1;
+                vyp = vyp * -1;
             }
             entity.setPy(entity.getPy() + vyp);
-        
+
             cmpp++;
             p.repaint();
         }
-       
+
         // Orange
         if (cmpo % 2 == 0) {
             if (entity.getOx() < 36 + 1 || entity.getOx() >= 36 * 7) {
                 vxo = vxo * -1;
             }
             entity.setOx(entity.getOx() + vxo);
-          
+
             cmpo++;
             p.repaint();
         } else {
@@ -106,13 +104,12 @@ public class EnemyAction implements ActionListener {
                 vyo = vyo * -1;
             }
             entity.setOy(entity.getOy() + vyo);
-     
+
             cmpo++;
-            
+
             p.repaint();
         }
 
-        p.getGame().checklife(); // Non optimiser
+        p.getGame().checkLife(); // Non optimiser
     }
-    
 }

@@ -19,7 +19,7 @@ public class GameView extends JComponent {
         this.entity = new ImageSet(); // on charge les images (va être supprimé)
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-        setEntity() ;
+        setEntity();
         this.timer = new Timer(2000, new EnemyAction(entity, this));
         timer.start();
     }
@@ -30,15 +30,14 @@ public class GameView extends JComponent {
         g.setColor(Color.black);
 
         image(g);
-        drawtable(g);
+        drawTerrain(g);
         drawEnemy(g);
-        scoreLife (g) ; 
-       // if (  game.win() ){win(g); }
-        
+        drawInterface(g);
+        // if (  game.win() ){win(g); }
     }
 
     // Terrain
-    private void drawtable(Graphics g) {
+    private void drawTerrain(Graphics g) {
         g.fill3DRect(0, 0, 360, 360, start);
         g.setColor(Color.GRAY);
         g.fillRect(0, 360, 360, 360);
@@ -98,6 +97,17 @@ public class GameView extends JComponent {
         }
     }
 
+    public void drawInterface(Graphics g) {
+        int x = 0;
+        for (int i = 0; i < game.getPacman().getLife(); i++) {
+            g.setColor(Color.YELLOW);
+            g.fillOval(x, 360, 36, 36);
+            x += 36;
+        }
+        g.setColor(Color.BLACK);
+        g.drawString("Score: " + game.getPacman().getScore(), 200, 382);
+    }
+
     /**
      * @param g
      * @deprecated Va être supprimé
@@ -136,28 +146,24 @@ public class GameView extends JComponent {
     public Game getGame() {
         return game;
     }
-    
-    public void setEntity() { 
 
-    	entity.setBx(36 * 2);
+    public void setEntity() {
+
+        entity.setBx(36 * 2);
         entity.setBy(36 * 7);
 
-        entity.setRx(36*7);
+        entity.setRx(36 * 7);
         entity.setRy(36 * 2);
 
         entity.setPx(36 * 2);
         entity.setPy(36 * 2);
 
         entity.setOx(36 * 7);
-        entity.setOy(36 * 7);}
-    
-    public ImageSet getEntity() { return entity ;} 
-  
-    public void scoreLife (Graphics g) {
-    	g.setColor(Color.BLACK);
-    	g.drawString("Votre score est de :" +Integer.toString(	game.getPacman().getScore()),0, 380);
-        g.drawString("Il vous reste  :" +Integer.toString(	game.getPacman().getLife()) + " vies",200, 380);
-     
+        entity.setOy(36 * 7);
+    }
+
+    public ImageSet getEntity() {
+        return entity;
     }
     
     /*private void win (Graphics g) {

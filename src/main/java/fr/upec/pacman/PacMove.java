@@ -14,7 +14,7 @@ class PacMove implements KeyListener {
     public void keyTyped(KeyEvent e) {
 
     }
-     
+
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -63,19 +63,19 @@ class PacMove implements KeyListener {
             switch (map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy]) {
                 case C:
                     view.getGame().getPacman().addScore(100);
-                    view.getGame().getPacman().setPacgum(view.getGame().getPacman().getPacgum() + 1);
+                    view.getGame().getPacman().incrementPacgum();
                     break;
                 case I:
                     view.getGame().getPacman().addScore(300);
-                    view.getGame().getPacman().setPacgum(view.getGame().getPacman().getPacgum() + 1);
+                    view.getGame().getPacman().incrementPacgum();
                     break;
                 case S:
                     view.getGame().getPacman().addScore(500);
-                    view.getGame().getPacman().setPacgum(view.getGame().getPacman().getPacgum() + 1);
+                    view.getGame().getPacman().incrementPacgum();
                     break;
                 case M:
                     view.getGame().getPacman().addScore(1000);
-                    view.getGame().getPacman().setPacgum(view.getGame().getPacman().getPacgum() + 1);
+                    view.getGame().getPacman().incrementPacgum();
                     break;
                 default:
                     break;

@@ -33,7 +33,7 @@ public class GameView extends JComponent {
         drawTerrain(g);
         drawEnemy(g);
         drawInterface(g);
-        // if (  game.win() ){win(g); }
+        if (game.win()) win(g); //Oula ça continue à faire des fenêtres win xD
     }
 
     // Terrain
@@ -135,7 +135,6 @@ public class GameView extends JComponent {
         this.start = start;
     }
 
-
     private void drawEnemy(Graphics g) {
         g.drawImage(entity.getGhostBlue(), entity.getBx(), entity.getBy(), null);
         g.drawImage(entity.getGhostPurple(), entity.getPx(), entity.getPy(), null);
@@ -165,13 +164,11 @@ public class GameView extends JComponent {
     public ImageSet getEntity() {
         return entity;
     }
-    
-    /*private void win (Graphics g) {
-    	g.setColor(Color.BLACK);
-    	
-    	g.drawString("You WIN ",250, 250);
-    	
-    }*/
+
+    private void win(Graphics g) {
+        JOptionPane option = new JOptionPane();
+        option.showMessageDialog(null, "Vous avez gagné!");
+    }
 }
 
 

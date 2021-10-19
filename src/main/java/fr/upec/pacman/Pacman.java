@@ -29,7 +29,6 @@ public class Pacman /*extends Entity*/ {
         if (score % 5000 == 0) {
             this.life += 1;
         }
-
     }
 
     public void loseLife(int bx, int px, int rx, int ox, int pacx) {
@@ -73,10 +72,6 @@ public class Pacman /*extends Entity*/ {
         this.score += score;
     }
 
-    public void eatClassic() {
-
-    }
-
     public void eatInvisible() {
 
     }
@@ -97,11 +92,11 @@ public class Pacman /*extends Entity*/ {
         this.alive = alive;
     }
 
-    public int getPacgum() {
-        return pacgum;
+    public void incrementPacgum() {
+        pacgum++;
     }
 
-    public void setPacgum(int pacgum) {
-        this.pacgum = pacgum;
+    public int getPacgum() {
+        return pacgum;
     }
 }

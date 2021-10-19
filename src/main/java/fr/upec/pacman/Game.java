@@ -23,12 +23,9 @@ public class Game {
         p.getGame().getPacman().loseLife(p.getEntity().getRx(), p.getEntity().getBx(), p.getEntity().getPx(), p.getEntity().getOx(), p.getGame().getMap().getPacmanCoords()[1] * 36);
 
     }
-    /*
+
     public boolean win() {
-    	if (pacman.isAlive() && pacman.getPacgomme() == 64) {
-    		System.out.println("YOU WIN");
-    		return true ;
-    	} 
-    	    return false ;
-    }*/
+        if (pacman.isAlive() && pacman.getPacgum() == 64) return true;
+        else return false;
+    }
 }

@@ -19,20 +19,7 @@ public class GameView extends JComponent {
         this.entity = new ImageSet(); // on charge les images (va être supprimé)
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-
-
-        entity.setBx(36 * 2);
-        entity.setBy(36 * 3);
-
-        entity.setRx(72);
-        entity.setRy(36 * 7);
-
-        entity.setPx(36 * 7);
-        entity.setPy(36 * 2);
-
-        entity.setOx(36 * 7);
-        entity.setOy(36 * 7);
-
+        setEntity() ;
         this.timer = new Timer(1000, new EnemyAction(entity, this));
         timer.start();
     }
@@ -146,6 +133,20 @@ public class GameView extends JComponent {
     public Game getGame() {
         return game;
     }
+    
+    public void setEntity() { 
+
+    	entity.setBx(36 * 2);
+        entity.setBy(36 * 3);
+
+        entity.setRx(72);
+        entity.setRy(36 * 7);
+
+        entity.setPx(36 * 7);
+        entity.setPy(36 * 2);
+
+        entity.setOx(36 * 7);
+        entity.setOy(36 * 7);}
 }
 
 

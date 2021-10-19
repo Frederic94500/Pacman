@@ -33,10 +33,10 @@ public class EnemyAction implements ActionListener {
         // Blue
         if (cmpb % 4 == 0) {
             if (entity.getBx() <= 36 || entity.getBx() >= 36 * 7) {
-                vxb = vxb * -1;
+                vxb = vxb * -1; 
             }
             entity.setBx(entity.getBx() + vxb);
-            cmpb++;
+            cmpb++; 
         } else {
             if (entity.getBy() < 36 + 1 | entity.getBy() >= 36 * 7 - 1) {
                 vyb = vyb * -1;
@@ -44,7 +44,7 @@ public class EnemyAction implements ActionListener {
             entity.setBy(entity.getBy() + vyb);
             cmpb++;
         }
-
+        p.repaint();
 
         // Red
         if (cmpr % 3 == 0) {
@@ -61,7 +61,7 @@ public class EnemyAction implements ActionListener {
             cmpr++;
         }
 
-
+        p.repaint();
         //Purple
         if (cmpp % 4 == 0) {
             if (entity.getPx() <= 36 || entity.getPx() >= 36 * 7) {
@@ -76,7 +76,7 @@ public class EnemyAction implements ActionListener {
             entity.setPy(entity.getPy() + vyp);
             cmpp++;
         }
-
+        p.repaint();
         // Orange
         if (cmpo % 5 == 0) {
             if (entity.getOx() < 36 + 1 || entity.getOx() >= 36 * 7) {

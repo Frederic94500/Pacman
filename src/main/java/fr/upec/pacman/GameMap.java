@@ -7,10 +7,6 @@ public class GameMap {
     private static final Type S = Type.S; // S = SUPERPOWER
     private static final Type M = Type.M; // N = NOTHING
     private static final Type P = Type.P; // P = PACMAN
-    private static final Type Gr = Type.Gr; // G = GHOSTRed
-    private static final Type Gb = Type.Gb; // G = GHOSTBlue
-    private static final Type Go = Type.Go; // G = GHOSTOrange
-    private static final Type Gp = Type.Gp; // G = GHOSTPurple
 
     private Type[][] map; // Terrain
 

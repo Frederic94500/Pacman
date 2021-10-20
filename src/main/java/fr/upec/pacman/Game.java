@@ -22,7 +22,6 @@ public class Game {
     public void checkLife() {
        try {
     	p.getGame().getPacman().loseLife(p.getEntity().getRx(), p.getEntity().getBx(), p.getEntity().getPx(), p.getEntity().getOx(), p.getGame().getMap().getPacmanCoords()[0] * 36);
-        System.out.println( p.getEntity().getBx());
     }catch (Exception e) {}}
 
     public boolean win() {

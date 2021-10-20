@@ -3,9 +3,9 @@ package fr.upec.pacman;
 import javax.swing.*;
 
 public class Gui {
-    public Gui() {
+    public Gui()  {
         JFrame frame = new JFrame();
-        GameView gameView = new GameView();
+        GameView gameView = new GameView(frame);
 
         frame.setSize(375, 435);
         frame.setLocationRelativeTo(null);
@@ -15,5 +15,6 @@ public class Gui {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 }

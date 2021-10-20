@@ -10,9 +10,9 @@ public class GameView extends JComponent {
     private boolean start; // pour commencer la partie
     private ImageSet entity; //A enlever (image interdite)
     private Timer timer; // Ajouter la classe de Action listener
-
+    private Frame frame ;
     //Constructeur 
-    public GameView() {
+    public GameView(Frame f) {
         super();
         setStart(false);
         this.game = new Game(this);
@@ -22,6 +22,7 @@ public class GameView extends JComponent {
         setEntity();
         this.timer = new Timer(40, new EnemyAction(entity, this));
         timer.start();
+        this.frame = f ;
     }
 
     @Override
@@ -34,7 +35,6 @@ public class GameView extends JComponent {
         drawTerrain(g);
         drawEnemy(g);
         drawInterface(g); }
-   
     }
 
     // Terrain
@@ -171,7 +171,8 @@ public class GameView extends JComponent {
         this.timer = null ;
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
-        g.drawString("YOU WIN !", 150, 200);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.drawString("YOU WIN !", 100, 200);
     }
     private void lose(Graphics g) {
     	 
@@ -180,6 +181,8 @@ public class GameView extends JComponent {
         g.setColor(Color.YELLOW);
         g.drawString("YOU LOSE !", 150, 200);
     }
+    
+
 }
 
 

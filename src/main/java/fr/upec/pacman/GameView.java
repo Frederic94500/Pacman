@@ -20,7 +20,7 @@ public class GameView extends JComponent {
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
         setEntity();
-        this.timer = new Timer(2000, new EnemyAction(entity, this));
+        this.timer = new Timer(40, new EnemyAction(entity, this));
         timer.start();
     }
 
@@ -28,6 +28,7 @@ public class GameView extends JComponent {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
+
         if (game.win()) {win(g);  timer= null ;}else {
         image(g);
         drawTerrain(g);
@@ -157,7 +158,7 @@ public class GameView extends JComponent {
         entity.setPx(36 * 2);
         entity.setPy(36 * 2);
 
-        entity.setOx(36 * 7);
+        entity.setOx(36 * 6);
         entity.setOy(36 * 7);
     }
 
@@ -166,9 +167,18 @@ public class GameView extends JComponent {
     }
 
     private void win(Graphics g) {
-        JOptionPane option = new JOptionPane();
-        option.showMessageDialog(null, "Vous avez gagné!");  
+ 
         this.timer = null ;
+        g.fillRect(0, 0, 800, 800);
+        g.setColor(Color.YELLOW);
+        g.drawString("YOU WIN !", 150, 200);
+    }
+    private void lose(Graphics g) {
+    	 
+        this.timer = null ;
+        g.fillRect(0, 0, 800, 800);
+        g.setColor(Color.YELLOW);
+        g.drawString("YOU LOSE !", 150, 200);
     }
 }
 

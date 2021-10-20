@@ -20,12 +20,17 @@ public class Game {
     }
 
     public void checkLife() {
-        p.getGame().getPacman().loseLife(p.getEntity().getRx(), p.getEntity().getBx(), p.getEntity().getPx(), p.getEntity().getOx(), p.getGame().getMap().getPacmanCoords()[1] * 36);
-
-    }
+       try {
+    	p.getGame().getPacman().loseLife(p.getEntity().getRx(), p.getEntity().getBx(), p.getEntity().getPx(), p.getEntity().getOx(), p.getGame().getMap().getPacmanCoords()[0] * 36);
+        System.out.println( p.getEntity().getBx());
+    }catch (Exception e) {}}
 
     public boolean win() {
-        if (pacman.isAlive() && pacman.getPacgum() == 64) return true;
+        if (/*pacman.isAlive() &&*/ pacman.getScore() >= 7900) return true;
         else return false;
+    }
+    public boolean lose() {
+        if (!pacman.isAlive()) return false;
+        else return true;
     }
 }

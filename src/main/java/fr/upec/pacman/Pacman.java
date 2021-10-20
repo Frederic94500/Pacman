@@ -1,7 +1,7 @@
 package fr.upec.pacman;
 
 public class Pacman /*extends Entity*/ {
-    private int life;
+    private float life;
     private int score;
     private boolean alive = true;
     private int pacgum;
@@ -21,7 +21,7 @@ public class Pacman /*extends Entity*/ {
         return score;
     }
 
-    public int getLife() {
+    public float getLife() {
         return life;
     }
 
@@ -33,9 +33,11 @@ public class Pacman /*extends Entity*/ {
 
     public void loseLife(int bx, int px, int rx, int ox, int pacx) {
         if (pacx == px || pacx == rx || pacx == rx || pacx == ox) {
-            life = life - 1;
+            life =  life - 1;
         }
-        if (life == 0) {
+     
+        
+        if (life <= 0) {
             setAlive(false);
         }
 

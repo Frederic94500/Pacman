@@ -27,7 +27,7 @@ public class EnemyAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // rechercher les enemies :
-
+    	   if (!p.getGame().win())  {
         // Blue
         if (cmpb % 4 == 0) {
             if (entity.getBx() <= 36 || entity.getBx() >= 36 * 7) {
@@ -111,5 +111,5 @@ public class EnemyAction implements ActionListener {
         }
 
         p.getGame().checkLife(); // Non optimiser
-    }
+    }}
 }

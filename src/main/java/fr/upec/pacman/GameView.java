@@ -28,12 +28,12 @@ public class GameView extends JComponent {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
-
+        if (game.win()) {win(g);  timer= null ;}else {
         image(g);
         drawTerrain(g);
         drawEnemy(g);
-        drawInterface(g);
-        if (game.win()) win(g); //Oula ça continue à faire des fenêtres win xD
+        drawInterface(g); }
+   
     }
 
     // Terrain
@@ -167,7 +167,8 @@ public class GameView extends JComponent {
 
     private void win(Graphics g) {
         JOptionPane option = new JOptionPane();
-        option.showMessageDialog(null, "Vous avez gagné!");
+        option.showMessageDialog(null, "Vous avez gagné!");  
+        this.timer = null ;
     }
 }
 

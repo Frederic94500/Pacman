@@ -1,20 +1,18 @@
 package fr.upec.pacman;
 
-public class Pacman /*extends Entity*/ {
+import java.awt.*;
+
+public class Pacman extends Entity {
     private float life;
     private int score;
     private boolean alive = true;
-    private int pacgum;
-    /*private int x;
-    private int y;*/
+    private int pacGum;
 
-    public Pacman(/*int x, int y*/) {
-        //super(x, y);
+    public Pacman(int x, int y, Color color) {
+        super(x, y, color);
         // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain
         this.life = 3;
         this.score = 0;
-        /*this.x = 100;
-        this.y = 50;*/
     }
 
     public int getScore() {
@@ -41,31 +39,6 @@ public class Pacman /*extends Entity*/ {
         }
     }
 
-    /*public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int[] getCoords() {
-        return new int[]{x, y};
-    }
-
-    public void setCoords(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }*/
-
     public void addScore(int score) {
         this.score += score;
     }
@@ -90,11 +63,11 @@ public class Pacman /*extends Entity*/ {
         this.alive = alive;
     }
 
-    public void incrementPacgum() {
-        pacgum++;
+    public void incrementPacGum() {
+        pacGum++;
     }
 
-    public int getPacgum() {
-        return pacgum;
+    public int getPacGum() {
+        return pacGum;
     }
 }

@@ -1,12 +1,16 @@
 package fr.upec.pacman;
 
+import java.awt.*;
+
 public class Entity {
     private int x;
     private int y;
+    private Color color;
 
-    public Entity(int x, int y) {
+    public Entity(int x, int y, Color color) {
         this.x = x;
         this.y = y;
+        this.color = color;
     }
 
     public int getX() {
@@ -23,5 +27,13 @@ public class Entity {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

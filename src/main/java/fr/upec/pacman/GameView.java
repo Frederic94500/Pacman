@@ -9,7 +9,6 @@ public class GameView extends JComponent {
     public final static int HEIGHT = 200;
     private Game game;
     private boolean start; // pour commencer la partie
-    //private ImageSet entity; //A enlever (image interdite)
     private Ghost[] ghosts;
     private Timer timer; // Ajouter la classe de Action listener
     private Frame frame;
@@ -19,7 +18,6 @@ public class GameView extends JComponent {
         super();
         setStart(false);
         this.game = new Game(this);
-        //this.entity = new ImageSet(); // on charge les images (va être supprimé)
         this.ghosts = new Ghost[]{
                 new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
@@ -27,7 +25,6 @@ public class GameView extends JComponent {
                 new Ghost(size * 6, size * 7, Color.decode("#d03e19"))};//Orange
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-        //setEntity();
         this.timer = new Timer(40, new EnemyAction(ghosts, this));
         timer.start();
         this.frame = f;
@@ -42,7 +39,6 @@ public class GameView extends JComponent {
             win(g);
             timer = null;
         } else {
-            //image(g);
             drawTerrain(g);
             drawEnemy(g);
             drawInterface(g);
@@ -65,7 +61,7 @@ public class GameView extends JComponent {
                 switch (j) {
                     case W:
                         g.setColor(Color.decode("#2E20BD"));
-                        g.fillRect(x, y, size, size);  // Yo Fred jte conseille d'utiliser des cercles pour les pacgommes :p
+                        g.fillRect(x, y, size, size);
                         break;
                     case C:
                         g.setColor(Color.decode("#EDF033"));
@@ -109,25 +105,6 @@ public class GameView extends JComponent {
         g.drawString("Score: " + game.getPacman().getScore(), 200, 382);
     }
 
-    /*/**
-     * @param
-     * @deprecated Va être supprimé
-
-    private void image(Graphics g) {
-        // 3 Points de vie
-        int x_add = 0;
-        int y_add = 360;
-
-        entity.setHx(x_add);
-        entity.setHy(y_add);
-
-        for (int i = 0; i < game.getPacman().getLife(); i++) {
-            g.drawImage(entity.getHeart(), entity.getHx(), entity.getHy(), null);
-            x_add += 36;
-            entity.setHx(x_add);
-        }
-    }*/
-
     public boolean isStart() {
         return start;
     }
@@ -141,35 +118,11 @@ public class GameView extends JComponent {
             g.setColor(ghost.getColor());
             g.fillRect(ghost.getX(), ghost.getY(), size, size);
         }
-
-        /*g.drawImage(entity.getGhostBlue(), entity.getBx(), entity.getBy(), null);
-        g.drawImage(entity.getGhostPurple(), entity.getPx(), entity.getPy(), null);
-        g.drawImage(entity.getGhostOrange(), entity.getOx(), entity.getOy(), null);
-        g.drawImage(entity.getGhostRed(), entity.getRx(), entity.getRy(), null);*/
     }
 
     public Game getGame() {
         return game;
     }
-
-    /*public void setEntity() {
-
-        entity.setBx(36 * 2);
-        entity.setBy(36 * 7);
-
-        entity.setRx(36 * 7);
-        entity.setRy(36 * 2);
-
-        entity.setPx(36 * 2);
-        entity.setPy(36 * 2);
-
-        entity.setOx(36 * 6);
-        entity.setOy(36 * 7);
-    }
-
-    public ImageSet getEntity() {
-        return entity;
-    }*/
 
     public Ghost[] getGhosts() {
         return ghosts;

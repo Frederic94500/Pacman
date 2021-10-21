@@ -1,5 +1,7 @@
 package fr.upec.pacman;
 
+import java.awt.*;
+
 public class Game {
     private GameMap map;
     private Pacman pacman;
@@ -7,7 +9,7 @@ public class Game {
 
     public Game(GameView p) {
         this.map = new GameMap();
-        this.pacman = new Pacman();
+        this.pacman = new Pacman(5 * 36, 4 * 36, Color.decode("#fdff00"));
         this.p = p;
     }
 

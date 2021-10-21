@@ -15,8 +15,7 @@ public class EnemyAction implements ActionListener {
     private int cmpb;
     private int cmpr;
     private int cmpo;
-    private int cmpp;
-    private ImageSet entity;*/
+    private int cmpp;*/
     private Ghost[] ghosts;
     private GameView p;
     /*private boolean tour = true; // compteur

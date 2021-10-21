@@ -4,23 +4,17 @@ import java.awt.*;
 import java.util.Random;
 
 public class Ghost extends Entity {
-    private Color color;
     private int vx;
     private int vy;
     private int cmp; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
     private boolean tour;
 
     public Ghost(int x, int y, Color color) {
-        super(x, y);
-        this.color = color;
+        super(x, y, color);
         this.tour = true;
         this.vx = 1;
         this.vy = 0;
         this.cmp = 0;
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     public int getVx() {

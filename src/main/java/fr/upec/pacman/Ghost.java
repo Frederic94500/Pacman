@@ -1,6 +1,7 @@
 package fr.upec.pacman;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Ghost extends Entity {
     private Color color;
@@ -13,8 +14,8 @@ public class Ghost extends Entity {
         super(x, y);
         this.color = color;
         this.tour = true;
-        this.vx = 3;
-        this.vy = 3;
+        this.vx = 1;
+        this.vy = 0;
         this.cmp = 0;
     }
 
@@ -56,5 +57,25 @@ public class Ghost extends Entity {
 
     public void incrementCmp() {
         this.cmp++;
+    }
+
+    public void randomMove() {
+        Random r = new Random();
+        this.vx = 0;
+        this.vy = 0;
+        switch (r.nextInt(4)) { //0 = up, 1 = right, 2 = down, 3 = left
+            case 0:
+                this.vy = -1;
+                break;
+            case 1:
+                this.vx = 1;
+                break;
+            case 2:
+                this.vy = 1;
+                break;
+            case 3:
+                this.vx = -1;
+                break;
+        }
     }
 }

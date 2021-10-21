@@ -176,7 +176,7 @@ public class GameView extends JComponent {
     }
 
     private void win(Graphics g) {
-        this.timer = null;
+        this.timer.stop();
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
@@ -184,13 +184,11 @@ public class GameView extends JComponent {
     }
 
     private void lose(Graphics g) {
-        this.timer = null;
+        this.timer.stop();
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.drawString("YOU LOSE !", 150, 200);
     }
-
-
 }
 
 

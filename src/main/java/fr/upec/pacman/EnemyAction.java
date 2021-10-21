@@ -31,32 +31,45 @@ public class EnemyAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!p.getGame().win()) {
-            for (Ghost g : this.ghosts) {
-                if (g.isTour()) {
-                    if (g.getX() <= 36 || g.getX() >= 36 * 7) {
-                        g.setVx(g.getVx() * -1);
-                    }
-                    g.setX(g.getX() + g.getVx());
-                    g.incrementCmp();
-                    if (g.getCmp() == 12) {
-                        g.setTour(false);
-                        g.setCmp(0);
-                    }
+        //Essai d'implémentation de mouvement aléatoire via les murs c'est buggé!
+        /*for (Ghost g : this.ghosts) {
+            while (true) {
+                if (p.getGame().getMap().getMap()[(g.getY() + g.getVy()) / 36][(g.getX() + g.getVx()) / 36] == Type.W) { //si gcoords = mur alors random move
+                    g.randomMove();
                 } else {
-                    if (g.getY() < 36 + 1 | g.getY() >= 36 * 7 - 1) {
-                        g.setVy(g.getVy() * -1);
-                    }
-                    g.setY(g.getY() + g.getVx());
-                    g.incrementCmp();
-                    if (g.getCmp() == 36) {
-                        g.setTour(true);
-                        g.setCmp(0);
-                    }
+                    g.setX(g.getX() + g.getVx());
+                    g.setY(g.getY() + g.getVy());
+                    break;
                 }
             }
-            p.repaint();
         }
+        p.repaint();*/
+
+        //Implémentation par rapport à la map
+        for (Ghost g : this.ghosts) {
+            if (g.isTour()) {
+                if (g.getX() <= 36 || g.getX() >= 36 * 7) {
+                    g.setVx(g.getVx() * -1);
+                }
+                g.setX(g.getX() + g.getVx());
+                g.incrementCmp();
+                if (g.getCmp() == 12) {
+                    g.setTour(false);
+                    g.setCmp(0);
+                }
+            } else {
+                if (g.getY() < 36 + 1 | g.getY() >= 36 * 7 - 1) {
+                    g.setVy(g.getVy() * -1);
+                }
+                g.setY(g.getY() + g.getVx());
+                g.incrementCmp();
+                if (g.getCmp() == 36) {
+                    g.setTour(true);
+                    g.setCmp(0);
+                }
+            }
+        }
+        p.repaint();
 
 
         // rechercher les enemies :

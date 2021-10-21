@@ -61,7 +61,6 @@ class PacMove implements KeyListener {
         Type[][] map = view.getGame().getMap().getMap();
 
         if (map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy] != Type.W) {
-
             switch (map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy]) {
                 case C:
                     view.getGame().getPacman().addScore(100);

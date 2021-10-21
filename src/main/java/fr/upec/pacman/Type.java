@@ -8,8 +8,7 @@ package fr.upec.pacman;
  * M = MIX
  * N = NOTHING
  * P = PACMAN
- * G = GHOST
  */
 public enum Type {
-    W, C, I, S, M, N , P ,Gb , Gr , Go , Gp
+    W, C, I, S, M, N, P
 }

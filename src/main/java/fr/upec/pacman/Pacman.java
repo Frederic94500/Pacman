@@ -31,19 +31,15 @@ public class Pacman /*extends Entity*/ {
         }
     }
 
-    public void loseLife(int bx, int px, int rx, int ox, int pacx) {
-        if (pacx == px || pacx == rx || pacx == rx || pacx == ox) {
-            life =  life - 1;
-        }
-     
-        
-        if (life <= 0) {
-            setAlive(false);
+    public void loseLife(int[] ghostCoords, int[] pacmanCoords) {
+        if (ghostCoords[0] / 36 == pacmanCoords[0] && ghostCoords[1] / 36 == pacmanCoords[1]) {
+            life--;
         }
 
+        if (life <= 0) {
+            this.alive = false;
+        }
     }
-    
-    
 
     /*public int getX() {
         return x;

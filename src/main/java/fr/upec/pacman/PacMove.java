@@ -51,7 +51,7 @@ class PacMove implements KeyListener {
         }
         view.getGame().getPacman().setLife(0); // Verifie s'il a 5000pts pour ajouter une vie en plus.
         view.repaint();
-        
+
 
     }
 

@@ -7,7 +7,7 @@ public class GameMap {
     private static final Type S = Type.S; // S = SUPERPOWER
     private static final Type M = Type.M; // N = NOTHING
     private static final Type P = Type.P; // P = PACMAN
-    private int [] pacmanCoords ;
+    private int[] pacmanCoords;
     private Type[][] map; // Terrain
 
     public GameMap() {
@@ -45,10 +45,10 @@ public class GameMap {
 
         return new int[]{x, y};
     }
-    
-    public void setPacmanCoords (int [] tab ) {
-		this.pacmanCoords = tab ;
-    	
+
+    public void setPacmanCoords(int[] tab) {
+        this.pacmanCoords = tab;
+
     }
 }
 

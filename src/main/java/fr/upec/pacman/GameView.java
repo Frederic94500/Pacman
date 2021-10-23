@@ -10,8 +10,8 @@ public class GameView extends JComponent {
     private boolean start; // pour commencer la partie
     private ImageSet entity; //A enlever (image interdite)
     private Timer timer; // Ajouter la classe de Action listener
-    private Frame frame ;
-  
+    private Frame frame;
+
     //Constructeur 
     public GameView(Frame f) {
         super();
@@ -22,20 +22,28 @@ public class GameView extends JComponent {
         setSize(WIDTH, HEIGHT);
         this.timer = new Timer(40, new EnemyAction(entity, this));
         timer.start();
-        this.setFrame(f) ;
+        this.setFrame(f);
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
-        if (game.lose()) {lose(g);  timer= null ; /*game.restart();*/ } else {
-        if (game.win()) {win(g);  timer= null ;  /* game.restart();*/ } else {
-        //  image(g);
-        drawTerrain(g);
-        drawEnemy(g);
-        drawInterface(g); }
-    } }
+        if (game.lose()) {
+            lose(g);
+            timer = null; /*game.restart();*/
+        } else {
+            if (game.win()) {
+                win(g);
+                timer = null;  /* game.restart();*/
+            } else {
+                //  image(g);
+                drawTerrain(g);
+                drawEnemy(g);
+                drawInterface(g);
+            }
+        }
+    }
 
     // Terrain
     private void drawTerrain(Graphics g) {
@@ -120,7 +128,7 @@ public class GameView extends JComponent {
 
     private void drawEnemy(Graphics g) {
         g.drawImage(entity.getGhostBlue(), entity.tabx()[0], entity.taby()[0], null);
-        g.drawImage(entity.getGhostPurple(),entity.tabx()[2], entity.taby()[2], null);
+        g.drawImage(entity.getGhostPurple(), entity.tabx()[2], entity.taby()[2], null);
         g.drawImage(entity.getGhostOrange(), entity.tabx()[3], entity.taby()[3], null);
         g.drawImage(entity.getGhostRed(), entity.tabx()[1], entity.taby()[1], null);
     }
@@ -129,22 +137,20 @@ public class GameView extends JComponent {
         return game;
     }
 
-
     public ImageSet getEntity() {
         return entity;
     }
 
     private void win(Graphics g) {
- 
-        this.timer = null ;
+        this.timer = null;
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         g.drawString("YOU WIN !", 100, 200);
     }
+
     private void lose(Graphics g) {
-    	 
-        this.timer = null ;
+        this.timer = null;
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.setColor(Color.YELLOW);
@@ -152,18 +158,12 @@ public class GameView extends JComponent {
         g.drawString("YOU LOSE !", 100, 200);
     }
 
-	public Frame getFrame() {
-		return frame;
-	}
+    public Frame getFrame() {
+        return frame;
+    }
 
-	public void setFrame(Frame frame) {
-		this.frame = frame;
-	}
-    
+    public void setFrame(Frame frame) {
+        this.frame = frame;
+    }
 
 }
-
-
-
-
-

@@ -5,8 +5,8 @@ public class Pacman /*extends Entity*/ {
     private int score;
     private boolean alive = true;
     private int pacgum;
-    /*private int x;
-    private int y;*/
+    private int x;
+    private int y;
 
     public Pacman(/*int x, int y*/) {
         //super(x, y);
@@ -31,21 +31,30 @@ public class Pacman /*extends Entity*/ {
         }
     }
 
-    public void loseLife(int bx, int px, int rx, int ox, int pacx) {
-        if (pacx == px || pacx == rx || pacx == rx || pacx == ox) {
+    public boolean loseLife(int bx,int by, int px, int py, int rx , int ry, int ox, int oy ,int pacy, int pacx , Game game) {
+    	if ((pacx == px && pacy == py) ||( pacx == rx && pacy == ry) ||( pacx == bx && pacy == by) || (pacx == ox && pacy == oy )) {
             life =  life - 1;
+            game.getMap().setPacmanCoords(new int [] {8,8});
+           for (int i = 0 ; i < game.getview().getEntity().tabx().length ; i++ )
+            {
+        	   game.getview().getEntity().tabx()[i] = 72;
+               game.getview().getEntity().taby() [i] = 72; }
+          
+           if (life <= 0) {
+               setAlive(false);
+           } 
+           return true ;
+            
         }
      
         
-        if (life <= 0) {
-            setAlive(false);
-        }
+         return false ;
 
     }
     
     
 
-    /*public int getX() {
+    public int getX() {
         return x;
     }
 
@@ -68,7 +77,7 @@ public class Pacman /*extends Entity*/ {
     public void setCoords(int x, int y) {
         this.x = x;
         this.y = y;
-    }*/
+    }
 
     public void addScore(int score) {
         this.score += score;

@@ -11,6 +11,7 @@ public class GameView extends JComponent {
     private ImageSet entity; //A enlever (image interdite)
     private Timer timer; // Ajouter la classe de Action listener
     private Frame frame ;
+  
     //Constructeur 
     public GameView(Frame f) {
         super();
@@ -19,23 +20,22 @@ public class GameView extends JComponent {
         this.entity = new ImageSet(); // on charge les images (va être supprimé)
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-        setEntity();
         this.timer = new Timer(40, new EnemyAction(entity, this));
         timer.start();
-        this.frame = f ;
+        this.setFrame(f) ;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
-
-        if (game.win()) {win(g);  timer= null ;}else {
-        image(g);
+        if (game.lose()) {lose(g);  timer= null ; /*game.restart();*/ } else {
+        if (game.win()) {win(g);  timer= null ;  /* game.restart();*/ } else {
+        //  image(g);
         drawTerrain(g);
         drawEnemy(g);
         drawInterface(g); }
-    }
+    } }
 
     // Terrain
     private void drawTerrain(Graphics g) {
@@ -106,26 +106,8 @@ public class GameView extends JComponent {
             x += 36;
         }
         g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString("Score: " + game.getPacman().getScore(), 200, 382);
-    }
-
-    /**
-     * @param g
-     * @deprecated Va être supprimé
-     */
-    private void image(Graphics g) {
-        // 3 Points de vie
-        int x_add = 0;
-        int y_add = 360;
-
-        entity.setHx(x_add);
-        entity.setHy(y_add);
-
-        for (int i = 0; i < game.getPacman().getLife(); i++) {
-            g.drawImage(entity.getHeart(), entity.getHx(), entity.getHy(), null);
-            x_add += 36;
-            entity.setHx(x_add);
-        }
     }
 
     public boolean isStart() {
@@ -137,30 +119,16 @@ public class GameView extends JComponent {
     }
 
     private void drawEnemy(Graphics g) {
-        g.drawImage(entity.getGhostBlue(), entity.getBx(), entity.getBy(), null);
-        g.drawImage(entity.getGhostPurple(), entity.getPx(), entity.getPy(), null);
-        g.drawImage(entity.getGhostOrange(), entity.getOx(), entity.getOy(), null);
-        g.drawImage(entity.getGhostRed(), entity.getRx(), entity.getRy(), null);
+        g.drawImage(entity.getGhostBlue(), entity.tabx()[0], entity.taby()[0], null);
+        g.drawImage(entity.getGhostPurple(),entity.tabx()[2], entity.taby()[2], null);
+        g.drawImage(entity.getGhostOrange(), entity.tabx()[3], entity.taby()[3], null);
+        g.drawImage(entity.getGhostRed(), entity.tabx()[1], entity.taby()[1], null);
     }
 
     public Game getGame() {
         return game;
     }
 
-    public void setEntity() {
-
-        entity.setBx(36 * 2);
-        entity.setBy(36 * 7);
-
-        entity.setRx(36 * 7);
-        entity.setRy(36 * 2);
-
-        entity.setPx(36 * 2);
-        entity.setPy(36 * 2);
-
-        entity.setOx(36 * 6);
-        entity.setOy(36 * 7);
-    }
 
     public ImageSet getEntity() {
         return entity;
@@ -179,8 +147,18 @@ public class GameView extends JComponent {
         this.timer = null ;
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
-        g.drawString("YOU LOSE !", 150, 200);
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.drawString("YOU LOSE !", 100, 200);
     }
+
+	public Frame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(Frame frame) {
+		this.frame = frame;
+	}
     
 
 }

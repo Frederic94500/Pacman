@@ -50,7 +50,6 @@ class PacMove implements KeyListener {
                 break;
         }
         view.getGame().getPacman().setLife(0); // Verifie s'il a 5000pts pour ajouter une vie en plus.
-        view.getGame().checkLife(); 
         view.repaint();
         
 
@@ -61,7 +60,6 @@ class PacMove implements KeyListener {
         Type[][] map = view.getGame().getMap().getMap();
 
         if (map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy] != Type.W) {
-
             switch (map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy]) {
                 case C:
                     view.getGame().getPacman().addScore(100);
@@ -82,7 +80,6 @@ class PacMove implements KeyListener {
                 default:
                     break;
             }
-
             map[pacmanCoordsMap[0]][pacmanCoordsMap[1]] = Type.N;
             map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy] = Type.P;
         }

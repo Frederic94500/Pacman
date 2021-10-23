@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 public class EnemyAction implements ActionListener {
     /*private int vxb = 3;
+    // H jvais les transeformer en tableau
+    private int vxb = 3;
     private int vyb = 3;
     private int vxp = 3;
     private int vyp = 3;
@@ -12,16 +14,16 @@ public class EnemyAction implements ActionListener {
     private int vyo = 3;
     private int vxr = 3;
     private int vyr = 3;
-    private int cmpb;
+    private int cmpb ;
     private int cmpr;
     private int cmpo;
     private int cmpp;*/
     private Ghost[] ghosts;
     private GameView p;
-    /*private boolean tour = true; // compteur
+    private boolean tour = true; // Choix
     private boolean tour2 = true;
     private boolean tour3 = true;
-    private boolean tour4 = true;*/
+    private boolean tour4 = true;
 
     public EnemyAction(Ghost[] ghosts, GameView p) {
         this.ghosts = ghosts;
@@ -30,55 +32,16 @@ public class EnemyAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Essai d'implémentation de mouvement aléatoire via les murs c'est buggé!
-        /*for (Ghost g : this.ghosts) {
-            while (true) {
-                if (p.getGame().getMap().getMap()[(g.getY() + g.getVy()) / 36][(g.getX() + g.getVx()) / 36] == Type.W) { //si gcoords = mur alors random move
-                    g.randomMove();
-                } else {
-                    g.setX(g.getX() + g.getVx());
-                    g.setY(g.getY() + g.getVy());
-                    break;
-                }
-            }
-        }
-        p.repaint();*/
-
-        //Implémentation par rapport à la map
-        for (Ghost g : this.ghosts) {
-            if (g.isTour()) {
-                if (g.getX() <= 36 || g.getX() >= 36 * 7) {
-                    g.setVx(g.getVx() * -1);
-                }
-                g.setX(g.getX() + g.getVx());
-                g.incrementCmp();
-                if (g.getCmp() == 12) {
-                    g.setTour(false);
-                    g.setCmp(0);
-                }
-            } else {
-                if (g.getY() < 36 + 1 | g.getY() >= 36 * 7 - 1) {
-                    g.setVy(g.getVy() * -1);
-                }
-                g.setY(g.getY() + g.getVx());
-                g.incrementCmp();
-                if (g.getCmp() == 36) {
-                    g.setTour(true);
-                    g.setCmp(0);
-                }
-            }
-        }
-        p.repaint();
-
 
         // rechercher les enemies :
-        /*if (!p.getGame().win()) {
+        if (!p.getGame().win()) {
+
             // Blue
             if (tour) {
-                if (entity.getBx() <= 36 || entity.getBx() >= 36 * 7) {
+                if (entity.tabx()[0] <= 36 || entity.tabx()[0] >= 36 * 7) {
                     vxb = vxb * -1; // Inverse axe X
                 }
-                entity.setBx(entity.getBx() + vxb);
+                entity.tabx()[0] = entity.tabx()[0] + vxb;
                 p.repaint();
                 cmpb++;
                 if (cmpb == 12) {
@@ -86,11 +49,12 @@ public class EnemyAction implements ActionListener {
                     cmpb = 0;
                 }
             } else {
-                if (entity.getBy() < 36 + 1 | entity.getBy() >= 36 * 7 - 1) {
+
+                if (entity.taby()[0] < 36 + 1 | entity.taby()[0] >= 36 * 7 - 1) {
                     // Random direction :
                     vyb = vyb * -1;
                 }
-                entity.setBy(entity.getBy() + vyb);
+                entity.taby()[0] = entity.taby()[0] + vyb;
                 p.repaint();
                 cmpb++;
                 if (cmpb == 36) {
@@ -98,14 +62,25 @@ public class EnemyAction implements ActionListener {
                     cmpb = 0;
                 }
             }
+            // Verifie si ca touche
+            if (p.getGame().checkLife()) {
+                try {
+                    cmpb = 0;
+                    cmpo = 0;
+                    cmpp = 0;
+                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                }
+            }
 
             // Red
             if (tour2) {
-                if (entity.getRx() <= 36 || entity.getRx() >= 36 * 7) {
+                if (entity.tabx()[1] <= 36 || entity.tabx()[1] >= 36 * 7) {
                     vxr = vxr * -1;
                 }
 
-                entity.setRx(entity.getRx() + vxr);
+                entity.tabx()[1] = entity.tabx()[1] + vxr;
                 cmpr++;
                 p.repaint();
                 if (cmpr == 24) {
@@ -114,11 +89,10 @@ public class EnemyAction implements ActionListener {
                 }
 
             } else {
-                if (entity.getRy() < 36 + 1 | entity.getRy() >= 36 * 7 - 1) {
+                if (entity.taby()[1] < 36 + 1 | entity.taby()[1] >= 36 * 7 - 1) {
                     vyr = vyr * -1;
                 }
-                entity.setRy(entity.getRy() + vyr);
-
+                entity.taby()[1] = entity.taby()[1] + vyr;
                 cmpr++;
                 if (cmpr == 24) {
                     tour2 = true;
@@ -126,15 +100,26 @@ public class EnemyAction implements ActionListener {
                 }
                 p.repaint();
             }
+            // Verifie si ca touche
+            if (p.getGame().checkLife()) {
+                try {
+                    cmpb = 0;
+                    cmpo = 0;
+                    cmpp = 0;
+                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
 
 
             //Purple
             if (!tour3) {
-                if (entity.getPx() <= 36 || entity.getPx() >= 36 * 7) {
+                if (entity.tabx()[2] <= 36 || entity.tabx()[2] >= 36 * 7) {
                     vxp = vxp * -1;
                 }
-                entity.setPx(entity.getPx() + vxp);
-
+                entity.tabx()[2] = entity.tabx()[2] + vxp;
                 cmpp++;
                 if (cmpp == 12) {
                     tour3 = true;
@@ -142,11 +127,10 @@ public class EnemyAction implements ActionListener {
                 }
                 p.repaint();
             } else {
-                if (entity.getPy() < 36 + 1 | entity.getPy() >= 36 * 7 - 1) {
+                if (entity.taby()[2] < 36 + 1 | entity.taby()[2] >= 36 * 7 - 1) {
                     vyp = vyp * -1;
                 }
-                entity.setPy(entity.getPy() + vyp);
-
+                entity.taby()[2] = entity.taby()[2] + vyp;
                 cmpp++;
                 if (cmpp == 24) {
                     tour3 = false;
@@ -155,12 +139,25 @@ public class EnemyAction implements ActionListener {
                 p.repaint();
             }
 
+            // Verifie si ca touche
+            if (p.getGame().checkLife()) {
+                try {
+                    cmpb = 0;
+                    cmpo = 0;
+                    cmpp = 0;
+                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
             // Orange
             if (!tour4) {
-                if (entity.getOx() <= 36 || entity.getOx() >= 36 * 7) {
+                if (entity.tabx()[3] <= 36 || entity.tabx()[3] >= 36 * 7) {
                     vxo = vxo * -1;
                 }
-                entity.setOx(entity.getOx() + vxo);
+                entity.tabx()[3] = entity.tabx()[3] + vxo;
                 cmpo++;
                 if (cmpo == 24) {
                     tour4 = true;
@@ -168,21 +165,30 @@ public class EnemyAction implements ActionListener {
                 }
                 p.repaint();
             } else {
-
-                if (entity.getOy() < 36 + 1 | entity.getOy() >= 36 * 7 - 1) {
+                if (entity.taby()[3] < 36 + 1 | entity.taby()[3] >= 36 * 7 - 1) {
                     vyo = vyo * -1;
                 }
-                entity.setOy(entity.getOy() + vyo);
-
+                entity.taby()[3] = entity.taby()[3] + vyo;
                 cmpo++;
                 if (cmpo == 36) {
                     tour4 = false;
                     cmpo = 0;
                 }
-
                 p.repaint();
             }
-        }*/
+            // Verifie si ca touche
+            if (p.getGame().checkLife()) {
+                try {
+                    cmpb = 0;
+                    cmpo = 0;
+                    cmpp = 0;
+                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
     }
 }
 

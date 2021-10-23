@@ -29,14 +29,21 @@ public class Pacman extends Entity {
         }
     }
 
-    public void loseLife(int[] ghostCoords, int[] pacmanCoords) {
-        if (ghostCoords[0] / 36 == pacmanCoords[0] && ghostCoords[1] / 36 == pacmanCoords[1]) {
-            life--;
-        }
+    public boolean loseLife(int bx, int by, int px, int py, int rx, int ry, int ox, int oy, int pacy, int pacx, Game game) {
+        if ((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) {
+            life = life - 1;
+            game.getMap().setPacmanCoords(new int[]{8, 8});
+            for (int i = 0; i < game.getview().getEntity().tabx().length; i++) {
+                game.getview().getEntity().tabx()[i] = 72;
+                game.getview().getEntity().taby()[i] = 72;
+            }
 
-        if (life <= 0) {
-            this.alive = false;
+            if (life <= 0) {
+                setAlive(false);
+            }
+            return true;
         }
+        return false;
     }
 
     public void addScore(int score) {

@@ -34,14 +34,19 @@ public class GameView extends JComponent {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
-
-        if (game.win()) {
-            win(g);
-            timer = null;
+        if (game.lose()) {
+            lose(g);
+            timer = null; /*game.restart();*/
         } else {
-            drawTerrain(g);
-            drawEnemy(g);
-            drawInterface(g);
+            if (game.win()) {
+                win(g);
+                timer = null;  /* game.restart();*/
+            } else {
+                //  image(g);
+                drawTerrain(g);
+                drawEnemy(g);
+                drawInterface(g);
+            }
         }
     }
 
@@ -53,6 +58,7 @@ public class GameView extends JComponent {
 
         int x = 0;
         int y = 0;
+        int size = 36;
         // x = width y = height  // size taille du block
 
         for (Type[] i : game.getMap().getMap()) {
@@ -102,6 +108,7 @@ public class GameView extends JComponent {
             x += 36;
         }
         g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString("Score: " + game.getPacman().getScore(), 200, 382);
     }
 
@@ -140,11 +147,16 @@ public class GameView extends JComponent {
         this.timer.stop();
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
-        g.drawString("YOU LOSE !", 150, 200);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.drawString("YOU LOSE !", 100, 200);
     }
+
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Frame frame) {
+        this.frame = frame;
+    }
+
 }
-
-
-
-
-

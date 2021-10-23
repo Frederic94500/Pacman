@@ -21,20 +21,34 @@ public class Game {
         return pacman;
     }
 
-    public void checkLife() {
-        Ghost[] ghosts = p.getGhosts();
-        for (Ghost g : ghosts) {
-            pacman.loseLife(new int[]{g.getX(), g.getY()}, map.getPacmanCoords());
+    public boolean checkLife() {
+        try {    //                                                                                                                                                                                                                                                                             y                                               x
+            return p.getGame().getPacman().loseLife(p.getEntity().tabx()[3], p.getEntity().taby()[3], p.getEntity().tabx()[2], p.getEntity().taby()[2], p.getEntity().tabx()[1], p.getEntity().taby()[1], p.getEntity().tabx()[0], p.getEntity().taby()[0], p.getGame().getMap().getPacmanCoords()[0] * 36, p.getGame().getMap().getPacmanCoords()[1] * 36, this);
+
+        } catch (Exception e) {
         }
+        return false;
     }
 
     public boolean win() {
-        if (/*pacman.isAlive() &&*/ pacman.getScore() >= 7900) return true;
+        if (pacman.isAlive() && pacman.getScore() >= 7900) return true;
         else return false;
     }
 
     public boolean lose() {
-        if (!pacman.isAlive()) return false;
-        else return true;
+        if (pacman.isAlive()) {
+            return false;
+        } else return true;
+    }
+
+    /*   public void restart () {
+       Scanner s = new Scanner (System.in) ;
+       System.out.println("Voulez vous refaire la partie ? \n   1- Oui  2- Non");
+       int choix = s.nextInt() ;
+       p.getFrame().dispose();
+       if (choix == 1 ) {  App partie = new App () ; partie.main(null);}
+    }*/
+    public GameView getview() {
+        return p;
     }
 }

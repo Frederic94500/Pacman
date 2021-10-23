@@ -19,13 +19,13 @@ public class GameView extends JComponent {
         setStart(false);
         this.game = new Game(this);
         this.ghosts = new Ghost[]{
-                new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
-                new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
-                new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
-                new Ghost(size * 6, size * 7, Color.decode("#d03e19"))};//Orange
+                new Ghost(size * 2, size * 7, Color.decode("#ea82e5"), 12, 36), //Blue
+                new Ghost(size * 7, size * 2, Color.decode("#46bfee"), 24, 24), //Red
+                new Ghost(size * 2, size * 2, Color.decode("#db851c"), 12, 24), //Purple
+                new Ghost(size * 6, size * 7, Color.decode("#d03e19"), 24, 36)};//Orange
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-        this.timer = new Timer(40, new EnemyAction(ghosts, this));
+        this.timer = new Timer(1, new EnemyAction(ghosts, this));
         timer.start();
         this.frame = f;
     }

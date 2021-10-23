@@ -31,9 +31,10 @@ public class EnemyAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //Essai d'implémentation de mouvement aléatoire via les murs c'est buggé!
-        /*for (Ghost g : this.ghosts) {
+        for (Ghost g : this.ghosts) {
             while (true) {
-                if (p.getGame().getMap().getMap()[(g.getY() + g.getVy()) / 36][(g.getX() + g.getVx()) / 36] == Type.W) { //si gcoords = mur alors random move
+                if (p.getGame().getMap().getMap()[(g.getY() + g.getVy()) / 36][(g.getX() + g.getVx()) / 36] == Type.W ||
+                        p.getGame().getMap().getMap()[(g.getY() + g.getVy() + 36) / 36][(g.getX() + g.getVx() + 36) / 36] == Type.W) { //si gcoords = mur alors random move
                     g.randomMove();
                 } else {
                     g.setX(g.getX() + g.getVx());
@@ -42,17 +43,17 @@ public class EnemyAction implements ActionListener {
                 }
             }
         }
-        p.repaint();*/
+        p.repaint();
 
         //Implémentation par rapport à la map
-        for (Ghost g : this.ghosts) {
+        /*for (Ghost g : this.ghosts) {
             if (g.isTour()) {
                 if (g.getX() <= 36 || g.getX() >= 36 * 7) {
                     g.setVx(g.getVx() * -1);
                 }
                 g.setX(g.getX() + g.getVx());
                 g.incrementCmp();
-                if (g.getCmp() == 12) {
+                if (g.getCmp() == g.getCmpStart()) {
                     g.setTour(false);
                     g.setCmp(0);
                 }
@@ -62,13 +63,13 @@ public class EnemyAction implements ActionListener {
                 }
                 g.setY(g.getY() + g.getVx());
                 g.incrementCmp();
-                if (g.getCmp() == 36) {
+                if (g.getCmp() == g.getCmpEnd()) {
                     g.setTour(true);
                     g.setCmp(0);
                 }
             }
         }
-        p.repaint();
+        p.repaint();*/
 
 
         // rechercher les enemies :

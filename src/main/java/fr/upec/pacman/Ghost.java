@@ -8,13 +8,25 @@ public class Ghost extends Entity {
     private int vy;
     private int cmp; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
     private boolean tour;
+    private int cmpStart;
+    private int cmpEnd;
 
-    public Ghost(int x, int y, Color color) {
+    public Ghost(int x, int y, Color color, int cmpStart, int cmpEnd) {
         super(x, y, color);
         this.tour = true;
         this.vx = 1;
         this.vy = 0;
         this.cmp = 0;
+        this.cmpStart = cmpStart;
+        this.cmpEnd = cmpEnd;
+    }
+
+    public int getCmpStart() {
+        return cmpStart;
+    }
+
+    public int getCmpEnd() {
+        return cmpEnd;
     }
 
     public int getVx() {

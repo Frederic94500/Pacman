@@ -20,8 +20,8 @@ public class GameMap {
                 {C, C, S, C, C, P, C, C, C, C},
                 {W, C, C, C, C, C, C, C, I, W},
                 {W, C, C, C, C, C, C, C, C, W},
-                {W, C, C, C, C, C, C, C, C, W},
-                {W, C, C, C, C, C, C, C, C, W},
+                {W, C, W, C, C, C, W, W, C, W},
+                {W, C, C, C, W, C, C, C, C, W},
                 {W, W, W, W, W, W, W, W, W, W}};
     }
 

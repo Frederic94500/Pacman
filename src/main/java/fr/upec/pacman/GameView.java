@@ -28,7 +28,7 @@ public class GameView extends JComponent {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
-        if (game.lose()) {
+        if (!game.getPacman().isAlive()) {
             lose(g);
             /*game.restart();*/
         } else {

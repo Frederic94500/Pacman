@@ -48,7 +48,6 @@ public class GameMap {
 
     public void setPacmanCoords(int[] tab) {
         this.pacmanCoords = tab;
-
     }
 }
 

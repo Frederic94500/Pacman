@@ -9,7 +9,6 @@ public class GameView extends JComponent {
     public final static int HEIGHT = 200;
     private Game game;
     private boolean start; // pour commencer la partie
-    private Ghost[] ghosts;
     private Timer timer; // Ajouter la classe de Action listener
     private Frame frame;
 
@@ -18,14 +17,9 @@ public class GameView extends JComponent {
         super();
         setStart(false);
         this.game = new Game(this);
-        this.ghosts = new Ghost[]{
-                new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
-                new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
-                new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
-                new Ghost(size * 6, size * 7, Color.decode("#d03e19"))};//Orange
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-        this.timer = new Timer(40, new EnemyAction(ghosts, this));
+        this.timer = new Timer(40, new EnemyAction(game.getGhosts(), this));
         timer.start();
         this.frame = f;
     }
@@ -36,13 +30,12 @@ public class GameView extends JComponent {
         g.setColor(Color.black);
         if (game.lose()) {
             lose(g);
-            timer = null; /*game.restart();*/
+            /*game.restart();*/
         } else {
             if (game.win()) {
                 win(g);
-                timer = null;  /* game.restart();*/
+                /* game.restart();*/
             } else {
-                //  image(g);
                 drawTerrain(g);
                 drawEnemy(g);
                 drawInterface(g);
@@ -121,7 +114,7 @@ public class GameView extends JComponent {
     }
 
     private void drawEnemy(Graphics g) {
-        for (Ghost ghost : ghosts) {
+        for (Ghost ghost : game.getGhosts()) {
             g.setColor(ghost.getColor());
             g.fillRect(ghost.getX(), ghost.getY(), size, size);
         }
@@ -129,10 +122,6 @@ public class GameView extends JComponent {
 
     public Game getGame() {
         return game;
-    }
-
-    public Ghost[] getGhosts() {
-        return ghosts;
     }
 
     private void win(Graphics g) {
@@ -150,13 +139,4 @@ public class GameView extends JComponent {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         g.drawString("YOU LOSE !", 100, 200);
     }
-
-    public Frame getFrame() {
-        return frame;
-    }
-
-    public void setFrame(Frame frame) {
-        this.frame = frame;
-    }
-
 }

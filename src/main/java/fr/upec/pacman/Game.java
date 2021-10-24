@@ -3,13 +3,20 @@ package fr.upec.pacman;
 import java.awt.*;
 
 public class Game {
+    private final int size = 36;
     private GameMap map;
     private Pacman pacman;
+    private Ghost[] ghosts;
     private GameView p;
 
     public Game(GameView p) {
         this.map = new GameMap();
         this.pacman = new Pacman(5 * 36, 4 * 36, Color.decode("#fdff00"));
+        this.ghosts = new Ghost[]{
+                new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
+                new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
+                new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
+                new Ghost(size * 6, size * 7, Color.decode("#d03e19"))};//Orange
         this.p = p;
     }
 
@@ -21,10 +28,13 @@ public class Game {
         return pacman;
     }
 
-    public boolean checkLife() {
-        try {    //                                                                                                                                                                                                                                                                             y                                               x
-            return p.getGame().getPacman().loseLife(p.getEntity().tabx()[3], p.getEntity().taby()[3], p.getEntity().tabx()[2], p.getEntity().taby()[2], p.getEntity().tabx()[1], p.getEntity().taby()[1], p.getEntity().tabx()[0], p.getEntity().taby()[0], p.getGame().getMap().getPacmanCoords()[0] * 36, p.getGame().getMap().getPacmanCoords()[1] * 36, this);
+    public Ghost[] getGhosts() {
+        return ghosts;
+    }
 
+    public boolean checkLife() {
+        try {    //                                                                                                                                                                                               y                                               x
+            return pacman.loseLife(ghosts[0].getX(), ghosts[0].getY(), ghosts[1].getX(), ghosts[1].getY(), ghosts[2].getX(), ghosts[2].getY(), ghosts[3].getX(), ghosts[3].getY(), p.getGame().getMap().getPacmanCoords()[0] * 36, p.getGame().getMap().getPacmanCoords()[1] * 36, this);
         } catch (Exception e) {
         }
         return false;
@@ -48,7 +58,4 @@ public class Game {
        p.getFrame().dispose();
        if (choix == 1 ) {  App partie = new App () ; partie.main(null);}
     }*/
-    public GameView getview() {
-        return p;
-    }
 }

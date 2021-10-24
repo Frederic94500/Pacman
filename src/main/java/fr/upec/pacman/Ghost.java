@@ -7,13 +7,13 @@ public class Ghost extends Entity {
     private int vx;
     private int vy;
     private int cmp; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
-    private boolean tour;
+    private boolean turn;
 
     public Ghost(int x, int y, Color color) {
         super(x, y, color);
-        this.tour = true;
-        this.vx = 1;
-        this.vy = 0;
+        this.turn = true;
+        this.vx = 3;
+        this.vy = 3;
         this.cmp = 0;
     }
 
@@ -41,12 +41,12 @@ public class Ghost extends Entity {
         this.cmp = cmp;
     }
 
-    public boolean isTour() {
-        return tour;
+    public boolean isTurn() {
+        return turn;
     }
 
-    public void setTour(boolean tour) {
-        this.tour = tour;
+    public void setTurn(boolean turn) {
+        this.turn = turn;
     }
 
     public void incrementCmp() {

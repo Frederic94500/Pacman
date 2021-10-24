@@ -4,26 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EnemyAction implements ActionListener {
-    /*private int vxb = 3;
-    // H jvais les transeformer en tableau
-    private int vxb = 3;
-    private int vyb = 3;
-    private int vxp = 3;
-    private int vyp = 3;
-    private int vxo = 3;
-    private int vyo = 3;
-    private int vxr = 3;
-    private int vyr = 3;
-    private int cmpb ;
-    private int cmpr;
-    private int cmpo;
-    private int cmpp;*/
     private Ghost[] ghosts;
     private GameView p;
-    private boolean tour = true; // Choix
-    private boolean tour2 = true;
-    private boolean tour3 = true;
-    private boolean tour4 = true;
 
     public EnemyAction(Ghost[] ghosts, GameView p) {
         this.ghosts = ghosts;
@@ -32,157 +14,118 @@ public class EnemyAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         // rechercher les enemies :
         if (!p.getGame().win()) {
 
             // Blue
-            if (tour) {
-                if (entity.tabx()[0] <= 36 || entity.tabx()[0] >= 36 * 7) {
-                    vxb = vxb * -1; // Inverse axe X
+            if (ghosts[0].isTurn()) {
+                if (ghosts[0].getX() <= 36 || ghosts[0].getX() >= 36 * 7) {
+                    ghosts[0].setVx(ghosts[0].getVx() * -1); // Inverse axe X
                 }
-                entity.tabx()[0] = entity.tabx()[0] + vxb;
+                ghosts[0].setX(ghosts[0].getX() + ghosts[0].getVx());
+                ghosts[0].incrementCmp();
                 p.repaint();
-                cmpb++;
-                if (cmpb == 12) {
-                    tour = false;
-                    cmpb = 0;
+                if (ghosts[0].getCmp() == 12) {
+                    ghosts[0].setTurn(false);
+                    ghosts[0].setCmp(0);
                 }
             } else {
-
-                if (entity.taby()[0] < 36 + 1 | entity.taby()[0] >= 36 * 7 - 1) {
+                if (ghosts[0].getY() < 36 + 1 | ghosts[0].getY() >= 36 * 7 - 1) {
                     // Random direction :
-                    vyb = vyb * -1;
+                    ghosts[0].setVy(ghosts[0].getVy() * -1);
                 }
-                entity.taby()[0] = entity.taby()[0] + vyb;
+                ghosts[0].setY(ghosts[0].getY() + ghosts[0].getVy());
+                ghosts[0].incrementCmp();
                 p.repaint();
-                cmpb++;
-                if (cmpb == 36) {
-                    tour = true;
-                    cmpb = 0;
-                }
-            }
-            // Verifie si ca touche
-            if (p.getGame().checkLife()) {
-                try {
-                    cmpb = 0;
-                    cmpo = 0;
-                    cmpp = 0;
-                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
-                    Thread.sleep(1000);
-                } catch (InterruptedException e1) {
+                if (ghosts[0].getCmp() == 36) {
+                    ghosts[0].setTurn(true);
+                    ghosts[0].setCmp(0);
                 }
             }
 
             // Red
-            if (tour2) {
-                if (entity.tabx()[1] <= 36 || entity.tabx()[1] >= 36 * 7) {
-                    vxr = vxr * -1;
+            if (ghosts[1].isTurn()) {
+                if (ghosts[1].getX() <= 36 || ghosts[1].getX() >= 36 * 7) {
+                    ghosts[1].setVx(ghosts[1].getVx() * -1);
                 }
-
-                entity.tabx()[1] = entity.tabx()[1] + vxr;
-                cmpr++;
+                ghosts[1].setX(ghosts[1].getX() + ghosts[1].getVx());
+                ghosts[1].incrementCmp();
                 p.repaint();
-                if (cmpr == 24) {
-                    tour2 = false;
-                    cmpr = 0;
+                if (ghosts[1].getCmp() == 24) {
+                    ghosts[1].setTurn(false);
+                    ghosts[1].setCmp(0);
                 }
 
             } else {
-                if (entity.taby()[1] < 36 + 1 | entity.taby()[1] >= 36 * 7 - 1) {
-                    vyr = vyr * -1;
+                if (ghosts[1].getY() < 36 + 1 | ghosts[1].getY() >= 36 * 7 - 1) {
+                    ghosts[1].setVy(ghosts[1].getVy() * -1);
                 }
-                entity.taby()[1] = entity.taby()[1] + vyr;
-                cmpr++;
-                if (cmpr == 24) {
-                    tour2 = true;
-                    cmpr = 0;
-                }
+                ghosts[1].setY(ghosts[1].getY() + ghosts[1].getVy());
+                ghosts[1].incrementCmp();
                 p.repaint();
-            }
-            // Verifie si ca touche
-            if (p.getGame().checkLife()) {
-                try {
-                    cmpb = 0;
-                    cmpo = 0;
-                    cmpp = 0;
-                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
-                    Thread.sleep(1000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
+                if (ghosts[1].getCmp() == 24) {
+                    ghosts[1].setTurn(true);
+                    ghosts[1].setCmp(0);
                 }
-            }
 
+            }
 
             //Purple
-            if (!tour3) {
-                if (entity.tabx()[2] <= 36 || entity.tabx()[2] >= 36 * 7) {
-                    vxp = vxp * -1;
+            if (!ghosts[2].isTurn()) {
+                if (ghosts[2].getX() <= 36 || ghosts[2].getX() >= 36 * 7) {
+                    ghosts[2].setVx(ghosts[2].getVx() * -1);
                 }
-                entity.tabx()[2] = entity.tabx()[2] + vxp;
-                cmpp++;
-                if (cmpp == 12) {
-                    tour3 = true;
-                    cmpp = 0;
-                }
+                ghosts[2].setX(ghosts[2].getX() + ghosts[2].getVx());
+                ghosts[2].incrementCmp();
                 p.repaint();
+                if (ghosts[2].getCmp() == 12) {
+                    ghosts[2].setTurn(true);
+                    ghosts[2].setCmp(0);
+                }
             } else {
-                if (entity.taby()[2] < 36 + 1 | entity.taby()[2] >= 36 * 7 - 1) {
-                    vyp = vyp * -1;
+                if (ghosts[2].getY() < 36 + 1 | ghosts[2].getY() >= 36 * 7 - 1) {
+                    ghosts[2].setVy(ghosts[2].getVy() * -1);
                 }
-                entity.taby()[2] = entity.taby()[2] + vyp;
-                cmpp++;
-                if (cmpp == 24) {
-                    tour3 = false;
-                    cmpp = 0;
-                }
+                ghosts[2].setY(ghosts[2].getY() + ghosts[2].getVy());
+                ghosts[2].incrementCmp();
                 p.repaint();
-            }
-
-            // Verifie si ca touche
-            if (p.getGame().checkLife()) {
-                try {
-                    cmpb = 0;
-                    cmpo = 0;
-                    cmpp = 0;
-                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
-                    Thread.sleep(1000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
+                if (ghosts[2].getCmp() == 24) {
+                    ghosts[2].setTurn(false);
+                    ghosts[2].setCmp(0);
                 }
             }
 
             // Orange
-            if (!tour4) {
-                if (entity.tabx()[3] <= 36 || entity.tabx()[3] >= 36 * 7) {
-                    vxo = vxo * -1;
+            if (!ghosts[3].isTurn()) {
+                if (ghosts[3].getX() <= 36 || ghosts[3].getX() >= 36 * 7) {
+                    ghosts[3].setVx(ghosts[3].getVx() * -1);
                 }
-                entity.tabx()[3] = entity.tabx()[3] + vxo;
-                cmpo++;
-                if (cmpo == 24) {
-                    tour4 = true;
-                    cmpo = 0;
-                }
+                ghosts[3].setX(ghosts[3].getX() + ghosts[3].getVx());
+                ghosts[3].incrementCmp();
                 p.repaint();
+                if (ghosts[3].getCmp() == 24) {
+                    ghosts[3].setTurn(true);
+                    ghosts[3].setCmp(0);
+                }
             } else {
-                if (entity.taby()[3] < 36 + 1 | entity.taby()[3] >= 36 * 7 - 1) {
-                    vyo = vyo * -1;
+                if (ghosts[3].getY() < 36 + 1 | ghosts[3].getY() >= 36 * 7 - 1) {
+                    ghosts[3].setVy(ghosts[3].getVy() * -1);
                 }
-                entity.taby()[3] = entity.taby()[3] + vyo;
-                cmpo++;
-                if (cmpo == 36) {
-                    tour4 = false;
-                    cmpo = 0;
-                }
+                ghosts[3].setY(ghosts[3].getY() + ghosts[3].getVy());
+                ghosts[3].incrementCmp();
                 p.repaint();
+                if (ghosts[3].getCmp() == 36) {
+                    ghosts[3].setTurn(false);
+                    ghosts[3].setCmp(0);
+                }
             }
+
             // Verifie si ca touche
             if (p.getGame().checkLife()) {
                 try {
-                    cmpb = 0;
-                    cmpo = 0;
-                    cmpp = 0;
-                    cmpr = 0; // On restart le compteur de chaque fantomessi l'un d'entre eux touche pacman !!
+                    for (Ghost g : this.ghosts) {
+                        g.setCmp(0); // On restart le compteur de chaque fantome ssi l'un d'entre eux touche pacman !!
+                    }
                     Thread.sleep(1000);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();

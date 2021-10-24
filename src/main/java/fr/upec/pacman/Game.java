@@ -11,7 +11,7 @@ public class Game {
 
     public Game(GameView p) {
         this.map = new GameMap();
-        this.pacman = new Pacman(5 * 36, 4 * 36, Color.decode("#fdff00"));
+        this.pacman = new Pacman(5 * 36, 4 * 36, this);
         this.ghosts = new Ghost[]{
                 new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red

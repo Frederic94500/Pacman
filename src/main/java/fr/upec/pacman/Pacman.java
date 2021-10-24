@@ -7,15 +7,16 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Pacman extends Entity {
+    private Game game;
     private float life;
     private int score;
     private boolean alive;
     private boolean invisible;
     private boolean superPow;
 
-    public Pacman(int x, int y, Color color) {
-        super(x, y, color);
-        // Le pacman a 3 vie 0 experience. Il se situe au milieu du terrain
+    public Pacman(int x, int y, Game game) {
+        super(x, y, Color.decode("#fdff00"));
+        this.game = game;
         this.life = 3;
         this.score = 0;
         this.alive = true;
@@ -81,7 +82,32 @@ public class Pacman extends Entity {
     }
 
     public void eatSuperPow() {
-
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
+        Future future = executor.submit(new Runnable() {
+            @Override
+            public void run() {
+                while (!Thread.interrupted()) {
+                    superPow = true;
+                    setColor(Color.ORANGE);
+                    for (Ghost g : game.getGhosts()) {
+                        g.setColor(Color.BLUE);
+                    }
+                }
+                superPow = false;
+                setColor(Color.ORANGE);
+                game.getGhosts()[0].setColor(Color.decode("#ea82e5"));
+                game.getGhosts()[1].setColor(Color.decode("#46bfee"));
+                game.getGhosts()[2].setColor(Color.decode("#db851c"));
+                game.getGhosts()[3].setColor(Color.decode("#d03e19"));
+            }
+        });
+        executor.schedule(new Runnable() {
+            @Override
+            public void run() {
+                future.cancel(true);
+            }
+        }, 10, TimeUnit.SECONDS);
+        executor.shutdown();
     }
 
     public void eatMix() {

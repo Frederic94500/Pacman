@@ -83,7 +83,7 @@ public class GameView extends JComponent {
                         g.fillRect(x, y, size, size);
                         break;
                     case P:
-                        g.setColor(Color.decode("#fdff00"));
+                        g.setColor(game.getPacman().getColor());
                         g.fillOval(x, y, size, size);
                         break;
                 }

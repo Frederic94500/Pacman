@@ -41,6 +41,8 @@ public class Pacman extends Entity {
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
         if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
+            int [] tab = game.getMap().getPacmanCoords() ;
+            game.getMap().getMap() [tab [0]][tab[1]] = Type.N ;
             game.getMap().setPacmanCoords(8, 8);
             for (Ghost g : game.getGhosts()) {
                 g.setX(72);

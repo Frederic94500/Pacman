@@ -29,7 +29,7 @@ public class Game {
     }
 
     public boolean win() {
-        if (pacman.isAlive() && pacman.getScore() >= 7900) return true;
+        if (pacman.isAlive() && pacman.getScore() >= 9800) return true;
         else return false;
     }
 
@@ -46,6 +46,7 @@ public class Game {
        p.getFrame().dispose();
        if (choix == 1 ) {  App partie = new App () ; partie.main(null);}
     }*/
+    
     public GameView getview() {
         return p;
     }

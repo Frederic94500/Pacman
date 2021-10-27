@@ -25,10 +25,7 @@ public class ImageSet {
 		  setGhostPurple(new ImageIcon ("res/GhostPurple.png").getImage());
 		  setGhostOrange(new ImageIcon ("res/GhostOrange.png").getImage());
 		  setPacman(new ImageIcon ("res/PacRight.png").getImage());
-		  for (int i = 0 ; i < tabx.length ; i++) {
-			  tabx [i] = 72 ; 
-			  taby [i] = 72 ;
-		  } 
+	      set () ;
 	  }
 
 
@@ -87,5 +84,18 @@ public class ImageSet {
 		Pacman = pacman;
 	}
 
+	public void set () {
+		tabx [0]=36*8; taby [0]=36*5; 
+		tabx [1]=36*2; taby [1]=36*2; 
+		tabx [2]=36*2; taby [2]=36*7; 
+		tabx [3]=36*8; taby [3]=36*2; 
+	}
+	public void set2 () {
+		tabx [0]=36*2; taby [0]=36*3; 
+		tabx [1]=36*2; taby [1]=36*2; 
+		tabx [2]=36*2; taby [2]=36*7; 
+		tabx [3]=36*3; taby [3]=36*7; 
+
+	}
 
 }

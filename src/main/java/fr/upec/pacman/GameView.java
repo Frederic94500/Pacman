@@ -2,6 +2,8 @@ package fr.upec.pacman;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameView extends JComponent {
     public final static int WIDTH = 200;
@@ -11,6 +13,7 @@ public class GameView extends JComponent {
     private ImageSet entity; //A enlever (image interdite)
     private Timer timer; // Ajouter la classe de Action listener
     private Frame frame;
+
 
     //Constructeur 
     public GameView(Frame f) {
@@ -47,9 +50,9 @@ public class GameView extends JComponent {
 
     // Terrain
     private void drawTerrain(Graphics g) {
-        g.fill3DRect(0, 0, 360, 360, start);
+        g.fill3DRect(0, 0, 600, 600, start);
         g.setColor(Color.GRAY);
-        g.fillRect(0, 360, 360, 360);
+        g.fillRect(0, 360, 600, 360);
 
         int x = 0;
         int y = 0;
@@ -87,18 +90,6 @@ public class GameView extends JComponent {
                     case P:
                         g.drawImage(entity.getPacman(), x, y, null);
                         break;
-                    case Gb:
-                        g.drawImage(entity.getGhostBlue(), x, y, null);
-                        break;
-                    case Gr:
-                        g.drawImage(entity.getGhostRed(), x, y, null);
-                        break;
-                    case Go:
-                        g.drawImage(entity.getGhostOrange(), x, y, null);
-                        break;
-                    case Gp:
-                        g.drawImage(entity.getGhostPurple(), x, y, null);
-                        break;
                 }
                 x += size;
             }
@@ -127,7 +118,8 @@ public class GameView extends JComponent {
     }
 
     private void drawEnemy(Graphics g) {
-        g.drawImage(entity.getGhostBlue(), entity.tabx()[0], entity.taby()[0], null);
+    	g.setColor(Color.red);
+    	g.drawImage(entity.getGhostBlue(), entity.tabx()[0], entity.taby()[0], null);
         g.drawImage(entity.getGhostPurple(), entity.tabx()[2], entity.taby()[2], null);
         g.drawImage(entity.getGhostOrange(), entity.tabx()[3], entity.taby()[3], null);
         g.drawImage(entity.getGhostRed(), entity.tabx()[1], entity.taby()[1], null);
@@ -146,7 +138,7 @@ public class GameView extends JComponent {
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU WIN !", 100, 200);
+        g.drawString("YOU WIN !", 200, 200);
     }
 
     private void lose(Graphics g) {
@@ -155,7 +147,7 @@ public class GameView extends JComponent {
         g.setColor(Color.YELLOW);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU LOSE !", 100, 200);
+        g.drawString("YOU LOSE !", 200, 200);
     }
 
     public Frame getFrame() {

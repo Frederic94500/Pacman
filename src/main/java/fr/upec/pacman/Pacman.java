@@ -38,8 +38,8 @@ public class Pacman extends Entity {
         }
     }
 
-    public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx, Game game) {
-        if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible) {
+    public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
+        if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
             game.getMap().setPacmanCoords(new int[]{8, 8});
             for (Ghost g : game.getGhosts()) {
@@ -91,6 +91,7 @@ public class Pacman extends Entity {
                     setColor(Color.ORANGE);
                     for (Ghost g : game.getGhosts()) {
                         g.setColor(Color.BLUE);
+                        superPow(g);
                     }
                 }
                 superPow = false;
@@ -108,6 +109,13 @@ public class Pacman extends Entity {
             }
         }, 10, TimeUnit.SECONDS);
         executor.shutdown();
+    }
+
+    public void superPow(Ghost g) {
+        if (g.getX() == game.getMap().getPacmanCoords()[1] * 36 && g.getY() == game.getMap().getPacmanCoords()[0] * 36) {
+            g.setX(72);
+            g.setY(72);
+        }
     }
 
     public void eatMix() {

@@ -34,7 +34,7 @@ public class Game {
 
     public boolean checkLife() {
         //                                                                                                                                                                                               y                                               x
-        return pacman.loseLife(ghosts[0].getX(), ghosts[0].getY(), ghosts[1].getX(), ghosts[1].getY(), ghosts[2].getX(), ghosts[2].getY(), ghosts[3].getX(), ghosts[3].getY(), p.getGame().getMap().getPacmanCoords()[0] * 36, p.getGame().getMap().getPacmanCoords()[1] * 36, this);
+        return pacman.loseLife(ghosts[0].getX(), ghosts[0].getY(), ghosts[1].getX(), ghosts[1].getY(), ghosts[2].getX(), ghosts[2].getY(), ghosts[3].getX(), ghosts[3].getY(), p.getGame().getMap().getPacmanCoords()[0] * 36, p.getGame().getMap().getPacmanCoords()[1] * 36);
     }
 
     public boolean win() {

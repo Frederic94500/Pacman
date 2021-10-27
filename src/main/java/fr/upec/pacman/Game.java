@@ -46,8 +46,8 @@ public class Game {
        p.getFrame().dispose();
        if (choix == 1 ) {  App partie = new App () ; partie.main(null);}
     }*/
-    
-    public GameView getview() {
+
+    public GameView getView() {
         return p;
     }
 }

@@ -13,7 +13,7 @@ public class GameMap {
     public GameMap() {
         //i = longeur = y | j = largeur = x
         this.map = new Type[][]{
-                {W, W, W, W, W, W, W, W, W, W, W, W, W ,W, W, W},
+                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
                 {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, W},
                 {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, W},
                 {W, C, C, C, C, C, C, C, C, C, C, W, C, C, C, W},
@@ -22,8 +22,8 @@ public class GameMap {
                 {W, C, C, C, C, C, C, C, C, C, C, C, W, C, C, W},
                 {W, C, C, C, C, C, W, W, W, C, C, C, C, C, C, W},
                 {W, C, C, C, C, C, C, W, C, C, C, C, C, C, C, W},
-                {W, W, W, W, W, W, W, W, W, W, W, W, W ,W, W, W}
-                 };
+                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
+        };
     }
 
     public Type[][] getMap() {
@@ -47,8 +47,8 @@ public class GameMap {
         return new int[]{x, y};
     }
 
-    public void setPacmanCoords(int i , int j ) {
-        this.map [i][j] = Type.P;
+    public void setPacmanCoords(int i, int j) {
+        this.map[i][j] = Type.P;
     }
 }
 

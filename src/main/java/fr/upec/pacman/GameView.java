@@ -2,8 +2,6 @@ package fr.upec.pacman;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class GameView extends JComponent {
     public final static int WIDTH = 200;
@@ -108,7 +106,7 @@ public class GameView extends JComponent {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString("Score: " + game.getPacman().getScore(), 200, 382);
     }
-
+    
     public boolean isStart() {
         return start;
     }
@@ -118,8 +116,8 @@ public class GameView extends JComponent {
     }
 
     private void drawEnemy(Graphics g) {
-    	g.setColor(Color.red);
-    	g.drawImage(entity.getGhostBlue(), entity.tabx()[0], entity.taby()[0], null);
+        g.setColor(Color.red);
+        g.drawImage(entity.getGhostBlue(), entity.tabx()[0], entity.taby()[0], null);
         g.drawImage(entity.getGhostPurple(), entity.tabx()[2], entity.taby()[2], null);
         g.drawImage(entity.getGhostOrange(), entity.tabx()[3], entity.taby()[3], null);
         g.drawImage(entity.getGhostRed(), entity.tabx()[1], entity.taby()[1], null);

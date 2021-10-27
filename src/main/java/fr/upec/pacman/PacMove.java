@@ -29,14 +29,14 @@ class PacMove implements KeyListener {
             case KeyEvent.VK_LEFT:  //y                         //x
                 if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 0) {
                     map[4][0] = Type.N;
-                    map[4][9] = Type.P;
+                    map[4][15] = Type.P;
                 } else {
                     makeMove(0, -1);
                 }
                 break;
             case KeyEvent.VK_RIGHT:
-                if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 9) {
-                    map[4][9] = Type.N;
+                if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 15) {
+                    map[4][15] = Type.N;
                     map[4][0] = Type.P;
                 } else {
                     makeMove(0, 1);

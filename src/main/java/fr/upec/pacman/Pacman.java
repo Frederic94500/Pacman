@@ -34,14 +34,14 @@ public class Pacman extends Entity {
 
     public void setLife() {
         if (score % 5000 == 0) {
-            this.life += 1; //Il y a un bug assez bizarre... Quand on appuie sur gauche, il y a des vies en plus qui apparaissent
+            this.life += 1;
         }
     }
 
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
         if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
-            game.getMap().setPacmanCoords(new int[]{8, 8});
+            game.getMap().setPacmanCoords(8, 8);
             for (Ghost g : game.getGhosts()) {
                 g.setX(72);
                 g.setY(72);

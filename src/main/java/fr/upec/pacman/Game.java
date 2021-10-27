@@ -38,8 +38,14 @@ public class Game {
     }
 
     public boolean win() {
-        if (pacman.isAlive() && pacman.getScore() >= 7900) return true;
+        if (pacman.isAlive() && pacman.getScore() >= 9800) return true;
         else return false;
+    }
+
+    public boolean lose() {
+        if (pacman.isAlive()) {
+            return false;
+        } else return true;
     }
 
     /*   public void restart () {

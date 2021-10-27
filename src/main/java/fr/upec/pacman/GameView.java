@@ -45,9 +45,9 @@ public class GameView extends JComponent {
 
     // Terrain
     private void drawTerrain(Graphics g) {
-        g.fill3DRect(0, 0, 360, 360, start);
+        g.fill3DRect(0, 0, 600, 600, start);
         g.setColor(Color.GRAY);
-        g.fillRect(0, 360, 360, 360);
+        g.fillRect(0, 360, 600, 360);
 
         int x = 0;
         int y = 0;
@@ -129,7 +129,7 @@ public class GameView extends JComponent {
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU WIN !", 100, 200);
+        g.drawString("YOU WIN !", 200, 200);
     }
 
     private void lose(Graphics g) {
@@ -137,6 +137,6 @@ public class GameView extends JComponent {
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU LOSE !", 100, 200);
+        g.drawString("YOU LOSE !", 200, 200);
     }
 }

@@ -4,41 +4,45 @@ import java.awt.*;
 import java.util.Random;
 
 public class Ghost extends Entity {
-    private int vx;
-    private int vy;
-    private int cmp; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
+    private int dx;
+    private int dy;
+    private int counter; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
     private boolean turn;
 
     public Ghost(int x, int y, Color color) {
         super(x, y, color);
         this.turn = true;
-        this.vx = 3;
-        this.vy = 3;
-        this.cmp = 0;
+        this.dx = 3;
+        this.dy = 3;
+        this.counter = 0;
     }
 
-    public int getVx() {
-        return vx;
+    public int getDx() {
+        return dx;
     }
 
-    public void setVx(int vx) {
-        this.vx = vx;
+    public void setDx(int dx) {
+        this.dx = dx;
     }
 
-    public int getVy() {
-        return vy;
+    public int getDy() {
+        return dy;
     }
 
-    public void setVy(int vy) {
-        this.vy = vy;
+    public void setDy(int dy) {
+        this.dy = dy;
     }
 
-    public int getCmp() {
-        return cmp;
+    public int getCounter() {
+        return counter;
     }
 
-    public void setCmp(int cmp) {
-        this.cmp = cmp;
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public void incrementCounter() {
+        this.counter++;
     }
 
     public boolean isTurn() {
@@ -50,25 +54,25 @@ public class Ghost extends Entity {
     }
 
     public void incrementCmp() {
-        this.cmp++;
+        this.counter++;
     }
 
     public void randomMove() {
         Random r = new Random();
-        this.vx = 0;
-        this.vy = 0;
+        this.dx = 0;
+        this.dy = 0;
         switch (r.nextInt(4)) { //0 = up, 1 = right, 2 = down, 3 = left
             case 0:
-                this.vy = -1;
+                this.dy = -1;
                 break;
             case 1:
-                this.vx = 1;
+                this.dx = 1;
                 break;
             case 2:
-                this.vy = 1;
+                this.dy = 1;
                 break;
             case 3:
-                this.vx = -1;
+                this.dx = -1;
                 break;
         }
     }

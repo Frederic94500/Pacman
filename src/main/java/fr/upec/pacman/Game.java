@@ -38,7 +38,7 @@ public class Game {
     }
 
     public boolean win() {
-        if (pacman.isAlive() && pacman.getScore() >= 9800) return true;
+        if (pacman.isAlive() && pacman.getScore() >= 100000) return true; //changement vers un compteur à pacgum
         else return false;
     }
 

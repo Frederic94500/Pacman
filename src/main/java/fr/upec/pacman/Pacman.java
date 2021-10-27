@@ -13,6 +13,7 @@ public class Pacman extends Entity {
     private boolean alive;
     private boolean invisible;
     private boolean superPow;
+    private boolean lifeTake;
 
     public Pacman(int x, int y, Game game) {
         super(x, y, Color.decode("#fdff00"));
@@ -22,6 +23,7 @@ public class Pacman extends Entity {
         this.alive = true;
         this.invisible = false;
         this.superPow = false;
+        this.lifeTake = false;
     }
 
     public int getScore() {
@@ -33,8 +35,12 @@ public class Pacman extends Entity {
     }
 
     public void setLife() {
-        if (score % 5000 == 0 && score != 0) {
+        if (score % 5000 == 0 && score != 0 && !lifeTake) {
             this.life += 1;
+            this.lifeTake = true;
+        }
+        if (score % 5000 != 0 && score != 0 && lifeTake) {
+            this.lifeTake = false;
         }
     }
 

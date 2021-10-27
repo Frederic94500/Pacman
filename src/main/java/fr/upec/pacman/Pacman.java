@@ -11,7 +11,9 @@ public class Pacman extends Entity {
     private int life;
     private boolean alive;
     private boolean invisible;
+    private long invisibleTimer;
     private boolean superPow;
+    private long superPowTimer;
     private boolean lifeTake;
 
     public Pacman(int x, int y, Game game) {
@@ -20,7 +22,9 @@ public class Pacman extends Entity {
         this.life = 3;
         this.alive = true;
         this.invisible = false;
+        this.invisibleTimer = 0;
         this.superPow = false;
+        this.superPowTimer = 0;
         this.lifeTake = false;
     }
 
@@ -51,16 +55,23 @@ public class Pacman extends Entity {
         return false;
     }
 
+    public boolean isInvisible() {
+        return invisible;
+    }
+
     public void eatInvisible() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         Future future = executor.submit(new Runnable() {
             @Override
             public void run() {
+                long start = System.currentTimeMillis();
                 while (!Thread.interrupted()) {
                     invisible = true;
                     setColor(Color.decode("#FDFD96"));
+                    invisibleTimer = System.currentTimeMillis() - start;
                 }
                 invisible = false;
+                invisibleTimer = 0;
                 setColor(Color.decode("#fdff00"));
             }
         });
@@ -73,11 +84,20 @@ public class Pacman extends Entity {
         executor.shutdown();
     }
 
+    public long getInvisibleTimer() {
+        return invisibleTimer;
+    }
+
+    public boolean isSuperPow() {
+        return superPow;
+    }
+
     public void eatSuperPow() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         Future future = executor.submit(new Runnable() {
             @Override
             public void run() {
+                long start = System.currentTimeMillis();
                 while (!Thread.interrupted()) {
                     superPow = true;
                     setColor(Color.ORANGE);
@@ -87,8 +107,10 @@ public class Pacman extends Entity {
                         g.setDx(2); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
                         g.setDy(2);
                     }
+                    superPowTimer = System.currentTimeMillis() - start;
                 }
                 superPow = false;
+                superPowTimer = 0;
                 setColor(Color.decode("#fdff00"));
                 game.getGhosts()[0].setColor(Color.decode("#ea82e5"));
                 game.getGhosts()[1].setColor(Color.decode("#46bfee"));
@@ -107,6 +129,10 @@ public class Pacman extends Entity {
             }
         }, 10, TimeUnit.SECONDS);
         executor.shutdown();
+    }
+
+    public long getSuperPowTimer() {
+        return superPowTimer;
     }
 
     public void superPow(Ghost g) {

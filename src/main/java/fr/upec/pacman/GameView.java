@@ -103,6 +103,16 @@ public class GameView extends JComponent {
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString("Score: " + game.getScore(), 200, 382);
+        if (game.getPacman().isInvisible()) {
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+            g.drawString("Invisible: " + (10 - (game.getPacman().getInvisibleTimer() / 1000)), 350, 375);
+        }
+        if (game.getPacman().isSuperPow()) {
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+            g.drawString("Super Power: " + (10 - (game.getPacman().getSuperPowTimer() / 1000)), 350, 390);
+        }
     }
 
     public boolean isStart() {

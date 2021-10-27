@@ -7,6 +7,8 @@ public class Game {
     private GameMap map;
     private Pacman pacman;
     private Ghost[] ghosts;
+    private int score;
+    private int ateGum;
     private GameView p;
 
     public Game(GameView p) {
@@ -18,6 +20,26 @@ public class Game {
                 new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
                 new Ghost(size * 5, size * 7, Color.decode("#d03e19"))};//Orange
         this.p = p;
+        this.score = 0;
+        this.ateGum = 0;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void gainOneUp() {
+        if (score % 5000 == 0 && score != 0 && !pacman.isLifeTake()) {
+            pacman.oneUp();
+            pacman.setLifeTake(true);
+        }
+        if (score % 5000 != 0 && score != 0 && pacman.isLifeTake()) {
+            pacman.setLifeTake(false);
+        }
+    }
+
+    public void addScore(int score) {
+        this.score += score;
     }
 
     public GameMap getMap() {
@@ -33,13 +55,17 @@ public class Game {
     }
 
     public boolean checkLife() {
-        //                                                                                                                                                                                               y                                               x
-        return pacman.loseLife(ghosts[0].getX(), ghosts[0].getY(), ghosts[1].getX(), ghosts[1].getY(), ghosts[2].getX(), ghosts[2].getY(), ghosts[3].getX(), ghosts[3].getY(), p.getGame().getMap().getPacmanCoords()[0] * 36, p.getGame().getMap().getPacmanCoords()[1] * 36);
+        //                                                                                                                                                                                        y                                               x
+        return pacman.loseLife(ghosts[0].getX(), ghosts[0].getY(), ghosts[1].getX(), ghosts[1].getY(), ghosts[2].getX(), ghosts[2].getY(), ghosts[3].getX(), ghosts[3].getY(), getMap().getPacmanCoords()[0] * 36, getMap().getPacmanCoords()[1] * 36);
     }
 
     public boolean win() {
-        if (pacman.isAlive() && pacman.getScore() >= 100000) return true; //changement vers un compteur à pacgum
+        if (pacman.isAlive() && ateGum == 99) return true; //changement vers un compteur à pacgum
         else return false;
+    }
+
+    public void incrementAteGum() {
+        ateGum++;
     }
 
     /*   public void restart () {

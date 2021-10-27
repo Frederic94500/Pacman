@@ -102,7 +102,7 @@ public class GameView extends JComponent {
         }
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Score: " + game.getPacman().getScore(), 200, 382);
+        g.drawString("Score: " + game.getScore(), 200, 382);
     }
 
     public boolean isStart() {

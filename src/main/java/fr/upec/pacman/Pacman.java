@@ -8,8 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Pacman extends Entity {
     private Game game;
-    private float life;
-    private int score;
+    private int life;
     private boolean alive;
     private boolean invisible;
     private boolean superPow;
@@ -19,29 +18,18 @@ public class Pacman extends Entity {
         super(x, y, Color.decode("#fdff00"));
         this.game = game;
         this.life = 3;
-        this.score = 0;
         this.alive = true;
         this.invisible = false;
         this.superPow = false;
         this.lifeTake = false;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public float getLife() {
+    public int getLife() {
         return life;
     }
 
-    public void setLife() {
-        if (score % 5000 == 0 && score != 0 && !lifeTake) {
-            this.life += 1;
-            this.lifeTake = true;
-        }
-        if (score % 5000 != 0 && score != 0 && lifeTake) {
-            this.lifeTake = false;
-        }
+    public void oneUp() {
+        this.life++;
     }
 
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
@@ -61,10 +49,6 @@ public class Pacman extends Entity {
             return true;
         }
         return false;
-    }
-
-    public void addScore(int score) {
-        this.score += score;
     }
 
     public void eatInvisible() {
@@ -142,5 +126,13 @@ public class Pacman extends Entity {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public boolean isLifeTake() {
+        return lifeTake;
+    }
+
+    public void setLifeTake(boolean lifeTake) {
+        this.lifeTake = lifeTake;
     }
 }

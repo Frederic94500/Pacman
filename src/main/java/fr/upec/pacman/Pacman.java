@@ -17,7 +17,7 @@ public class Pacman extends Entity {
     public Pacman(int x, int y, Game game) {
         super(x, y, Color.decode("#fdff00"));
         this.game = game;
-        this.life = 3;
+        this.life = 2;
         this.score = 0;
         this.alive = true;
         this.invisible = false;
@@ -39,14 +39,16 @@ public class Pacman extends Entity {
     }
 
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
-        if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
+        int i = 0 ;
+    	if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
             int [] tab = game.getMap().getPacmanCoords() ;
             game.getMap().getMap() [tab [0]][tab[1]] = Type.N ;
             game.getMap().setPacmanCoords(8, 8);
             for (Ghost g : game.getGhosts()) {
                 g.setX(72);
-                g.setY(72);
+                g.setY(72 +i);
+                i += 36;
             }
 
             if (life <= 0) {

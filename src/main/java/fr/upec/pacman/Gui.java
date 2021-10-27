@@ -6,7 +6,6 @@ public class Gui {
     public Gui()  {
         JFrame frame = new JFrame();
         GameView gameView = new GameView(frame);
-
         frame.setSize(590, 435);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Pacman");
@@ -15,6 +14,6 @@ public class Gui {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        frame.setAlwaysOnTop(true) ;
     }
 }

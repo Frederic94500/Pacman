@@ -8,6 +8,7 @@ public class Game {
     private Pacman pacman;
     private Ghost[] ghosts;
     private GameView p;
+    private boolean startGame ;
 
     public Game(GameView p) {
         this.map = new GameMap();
@@ -18,6 +19,7 @@ public class Game {
                 new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
                 new Ghost(size * 5, size * 7, Color.decode("#d03e19"))};//Orange
         this.p = p;
+        setStartGame(false) ;
     }
 
     public GameMap getMap() {
@@ -47,6 +49,14 @@ public class Game {
             return false;
         } else return true;
     }
+
+	public boolean isStartGame() {
+		return startGame;
+	}
+
+	public void setStartGame(boolean startGame) {
+		this.startGame = startGame;
+	}
 
     /*   public void restart () {
        Scanner s = new Scanner (System.in) ;

@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class GameView extends JComponent {
     public final static int size = 36;
-    public final static int WIDTH = 200;
-    public final static int HEIGHT = 200;
+    public final static  int WIDTH = 200;
+    public final static  int HEIGHT = 200;
     private Game game;
     private boolean start; // pour commencer la partie
     private Timer timer; // Ajouter la classe de Action listener
@@ -28,9 +28,10 @@ public class GameView extends JComponent {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
+       if (game.isStartGame()) {
         if (!game.getPacman().isAlive()) {
             lose(g);
-            /*game.restart();*/
+            /*game.restart();*/ 
         } else {
             if (game.win()) {
                 win(g);
@@ -40,7 +41,7 @@ public class GameView extends JComponent {
                 drawEnemy(g);
                 drawInterface(g);
             }
-        }
+        } } else { startGame(g) ;}
     }
 
     // Terrain
@@ -61,10 +62,12 @@ public class GameView extends JComponent {
                     case W:
                         g.setColor(Color.decode("#2E20BD"));
                         g.fillRect(x, y, size, size);
+                        g.setColor(Color.black);
+                        g.fillRect(x+3, y+3,  size-6, size-6);
                         break;
                     case C:
                         g.setColor(Color.decode("#EDF033"));
-                        g.fillOval(x + 12, y + 12, size - 12 * 2, size - 12 * 2);
+                        g.fillOval(x + 12, y + 12, size - 14 * 2, size - 14 * 2);
                         break;
                     case I:
                         g.setColor(Color.decode("#9f40ff"));
@@ -116,7 +119,8 @@ public class GameView extends JComponent {
     private void drawEnemy(Graphics g) {
         for (Ghost ghost : game.getGhosts()) {
             g.setColor(ghost.getColor());
-            g.fillRect(ghost.getX(), ghost.getY(), size, size);
+           // g.fillRect(ghost.getX(), ghost.getY(), size, size);
+            g.fillOval(ghost.getX(), ghost.getY(), size , size);
         }
     }
 
@@ -130,6 +134,8 @@ public class GameView extends JComponent {
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         g.drawString("YOU WIN !", 200, 200);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.drawString("Press -SPACE- to restart the game.", 130, 230);
     }
 
     private void lose(Graphics g) {
@@ -138,5 +144,18 @@ public class GameView extends JComponent {
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         g.drawString("YOU LOSE !", 200, 200);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.drawString("Press -SPACE- to restart the game.", 130, 230);
     }
+    
+    private void startGame (Graphics g) {
+    	g.fillRect(0, 0, 800, 800);
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+        g.drawString("Press -SPACE- to start the game !", 80, 200);
+    }
+    
+    public void setGame(Game game) {this.game =game ;} 
+    public Frame getFrame() {return this.frame ;}
+    public void startTimer () { this.timer = new Timer(40, new EnemyAction(game.getGhosts(), this));}
 }

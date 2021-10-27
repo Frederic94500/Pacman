@@ -48,9 +48,15 @@ class PacMove implements KeyListener {
             case KeyEvent.VK_UP:
                 makeMove(-1, 0);
                 break;
+            case KeyEvent.VK_SPACE :
+            	if(view.getGame().getPacman().isAlive()) {
+            	view.getGame().setStartGame(true); } else { view.getFrame().dispose();  App.main(null);}
+             	if(view.getGame().win()) { view.getFrame().dispose();  App.main(null);}
         }
         view.getGame().getPacman().setLife(); // Verifie s'il a 5000pts pour ajouter une vie en plus.
         view.repaint();
+        
+       
     }
 
     public void makeMove(int dx, int dy) {

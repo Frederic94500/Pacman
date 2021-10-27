@@ -15,8 +15,8 @@ public class GameMap {
         this.map = new Type[][]{
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
                 {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, W},
-                {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, W},
-                {W, C, C, C, C, C, C, C, C, C, C, W, C, C, C, W},
+                {W, C, C, C, W, C, C, C, C, C, S, C, C, C, C, W},
+                {W, C, C, C, C, C, I, C, C, C, C, W, C, C, C, W},
                 {C, C, C, C, C, C, C, C, C, C, W, W, W, C, C, C},
                 {W, C, C, W, W, C, C, C, C, C, C, C, W, C, P, W},
                 {W, C, C, C, C, C, C, C, C, C, C, C, W, C, C, W},

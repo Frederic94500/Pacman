@@ -16,7 +16,7 @@ public class Game {
                 new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
                 new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
-                new Ghost(size * 6, size * 7, Color.decode("#d03e19"))};//Orange
+                new Ghost(size * 5, size * 7, Color.decode("#d03e19"))};//Orange
         this.p = p;
     }
 

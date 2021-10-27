@@ -7,22 +7,23 @@ public class GameMap {
     private static final Type S = Type.S; // S = SUPERPOWER
     private static final Type M = Type.M; // N = NOTHING
     private static final Type P = Type.P; // P = PACMAN
-
+    private int[] pacmanCoords;
     private Type[][] map; // Terrain
 
     public GameMap() {
         //i = longeur = y | j = largeur = x
         this.map = new Type[][]{
-                {W, W, W, W, W, W, W, W, W, W},
-                {W, C, C, C, C, C, C, C, C, W},
-                {W, C, C, C, C, C, C, M, C, W},
-                {W, C, C, C, C, C, C, C, C, W},
-                {C, C, S, C, C, P, C, C, C, C},
-                {W, C, C, C, C, C, C, C, I, W},
-                {W, C, C, C, C, C, C, C, C, W},
-                {W, C, W, C, C, C, W, W, C, W},
-                {W, C, C, C, W, C, C, C, C, W},
-                {W, W, W, W, W, W, W, W, W, W}};
+                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+                {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, W},
+                {W, C, C, C, W, C, C, C, C, C, C, I, C, C, C, W},
+                {W, C, C, C, C, C, C, C, C, C, C, W, C, C, C, W},
+                {C, C, C, C, C, C, C, C, C, C, W, W, W, C, C, C},
+                {W, C, C, W, W, C, C, C, C, C, C, C, W, C, P, W},
+                {W, C, C, C, C, C, C, C, C, S, C, C, W, M, C, W},
+                {W, C, C, C, C, C, W, W, W, C, C, C, C, C, C, W},
+                {W, C, C, C, C, C, C, W, C, C, C, C, C, C, C, W},
+                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
+        };
     }
 
     public Type[][] getMap() {
@@ -45,4 +46,15 @@ public class GameMap {
 
         return new int[]{x, y};
     }
+
+    public void setPacmanCoords(int i, int j) {
+        this.map[i][j] = Type.P;
+    }
+
+    public void delete(int i, int j) {
+        this.map[i][j] = Type.N;
+    }
 }
+
+
+

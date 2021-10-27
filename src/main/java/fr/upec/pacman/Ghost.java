@@ -4,83 +4,72 @@ import java.awt.*;
 import java.util.Random;
 
 public class Ghost extends Entity {
-    private int vx;
-    private int vy;
-    private int cmp; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
-    private boolean tour;
-    private int cmpStart;
-    private int cmpEnd;
+    private int dx;
+    private int dy;
+    private int counter; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
+    private boolean turn;
 
-    public Ghost(int x, int y, Color color, int cmpStart, int cmpEnd) {
+    public Ghost(int x, int y, Color color) {
         super(x, y, color);
-        this.tour = true;
-        this.vx = 1;
-        this.vy = 0;
-        this.cmp = 0;
-        this.cmpStart = cmpStart;
-        this.cmpEnd = cmpEnd;
+        this.turn = true;
+        this.dx = 4;
+        this.dy = 4;
+        this.counter = 0;
     }
 
-    public int getCmpStart() {
-        return cmpStart;
+    public int getDx() {
+        return dx;
     }
 
-    public int getCmpEnd() {
-        return cmpEnd;
+    public void setDx(int dx) {
+        this.dx = dx;
     }
 
-    public int getVx() {
-        return vx;
+    public int getDy() {
+        return dy;
     }
 
-    public void setVx(int vx) {
-        this.vx = vx;
+    public void setDy(int dy) {
+        this.dy = dy;
     }
 
-    public int getVy() {
-        return vy;
+    public int getCounter() {
+        return counter;
     }
 
-    public void setVy(int vy) {
-        this.vy = vy;
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
-    public int getCmp() {
-        return cmp;
+    public void incrementCounter() {
+        this.counter++;
     }
 
-    public void setCmp(int cmp) {
-        this.cmp = cmp;
+    public boolean isTurn() {
+        return turn;
     }
 
-    public boolean isTour() {
-        return tour;
+    public void setTurn(boolean turn) {
+        this.turn = turn;
     }
 
-    public void setTour(boolean tour) {
-        this.tour = tour;
-    }
-
-    public void incrementCmp() {
-        this.cmp++;
-    }
-
+    //Voir branche AlternativeWall
     public void randomMove() {
         Random r = new Random();
-        this.vx = 0;
-        this.vy = 0;
+        this.dx = 0;
+        this.dy = 0;
         switch (r.nextInt(4)) { //0 = up, 1 = right, 2 = down, 3 = left
             case 0:
-                this.vy = -1;
+                this.dy = -4;
                 break;
             case 1:
-                this.vx = 1;
+                this.dx = 4;
                 break;
             case 2:
-                this.vy = 1;
+                this.dy = 4;
                 break;
             case 3:
-                this.vx = -1;
+                this.dx = -4;
                 break;
         }
     }

@@ -34,6 +34,9 @@ public class Pacman /*extends Entity*/ {
     public boolean loseLife(int bx, int by, int px, int py, int rx, int ry, int ox, int oy, int pacy, int pacx, Game game) {
         if ((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) {
             life = life - 1;
+           int [] tab = game.getMap().getPacmanCoords() ; 
+            game.getMap().getMap()[tab [0]][tab[1]] = Type.N ;
+            game.getMap().getMap()[5][13] = Type.P ;
             game.getview().getEntity().set2();
 
 

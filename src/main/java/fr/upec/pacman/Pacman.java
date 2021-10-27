@@ -33,7 +33,7 @@ public class Pacman extends Entity {
     }
 
     public void setLife() {
-        if (score % 5000 == 0) {
+        if (score % 5000 == 0 && score != 0) {
             this.life += 1;
         }
     }
@@ -41,7 +41,9 @@ public class Pacman extends Entity {
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
         if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
-            game.getMap().setPacmanCoords(8, 8);
+            int[] oldPacCoords = game.getMap().getPacmanCoords();
+            game.getMap().setPacmanCoords(5, 13);
+            game.getMap().delete(oldPacCoords[0], oldPacCoords[1]);
             for (Ghost g : game.getGhosts()) {
                 g.setX(72);
                 g.setY(72);
@@ -92,14 +94,20 @@ public class Pacman extends Entity {
                     for (Ghost g : game.getGhosts()) {
                         g.setColor(Color.BLUE);
                         superPow(g);
+                        g.setDx(2); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
+                        g.setDy(2);
                     }
                 }
                 superPow = false;
-                setColor(Color.ORANGE);
+                setColor(Color.decode("#fdff00"));
                 game.getGhosts()[0].setColor(Color.decode("#ea82e5"));
                 game.getGhosts()[1].setColor(Color.decode("#46bfee"));
                 game.getGhosts()[2].setColor(Color.decode("#db851c"));
                 game.getGhosts()[3].setColor(Color.decode("#d03e19"));
+                for (Ghost g : game.getGhosts()) {
+                    g.setDx(4); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
+                    g.setDy(4);
+                }
             }
         });
         executor.schedule(new Runnable() {

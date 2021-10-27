@@ -12,8 +12,8 @@ public class Ghost extends Entity {
     public Ghost(int x, int y, Color color) {
         super(x, y, color);
         this.turn = true;
-        this.dx = 3;
-        this.dy = 3;
+        this.dx = 4;
+        this.dy = 4;
         this.counter = 0;
     }
 
@@ -53,26 +53,23 @@ public class Ghost extends Entity {
         this.turn = turn;
     }
 
-    public void incrementCmp() {
-        this.counter++;
-    }
-
+    //Voir branche AlternativeWall
     public void randomMove() {
         Random r = new Random();
         this.dx = 0;
         this.dy = 0;
         switch (r.nextInt(4)) { //0 = up, 1 = right, 2 = down, 3 = left
             case 0:
-                this.dy = -1;
+                this.dy = -4;
                 break;
             case 1:
-                this.dx = 1;
+                this.dx = 4;
                 break;
             case 2:
-                this.dy = 1;
+                this.dy = 4;
                 break;
             case 3:
-                this.dx = -1;
+                this.dx = -4;
                 break;
         }
     }

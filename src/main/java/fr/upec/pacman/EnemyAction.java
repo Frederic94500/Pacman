@@ -101,10 +101,10 @@ public class EnemyAction implements ActionListener {
             if (x == 14 * 36) {
                 g.setDx(g.getDx() * -1);
             }
-            if (x == 3 * 36 & (y == 1 * 36 || y == 2 * 36) & g.getDx() > 0) {
+            if (x == 3 * 36 & (y == 36 || y == 2 * 36) & g.getDx() > 0) {
                 g.setDx(g.getDx() * -1);
             }
-            if (x == 5 * 36 & (y == 1 * 36 || y == 2 * 36) & g.getDx() < 0) {
+            if (x == 5 * 36 & (y == 36 || y == 2 * 36) & g.getDx() < 0) {
                 g.setDx(g.getDx() * -1);
             }
             if (y == 5 * 36 & (x == 36 * 2) & g.getDx() > 0) {

@@ -42,12 +42,6 @@ public class Game {
         else return false;
     }
 
-    public boolean lose() {
-        if (pacman.isAlive()) {
-            return false;
-        } else return true;
-    }
-
     /*   public void restart () {
        Scanner s = new Scanner (System.in) ;
        System.out.println("Voulez vous refaire la partie ? \n   1- Oui  2- Non");

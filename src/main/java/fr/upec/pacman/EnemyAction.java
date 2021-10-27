@@ -28,6 +28,19 @@ public class EnemyAction implements ActionListener {
             }
         }
         p.repaint();
+        checkLife();
+    }
+
+    private void checkLife() {
+        if (p.getGame().checkLife()) {
+            try {
+                for (Ghost g : ghosts) {
+                    g.setCounter(0);
+                }
+                Thread.sleep(1000);
+            } catch (InterruptedException e1) {
+            }
+        }
     }
 }
 

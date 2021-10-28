@@ -5,9 +5,11 @@ import java.awt.event.KeyListener;
 
 class PacMove implements KeyListener {
     private GameView view;
+    private Pacman pacman;
 
-    public PacMove(GameView view) {
+    public PacMove(GameView view, Pacman pacman) {
         this.view = view;
+        this.pacman = pacman;
     }
 
     @Override
@@ -24,10 +26,14 @@ class PacMove implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int[] pacmanCoordsMap = view.getGame().getMap().getPacmanCoords();
         Type[][] map = view.getGame().getMap().getMap();
+        pacman.setDx(0);
+        pacman.setDy(0);
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:  //y                         //x
+                pacman.setDx(-4);
                 if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 0) {
+                    pacman.setDx(pacman.getDx());
                     map[4][0] = Type.N;
                     map[4][15] = Type.P;
                 } else {
@@ -35,6 +41,7 @@ class PacMove implements KeyListener {
                 }
                 break;
             case KeyEvent.VK_RIGHT:
+                pacman.setDx(4);
                 if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 15) {
                     map[4][15] = Type.N;
                     map[4][0] = Type.P;
@@ -43,9 +50,11 @@ class PacMove implements KeyListener {
                 }
                 break;
             case KeyEvent.VK_DOWN:
+                pacman.setDy(4);
                 makeMove(1, 0);
                 break;
             case KeyEvent.VK_UP:
+                pacman.setDy(-4);
                 makeMove(-1, 0);
                 break;
         }

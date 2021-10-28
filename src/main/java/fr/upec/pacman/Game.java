@@ -9,17 +9,15 @@ public class Game {
     private Ghost[] ghosts;
     private int score;
     private int ateGum;
-    private GameView p;
 
-    public Game(GameView p) {
+    public Game() {
         this.map = new GameMap();
-        this.pacman = new Pacman(5 * 36, 4 * 36, this);
+        this.pacman = new Pacman(size * 5, size * 13, this);
         this.ghosts = new Ghost[]{
                 new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
                 new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
                 new Ghost(size * 5, size * 7, Color.decode("#d03e19"))};//Orange
-        this.p = p;
         this.score = 0;
         this.ateGum = 0;
     }

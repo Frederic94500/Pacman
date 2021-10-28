@@ -13,15 +13,15 @@ public class GameView extends JComponent {
     private Frame frame;
 
     //Constructeur
-    public GameView(Frame f) {
+    public GameView(Frame f, Game game) {
         super();
         setStart(false);
-        this.game = new Game(this);
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
         this.timer = new Timer(40, new EnemyAction(game.getGhosts(), this));
         timer.start();
         this.frame = f;
+        this.game = game;
     }
 
     @Override
@@ -37,6 +37,7 @@ public class GameView extends JComponent {
                 /* game.restart();*/
             } else {
                 drawTerrain(g);
+                drawPacman(g);
                 drawEnemy(g);
                 drawInterface(g);
             }
@@ -82,10 +83,6 @@ public class GameView extends JComponent {
                         g.setColor(Color.black);
                         g.fillRect(x, y, size, size);
                         break;
-                    case P:
-                        g.setColor(game.getPacman().getColor());
-                        g.fillOval(x, y, size, size);
-                        break;
                 }
                 x += size;
             }
@@ -121,6 +118,11 @@ public class GameView extends JComponent {
 
     public void setStart(boolean start) {
         this.start = start;
+    }
+
+    private void drawPacman(Graphics g) {
+        g.setColor(game.getPacman().getColor());
+        g.fillOval(game.getPacman().getX(), game.getPacman().getY(), size, size);
     }
 
     private void drawEnemy(Graphics g) {

@@ -54,6 +54,7 @@ public class GameMap {
     public void delete(int i, int j) {
         this.map[i][j] = Type.N;
     }
+    
 }
 
 

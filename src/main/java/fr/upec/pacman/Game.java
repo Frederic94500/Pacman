@@ -60,7 +60,7 @@ public class Game {
     }
 
     public boolean win() {
-        if (pacman.isAlive() && ateGum == 99) return true; //changement vers un compteur à pacgum
+        if (pacman.isAlive() && ateGum >= 99) return true; //changement vers un compteur à pacgum
         else return false;
     }
 

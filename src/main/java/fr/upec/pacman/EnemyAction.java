@@ -20,7 +20,7 @@ public class EnemyAction implements ActionListener {
                 wall(g, false);
                 g.setX(g.getX() + g.getDx());
                 g.incrementCounter();
-                if (g.getCounter() == 12) {
+                if (g.getCounter() == 18) {
                     g.setTurn(false);
                     g.setCounter(0);
                 }
@@ -29,7 +29,7 @@ public class EnemyAction implements ActionListener {
                 wall(g, true);
                 g.setY(g.getY() + g.getDy());
                 g.incrementCounter();
-                if (g.getCounter() == 36) {
+                if (g.getCounter() == 27) {
                     g.setTurn(true);
                     g.setCounter(0);
                 }
@@ -59,7 +59,7 @@ public class EnemyAction implements ActionListener {
             if (y == 36) {
                 g.setDy(g.getDy() * -1);
             }
-            if (y == 8 * 36) {
+            if (y == 8 * 36 & g.getDy() > 0) {
                 g.setDy(g.getDy() * -1);
             }
             if (y == 3 * 36 & x == 4 * 36 && g.getDy() < 0) {

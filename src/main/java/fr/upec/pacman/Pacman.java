@@ -37,14 +37,16 @@ public class Pacman extends Entity {
     }
 
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
-        if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
+        int i = 0 ;
+    	if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
             int[] oldPacCoords = game.getMap().getPacmanCoords();
             game.getMap().setPacmanCoords(5, 13);
             game.getMap().delete(oldPacCoords[0], oldPacCoords[1]);
             for (Ghost g : game.getGhosts()) {
                 g.setX(72);
-                g.setY(72);
+                g.setY(72 + i);
+                i+=36;
             }
 
             if (life <= 0) {
@@ -104,8 +106,8 @@ public class Pacman extends Entity {
                     for (Ghost g : game.getGhosts()) {
                         g.setColor(Color.BLUE);
                         superPow(g);
-                        g.setDx(2); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
-                        g.setDy(2);
+                       // g.setDx(3); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
+                       // g.setDy(3);
                     }
                     superPowTimer = System.currentTimeMillis() - start;
                 }
@@ -116,10 +118,10 @@ public class Pacman extends Entity {
                 game.getGhosts()[1].setColor(Color.decode("#46bfee"));
                 game.getGhosts()[2].setColor(Color.decode("#db851c"));
                 game.getGhosts()[3].setColor(Color.decode("#d03e19"));
-                for (Ghost g : game.getGhosts()) {
+               /* for (Ghost g : game.getGhosts()) {
                     g.setDx(4); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
                     g.setDy(4);
-                }
+                }*/
             }
         });
         executor.schedule(new Runnable() {

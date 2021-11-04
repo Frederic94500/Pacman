@@ -21,7 +21,6 @@ public class GameView extends JComponent {
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
         this.timer = new Timer(40, new EnemyAction(game.getGhosts(), this));
-        timer.start();
         this.frame = f;
     }
 
@@ -30,6 +29,7 @@ public class GameView extends JComponent {
         super.paint(g);
         g.setColor(Color.black);
         if (isStart()) {
+        	  timer.start();
             if (!game.getPacman().isAlive()) {
                 lose(g);
                 /*game.restart();*/
@@ -121,16 +121,16 @@ public class GameView extends JComponent {
         }
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Score: " + game.getScore(), 200, 382);
+        g.drawString("Score: " + game.getScore(), 250, 382);
         if (game.getPacman().isInvisible()) {
             g.setColor(Color.WHITE);
             g.setFont(new Font("TimesRoman", Font.PLAIN, 17));
-            g.drawString("Invisible: " + (10 - (game.getPacman().getInvisibleTimer() / 1000)), 350, 375);
+            g.drawString("Invisible: " + (10 - (game.getPacman().getInvisibleTimer() / 1000)), 450, 375);
         }
         if (game.getPacman().isSuperPow()) {
             g.setColor(Color.RED);
             g.setFont(new Font("TimesRoman", Font.PLAIN, 17));
-            g.drawString("Super Power: " + (10 - (game.getPacman().getSuperPowTimer() / 1000)), 350, 390);
+            g.drawString("Super Power: " + (10 - (game.getPacman().getSuperPowTimer() / 1000)), 450, 390);
         }
     }
 

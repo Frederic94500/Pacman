@@ -14,14 +14,14 @@ public class GameMap {
         //i = longeur = y | j = largeur = x
         this.map = new Type[][]{
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
-                {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, W},
-                {W, C, C, C, W, C, C, C, C, C, C, I, C, C, C, W},
-                {W, C, C, C, C, C, C, C, C, C, C, W, C, C, C, W},
-                {C, C, C, C, C, C, C, C, C, C, W, W, W, C, C, C},
-                {W, C, C, W, W, C, C, C, C, C, C, C, W, C, P, W},
-                {W, C, C, C, C, C, C, C, C, S, C, C, W, M, C, W},
-                {W, C, C, C, C, C, W, W, W, C, C, C, C, C, C, W},
-                {W, C, C, C, C, C, C, W, C, C, C, C, C, C, C, W},
+                {W, C, W, C, C, C, C, C, C, W, C, C, C, C, C, W},
+                {W, C, C, C, W, C, W, C, W, W, C, I, C, W, W, W},
+                {W, C, C, C, W, C, C, C, C, C, C, W, C, C, C, W},
+                {C, C, C, C, C, C, W, C, W, C, C, W, W, C, C, C},
+                {W, C, C, W, W, C, C, C, W, C, C, C, C, C, P, W},
+                {W, C, C, W, C, C, C, C, C, S, C, W, C, M, C, W},
+                {W, C, C, C, C, C, W, C, W, C, C, W, C, C, C, W},
+                {W, C, C, C, C, W, C, C, C, C, C, C, C, C, C, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
         };
     }

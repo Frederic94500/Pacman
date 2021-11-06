@@ -8,7 +8,7 @@ public class Gui {
         Game game = new Game(frame);
         Type[][] map = game.getMap().getMap();
 
-        frame.setSize(map[0].length * 36, map.length * 36 + 75);
+        frame.setSize(map[0].length * 36 + 10, map.length * 36 + 75);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Pacman");
         frame.add(game.getP());

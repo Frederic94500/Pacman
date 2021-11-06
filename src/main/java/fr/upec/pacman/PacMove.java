@@ -88,14 +88,17 @@ class PacMove implements KeyListener {
                 case I:
                     game.addScore(300);
                     game.getPacman().eatInvisible();
+                    view.setEat(true);
                     break;
                 case S:
                     game.addScore(500);
                     game.getPacman().eatSuperPow();
+                    view.setEat(true);
                     break;
                 case M:
                     game.addScore(1000);
                     game.getPacman().eatMix();
+                    view.setEat(true);
                     break;
                 case N:
                     view.setEat(false);

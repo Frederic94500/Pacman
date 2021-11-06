@@ -47,14 +47,14 @@ public class EnemyAction implements ActionListener {
             if (g.getDy() > 0) {
                 if (y / 36 > 0) calibrateY = 36;
             } else {
-                if (y / 36 > 0) calibrateY = -36;
+                if (y / 36 > 0) calibrateY = -4;
             }
             calibrateX = 0;
         } else {
             if (g.getDx() > 0) {
                 if (x / 36 > 0) calibrateX = 36;
             } else {
-                if (x / 36 > 0) calibrateX = -36;
+                if (x / 36 > 0) calibrateX = -4;
             }
             calibrateY = 0;
         }
@@ -67,13 +67,13 @@ public class EnemyAction implements ActionListener {
         if (game.getMap().getMap()[(y + calibrateY) / 36][(x + calibrateX) / 36] == Type.W) {
             if (choice) {
                 if (r == 0) {
-                    g.setDy(g.getDy() * -1);
+                    g.setDy(g.getDy() * -1);   g.setY(g.getY() + g.getDy()+ g.getDy()); g.setCounter(g.getCounter()+2);
                 } else {
                     if (g.getX() % 36 == 0 & g.getY() % 36 == 0) g.setTurn(true);
                 }
             } else {
                 if (r == 0) {
-                    g.setDx(g.getDx() * -1);
+                    g.setDx(g.getDx() * -1);  g.setX(g.getX() + g.getDx()+g.getDx());  g.setCounter(g.getCounter()+2);
                 } else {
                     if (g.getX() % 36 == 0 & g.getY() % 36 == 0) g.setTurn(false);
                 }
@@ -85,14 +85,14 @@ public class EnemyAction implements ActionListener {
                 g.incrementCounter();
                 if (g.getCounter() == 27 & g.getY() % 36 == 0) {
                     g.setTurn(true);
-                    g.setCounter(0);
+                    g.setCounter(r * 9);
                 }
             } else {
                 g.setX(g.getX() + g.getDx());
                 g.incrementCounter();
                 if (g.getCounter() == 18 + r * 9 & g.getX() % 36 == 0) {
                     g.setTurn(false);
-                    g.setCounter(0);
+                    g.setCounter(r * 9);
                 }
             }
         }

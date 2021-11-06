@@ -123,7 +123,7 @@ public class GameView extends JComponent {
 
     private void drawFooter(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(0, footerY, 600, 360);
+        g.fillRect(0, footerY, 610, 370);
         int x = 0;
         for (int i = 0; i < game.getPacman().getLife(); i++) {
             g.setColor(game.getPacman().getColor());
@@ -158,23 +158,23 @@ public class GameView extends JComponent {
         int x = size * (game.getMap().getPacmanCoords()[1]) + 40;
         int y = game.getMap().getPacmanCoords()[0] * size;
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
-        g.drawString("+100", x, y);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+        g.drawString("++Points", x, y);
     }
 
     private void startGame(Graphics g) {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-        g.drawString("Press -SPACE- to start the game !", 90, 200);
+        g.drawString("Press -SPACE- to start the game !", 90, 250);
         g.setColor(game.getPacman().getColor());
-        g.fillOval(180, 220, size, size);
+        g.fillOval(180, 270, size, size);
         g.setColor(Color.black);
-        g.fillOval(180 + 22, 220 + 3, size + 8, size - 8);
+        g.fillOval(180 + 22, 270 + 3, size + 8, size - 8);
         int i = 0;
         for (Ghost ghost : game.getGhosts()) {
             g.setColor(ghost.getColor());
-            g.fillOval(230 + i, 220, size, size);
+            g.fillOval(230 + i, 270, size, size);
             i += 46;
         }
     }
@@ -184,9 +184,9 @@ public class GameView extends JComponent {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU WIN !", 200, 200);
+        g.drawString("YOU WIN !", 220, 250);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Press -SPACE- to restart the game.", 130, 230);
+        g.drawString("Press -SPACE- to restart the game.", 130, 270);
     }
 
     private void lose(Graphics g) {
@@ -194,8 +194,8 @@ public class GameView extends JComponent {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU LOSE !", 200, 200);
+        g.drawString("YOU LOSE !", 220, 250);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Press -SPACE- to restart the game.", 130, 230);
+        g.drawString("Press -SPACE- to restart the game.", 130, 270);
     }
 }

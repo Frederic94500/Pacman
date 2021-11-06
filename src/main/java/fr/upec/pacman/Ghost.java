@@ -1,7 +1,6 @@
 package fr.upec.pacman;
 
 import java.awt.*;
-import java.util.Random;
 
 public class Ghost extends Entity {
     private int dx;
@@ -51,26 +50,5 @@ public class Ghost extends Entity {
 
     public void setTurn(boolean turn) {
         this.turn = turn;
-    }
-
-    //Voir branche AlternativeWall
-    public void randomMove() {
-        Random r = new Random();
-        this.dx = 0;
-        this.dy = 0;
-        switch (r.nextInt(4)) { //0 = up, 1 = right, 2 = down, 3 = left
-            case 0:
-                this.dy = -4;
-                break;
-            case 1:
-                this.dx = 4;
-                break;
-            case 2:
-                this.dy = 4;
-                break;
-            case 3:
-                this.dx = -4;
-                break;
-        }
     }
 }

@@ -121,7 +121,7 @@ public class GameView extends JComponent {
         }
     }
 
-    public void drawFooter(Graphics g) {
+    private void drawFooter(Graphics g) {
         g.setColor(Color.GRAY);
         g.fillRect(0, footerY, 600, 360);
         int x = 0;

@@ -37,16 +37,14 @@ public class Pacman extends Entity {
     }
 
     public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
-        int i = 0;
         if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
             int[] oldPacCoords = game.getMap().getPacmanCoords();
-            game.getMap().setPacmanCoords(5, 13);
+            game.getMap().setPacmanCoords(11, 8);
             game.getMap().delete(oldPacCoords[0], oldPacCoords[1]);
             for (Ghost g : game.getGhosts()) {
-                g.setX(72);
-                g.setY(72 + i);
-                i += 36;
+                g.setX(36 * 8);
+                g.setY(36 * 7);
             }
 
             if (life <= 0) {
@@ -135,13 +133,14 @@ public class Pacman extends Entity {
 
     public void superPow(Ghost g) {
         if (g.getX() == game.getMap().getPacmanCoords()[1] * 36 && g.getY() == game.getMap().getPacmanCoords()[0] * 36) {
-            g.setX(72);
-            g.setY(72);
+            g.setX(36 * 8);
+            g.setY(36 * 7);
         }
     }
 
     public void eatMix() {
-
+        if (game.getMap().isBlockingWall()) game.getMap().setBlockingWall(false);
+        else game.getMap().setBlockingWall(true);
     }
 
     public boolean isAlive() {

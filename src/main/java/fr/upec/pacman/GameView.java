@@ -24,6 +24,26 @@ public class GameView extends JComponent {
         this.game = game;
     }
 
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public boolean isStart() {
+        return start;
+    }
+
+    public void setStart(boolean start) {
+        this.start = start;
+    }
+
+    public void setEat(boolean eat) {
+        this.eat = eat;
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -128,23 +148,11 @@ public class GameView extends JComponent {
         }
     }
 
-    public boolean isStart() {
-        return start;
-    }
-
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
     private void drawEnemy(Graphics g) {
         for (Ghost ghost : game.getGhosts()) {
             g.setColor(ghost.getColor());
             g.fillOval(ghost.getX(), ghost.getY(), size, size);
         }
-    }
-
-    public Game getGame() {
-        return game;
     }
 
     private void win(Graphics g) {
@@ -184,23 +192,11 @@ public class GameView extends JComponent {
         }
     }
 
-    public void setEat(boolean eat) {
-        this.eat = eat;
-    }
-
     private void scoreView(Graphics g) {
         int x = 36 * (game.getMap().getPacmanCoords()[1]) + 40;
         int y = game.getMap().getPacmanCoords()[0] * 36;
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         g.drawString("+100", x, y);
-    }
-
-    public Frame getFrame() {
-        return this.frame;
-    }
-
-    public Timer getTimer() {
-        return timer;
     }
 }

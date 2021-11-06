@@ -54,4 +54,18 @@ public class GameMap {
     public void delete(int i, int j) {
         this.map[i][j] = Type.N;
     }
+
+    //WIP
+    /*public boolean isAllPacGumAte(){
+        for (Type[] y : map) {
+            for (Type[] x: map) {
+                for (Type t : x) {
+                    if(t != Type.N ){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }*/
 }

@@ -70,8 +70,7 @@ public class Game {
     }
 
     public boolean win() {
-        if (pacman.isAlive() && ateGum == 99) return true;
-        else return false;
+        return pacman.isAlive() && ateGum == 90;
     }
 
     public void incrementAteGum() {

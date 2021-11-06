@@ -29,16 +29,11 @@ public class GameView extends JComponent {
         super.paint(g);
         g.setColor(Color.black);
         if (isStart()) {
-        	  timer.start();
+            timer.start();
             if (!game.getPacman().isAlive()) {
                 lose(g);
                 /*game.restart();*/
             } else {
-                if (game.getPacman().isSuperPow()) {
-                    timer.setDelay(80);
-                } else {
-                    timer.setDelay(40);
-                }
                 if (game.win()) {
                     win(g);
                     /* game.restart();*/
@@ -153,10 +148,6 @@ public class GameView extends JComponent {
         return game;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
     private void win(Graphics g) {
         this.timer.stop();
         g.fillRect(0, 0, 800, 800);
@@ -208,5 +199,9 @@ public class GameView extends JComponent {
 
     public Frame getFrame() {
         return this.frame;
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
 }

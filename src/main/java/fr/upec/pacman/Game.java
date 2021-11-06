@@ -15,7 +15,6 @@ public class Game {
         this.map = new GameMap();
         this.pacman = new Pacman(5 * 36, 4 * 36, this);
         this.ghosts = new Ghost[]{
-        		// Erreurs sur les couleurs des fantomes ;
                 new Ghost(size * 2, size * 7, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
                 new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
@@ -53,6 +52,10 @@ public class Game {
 
     public Ghost[] getGhosts() {
         return ghosts;
+    }
+
+    public GameView getP() {
+        return p;
     }
 
     public boolean checkLife() {

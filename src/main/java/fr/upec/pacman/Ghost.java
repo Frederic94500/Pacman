@@ -6,7 +6,7 @@ import java.util.Random;
 public class Ghost extends Entity {
     private int dx;
     private int dy;
-    private int counter; //cmp? qu'est-ce que c'est? Compagnie du chemin de fer Métropolitain de Paris?
+    private int counter;
     private boolean turn;
 
     public Ghost(int x, int y, Color color) {

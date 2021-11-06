@@ -154,24 +154,12 @@ public class GameView extends JComponent {
         }
     }
 
-    private void win(Graphics g) {
-        this.timer.stop();
-        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+    private void scoreView(Graphics g) {
+        int x = size * (game.getMap().getPacmanCoords()[1]) + 40;
+        int y = game.getMap().getPacmanCoords()[0] * size;
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU WIN !", 200, 200);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Press -SPACE- to restart the game.", 130, 230);
-    }
-
-    private void lose(Graphics g) {
-        this.timer.stop();
-        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-        g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-        g.drawString("YOU LOSE !", 200, 200);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Press -SPACE- to restart the game.", 130, 230);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+        g.drawString("+100", x, y);
     }
 
     private void startGame(Graphics g) {
@@ -191,11 +179,23 @@ public class GameView extends JComponent {
         }
     }
 
-    private void scoreView(Graphics g) {
-        int x = size * (game.getMap().getPacmanCoords()[1]) + 40;
-        int y = game.getMap().getPacmanCoords()[0] * size;
+    private void win(Graphics g) {
+        this.timer.stop();
+        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
-        g.drawString("+100", x, y);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.drawString("YOU WIN !", 200, 200);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.drawString("Press -SPACE- to restart the game.", 130, 230);
+    }
+
+    private void lose(Graphics g) {
+        this.timer.stop();
+        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.drawString("YOU LOSE !", 200, 200);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.drawString("Press -SPACE- to restart the game.", 130, 230);
     }
 }

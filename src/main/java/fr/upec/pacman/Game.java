@@ -32,16 +32,6 @@ public class Game {
         return score;
     }
 
-    public void gainOneUp() {
-        if (score % 5000 == 0 && score != 0 && !pacman.isLifeTake()) {
-            pacman.oneUp();
-            pacman.setLifeTake(true);
-        }
-        if (score % 5000 != 0 && score != 0 && pacman.isLifeTake()) {
-            pacman.setLifeTake(false);
-        }
-    }
-
     public void addScore(int score) {
         this.score += score;
     }
@@ -60,6 +50,16 @@ public class Game {
 
     public GameView getP() {
         return p;
+    }
+
+    public void gainOneUp() {
+        if (score % 5000 == 0 && score != 0 && !pacman.isLifeTake()) {
+            pacman.oneUp();
+            pacman.setLifeTake(true);
+        }
+        if (score % 5000 != 0 && score != 0 && pacman.isLifeTake()) {
+            pacman.setLifeTake(false);
+        }
     }
 
     public boolean checkLife() {

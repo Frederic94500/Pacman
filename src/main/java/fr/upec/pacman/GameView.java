@@ -139,16 +139,16 @@ public class GameView extends JComponent {
             x += size;
         }
         g.setColor(Color.BLACK);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
         g.drawString("Score: " + game.getScore(), footerX / 3, footerY + 22);
         if (game.getPacman().isInvisible()) {
             g.setColor(Color.WHITE);
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 17));
+            g.setFont(new Font("Arial", Font.PLAIN, 17));
             g.drawString("Invisible: " + (10 - (game.getPacman().getInvisibleTimer() / 1000)), (footerX / 3) * 2, footerY + 15);
         }
         if (game.getPacman().isSuperPow()) {
             g.setColor(Color.RED);
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 17));
+            g.setFont(new Font("Arial", Font.PLAIN, 17));
             g.drawString("Super Power: " + (10 - (game.getPacman().getSuperPowTimer() / 1000)), (footerX / 3) * 2, footerY + 30);
         }
     }
@@ -164,14 +164,14 @@ public class GameView extends JComponent {
         int x = size * (game.getMap().getPacmanCoords()[1]) + 40;
         int y = game.getMap().getPacmanCoords()[0] * size;
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+        g.setFont(new Font("Arial", Font.PLAIN, 10));
         g.drawString("+" + scoreGet, x, y);
     }
 
     private void startGame(Graphics g) {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+        g.setFont(new Font("Arial", Font.PLAIN, 25));
         g.drawString("Press -SPACE- to start the game !", 90, 250);
         g.setColor(game.getPacman().getColor());
         g.fillOval(180, 270, size, size);
@@ -189,9 +189,9 @@ public class GameView extends JComponent {
         this.timer.stop();
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.setFont(new Font("Arial", Font.PLAIN, 30));
         g.drawString("YOU WIN !", 220, 250);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
         g.drawString("Press -SPACE- to restart the game.", 130, 270);
     }
 
@@ -199,9 +199,9 @@ public class GameView extends JComponent {
         this.timer.stop();
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+        g.setFont(new Font("Arial", Font.PLAIN, 30));
         g.drawString("YOU LOSE !", 220, 250);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
         g.drawString("Press -SPACE- to restart the game.", 130, 270);
     }
 }

@@ -30,9 +30,9 @@ class PacMove implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:  //y                         //x
                 if (!game.win() || !game.getPacman().isAlive()) {
-                    if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 0) {
-                        map[4][0] = Type.N;
-                        map[4][15] = Type.P;
+                    if (pacmanCoordsMap[0] == 7 & pacmanCoordsMap[1] == 0) {
+                        map[7][0] = Type.N;
+                        map[7][16] = Type.P;
                     } else {
                         makeMove(0, -1);
                     }
@@ -40,9 +40,9 @@ class PacMove implements KeyListener {
                 break;
             case KeyEvent.VK_RIGHT:
                 if (!game.win() || !game.getPacman().isAlive()) {
-                    if (pacmanCoordsMap[0] == 4 & pacmanCoordsMap[1] == 15) {
-                        map[4][15] = Type.N;
-                        map[4][0] = Type.P;
+                    if (pacmanCoordsMap[0] == 7 & pacmanCoordsMap[1] == 16) {
+                        map[7][16] = Type.N;
+                        map[7][0] = Type.P;
                     } else {
                         makeMove(0, 1);
                     }

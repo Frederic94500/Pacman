@@ -5,23 +5,24 @@ import java.awt.*;
 
 public class GameView extends JComponent {
     public final static int size = 36;
-    public final static int WIDTH = 200;
-    public final static int HEIGHT = 200;
-    private Game game;
+    private final int footerX;
+    private final int footerY;
     private boolean start; // pour commencer la partie
+    private boolean eat;
+    private Game game;
     private Timer timer; // Ajouter la classe de Action listener
     private Frame frame;
-    private boolean eat;
 
     //Constructeur
     public GameView(Frame f, Game game) {
         super();
         setStart(false);
         setOpaque(true);
-        setSize(WIDTH, HEIGHT);
         this.timer = new Timer(40, new EnemyAction(game.getGhosts(), game, this));
         this.frame = f;
         this.game = game;
+        this.footerX = game.getMap().getMap()[0].length * size;
+        this.footerY = game.getMap().getMap().length * size;
     }
 
     public Frame getFrame() {
@@ -52,15 +53,13 @@ public class GameView extends JComponent {
             timer.start();
             if (!game.getPacman().isAlive()) {
                 lose(g);
-                /*game.restart();*/
             } else {
                 if (game.win()) {
                     win(g);
-                    /* game.restart();*/
                 } else {
                     drawTerrain(g);
                     drawEnemy(g);
-                    drawInterface(g);
+                    drawFooter(g);
                     if (eat) {
                         scoreView(g);
                     }
@@ -73,9 +72,7 @@ public class GameView extends JComponent {
 
     // Terrain
     private void drawTerrain(Graphics g) {
-        g.fill3DRect(0, 0, 600, 600, start);
-        g.setColor(Color.GRAY);
-        g.fillRect(0, 360, 600, 360);
+        g.fill3DRect(0, 0, game.getMap().getMap()[0].length * size, game.getMap().getMap().length * size, start);
 
         int x = 0;
         int y = 0;
@@ -124,27 +121,29 @@ public class GameView extends JComponent {
         }
     }
 
-    public void drawInterface(Graphics g) {
+    public void drawFooter(Graphics g) {
+        g.setColor(Color.GRAY);
+        g.fillRect(0, footerY, 600, 360);
         int x = 0;
         for (int i = 0; i < game.getPacman().getLife(); i++) {
             g.setColor(game.getPacman().getColor());
-            g.fillOval(x, 360, 36, 36);
+            g.fillOval(x, footerY, size, size);
             g.setColor(Color.GRAY);
-            g.fillOval(x + 22, 360 + 3, 36 + 8, 36 - 8);
-            x += 36;
+            g.fillOval(x + 22, footerY + 3, size + 8, size - 8);
+            x += size;
         }
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Score: " + game.getScore(), 250, 382);
+        g.drawString("Score: " + game.getScore(), footerX / 3, footerY + 22);
         if (game.getPacman().isInvisible()) {
             g.setColor(Color.WHITE);
             g.setFont(new Font("TimesRoman", Font.PLAIN, 17));
-            g.drawString("Invisible: " + (10 - (game.getPacman().getInvisibleTimer() / 1000)), 450, 375);
+            g.drawString("Invisible: " + (10 - (game.getPacman().getInvisibleTimer() / 1000)), (footerX / 3) * 2, footerY + 15);
         }
         if (game.getPacman().isSuperPow()) {
             g.setColor(Color.RED);
             g.setFont(new Font("TimesRoman", Font.PLAIN, 17));
-            g.drawString("Super Power: " + (10 - (game.getPacman().getSuperPowTimer() / 1000)), 450, 390);
+            g.drawString("Super Power: " + (10 - (game.getPacman().getSuperPowTimer() / 1000)), (footerX / 3) * 2, footerY + 30);
         }
     }
 
@@ -157,7 +156,7 @@ public class GameView extends JComponent {
 
     private void win(Graphics g) {
         this.timer.stop();
-        g.fillRect(0, 0, 800, 800);
+        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         g.drawString("YOU WIN !", 200, 200);
@@ -167,7 +166,7 @@ public class GameView extends JComponent {
 
     private void lose(Graphics g) {
         this.timer.stop();
-        g.fillRect(0, 0, 800, 800);
+        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
         g.drawString("YOU LOSE !", 200, 200);
@@ -176,15 +175,15 @@ public class GameView extends JComponent {
     }
 
     private void startGame(Graphics g) {
-        g.fillRect(0, 0, 800, 800);
+        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         g.drawString("Press -SPACE- to start the game !", 90, 200);
-        int i = 0;
         g.setColor(game.getPacman().getColor());
         g.fillOval(180, 220, size, size);
         g.setColor(Color.black);
         g.fillOval(180 + 22, 220 + 3, size + 8, size - 8);
+        int i = 0;
         for (Ghost ghost : game.getGhosts()) {
             g.setColor(ghost.getColor());
             g.fillOval(230 + i, 220, size, size);
@@ -193,8 +192,8 @@ public class GameView extends JComponent {
     }
 
     private void scoreView(Graphics g) {
-        int x = 36 * (game.getMap().getPacmanCoords()[1]) + 40;
-        int y = game.getMap().getPacmanCoords()[0] * 36;
+        int x = size * (game.getMap().getPacmanCoords()[1]) + 40;
+        int y = game.getMap().getPacmanCoords()[0] * size;
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
         g.drawString("+100", x, y);

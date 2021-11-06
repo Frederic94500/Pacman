@@ -5,7 +5,8 @@ public class GameMap {
     private static final Type C = Type.C; // C = CLASSIC
     private static final Type I = Type.I; // I = INVISIBLE
     private static final Type S = Type.S; // S = SUPERPOWER
-    private static final Type M = Type.M; // N = NOTHING
+    private static final Type M = Type.M; // M = MIX
+    private static final Type N = Type.N;
     private static final Type P = Type.P; // P = PACMAN
     private int[] pacmanCoords;
     private Type[][] map; // Terrain
@@ -13,16 +14,21 @@ public class GameMap {
     public GameMap() {
         //i = longeur = y | j = largeur = x
         this.map = new Type[][]{
-                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
-                {W, C, W, C, C, C, C, C, C, W, C, C, C, C, C, W},
-                {W, C, C, C, W, C, W, C, W, W, C, I, C, W, W, W},
-                {W, C, C, C, W, C, C, C, C, C, C, W, C, C, C, W},
-                {C, C, C, C, C, C, W, C, W, C, C, W, W, C, C, C},
-                {W, C, C, W, W, C, C, C, W, C, C, C, C, C, P, W},
-                {W, C, C, W, C, C, C, C, C, S, C, W, C, M, C, W},
-                {W, C, C, C, C, C, W, C, W, C, C, W, C, C, C, W},
-                {W, C, C, C, C, W, C, C, C, C, C, C, C, C, C, W},
-                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
+                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
+                {W, C, C, C, W, C, C, C, C, C, C, C, W, C, C, I, W},
+                {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
+                {W, C, C, C, C, C, C, C, C, C, C, C, C, C, C, C, W},
+                {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
+                {N, N, W, C, W, C, C, C, C, C, C, C, W, C, W, N, N},
+                {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
+                {N, N, N, N, W, C, C, C, C, C, C, C, W, N, N, N, N},
+                {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
+                {N, N, W, C, W, C, C, C, C, C, C, C, W, C, W, N, N},
+                {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
+                {W, C, C, C, C, C, C, C, P, C, C, C, C, C, C, C, W},
+                {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
+                {W, S, C, C, W, C, C, C, C, C, C, C, W, C, C, M, W},
+                {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
         };
     }
 

@@ -83,21 +83,25 @@ class PacMove implements KeyListener {
             switch (map[pacmanCoordsMap[0] + dx][pacmanCoordsMap[1] + dy]) {
                 case C:
                     game.addScore(100);
+                    view.setScoreGet(100);
                     view.setEat(true);
                     break;
                 case I:
                     game.addScore(300);
                     game.getPacman().eatInvisible();
+                    view.setScoreGet(300);
                     view.setEat(true);
                     break;
                 case S:
                     game.addScore(500);
                     game.getPacman().eatSuperPow();
+                    view.setScoreGet(500);
                     view.setEat(true);
                     break;
                 case M:
                     game.addScore(1000);
                     game.getPacman().eatMix();
+                    view.setScoreGet(1000);
                     view.setEat(true);
                     break;
                 case N:

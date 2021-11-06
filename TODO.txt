@@ -19,12 +19,12 @@ TODO:
     -Classique bleu (-ok-)
     -Bonus 4:
       -Violet: invisible + couleur jaune pâle (-ok-)
-      -Orange: super-pacman (partiellement, c'est buggé)
-      -Vert: change le labyrinthe
+      -Orange: super-pacman (-ok-)
+      -Vert: change/modifie le labyrinthe (-ok-)
       -Quatrième???
   -Fantômes: 4 de movement aléatoire (-ok-)
     Si fan touche pacman = -1 vie (Hamza) (-ok-)
-    Si atteint mur then change de direction aléatoirement (Hamza) (Implémentation à changer voir AlternativeWall)
+    Si atteint mur then change de direction aléatoirement (Hamza) Buggé
     
 4-Si plus de pacgommes = win (-ok-)
 5-Si 0 vie = lose (Hamza) (-ok-)

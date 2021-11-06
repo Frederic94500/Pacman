@@ -12,6 +12,7 @@ public class GameView extends JComponent {
     private Game game;
     private Timer timer; // Ajouter la classe de Action listener
     private Frame frame;
+    private int scoreGet;
 
     //Constructeur
     public GameView(Frame f, Game game) {
@@ -23,6 +24,11 @@ public class GameView extends JComponent {
         this.game = game;
         this.footerX = game.getMap().getMap()[0].length * size;
         this.footerY = game.getMap().getMap().length * size;
+        this.scoreGet = 0;
+    }
+
+    public void setScoreGet(int scoreGet) {
+        this.scoreGet = scoreGet;
     }
 
     public Frame getFrame() {
@@ -76,7 +82,7 @@ public class GameView extends JComponent {
 
         int x = 0;
         int y = 0;
-        // x = width y = height  // size taille du block
+        // x = width y = height  // size taille du bloc
 
         for (Type[] i : game.getMap().getMap()) {
             x = 0;
@@ -159,7 +165,7 @@ public class GameView extends JComponent {
         int y = game.getMap().getPacmanCoords()[0] * size;
         g.setColor(Color.YELLOW);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-        g.drawString("++Points", x, y);
+        g.drawString("+" + scoreGet, x, y);
     }
 
     private void startGame(Graphics g) {

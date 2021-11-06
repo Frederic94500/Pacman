@@ -40,8 +40,8 @@ public class Pacman extends Entity {
         if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
             int[] oldPacCoords = game.getMap().getPacmanCoords();
-            game.getMap().setPacmanCoords(11, 8);
             game.getMap().delete(oldPacCoords[0], oldPacCoords[1]);
+            game.getMap().setPacmanCoords(11, 8);
             for (Ghost g : game.getGhosts()) {
                 g.setX(36 * 8);
                 g.setY(36 * 7);

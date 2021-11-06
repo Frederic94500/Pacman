@@ -14,14 +14,14 @@ public class GameView extends JComponent {
     private boolean eat;
 
     //Constructeur
-    public GameView(Frame f) {
+    public GameView(Frame f, Game game) {
         super();
         setStart(false);
-        this.game = new Game(this);
         setOpaque(true);
         setSize(WIDTH, HEIGHT);
-        this.timer = new Timer(40, new EnemyAction(game.getGhosts(), this));
+        this.timer = new Timer(40, new EnemyAction(game.getGhosts(), game, this));
         this.frame = f;
+        this.game = game;
     }
 
     @Override
@@ -59,7 +59,6 @@ public class GameView extends JComponent {
 
         int x = 0;
         int y = 0;
-        int size = 36;
         // x = width y = height  // size taille du block
 
         for (Type[] i : game.getMap().getMap()) {

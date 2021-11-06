@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 
 public class EnemyAction implements ActionListener {
     private Ghost[] ghosts;
+    private Game game;
     private GameView p;
 
-    public EnemyAction(Ghost[] ghosts, GameView p) {
+    public EnemyAction(Ghost[] ghosts, Game game, GameView p) {
         this.ghosts = ghosts;
+        this.game = game;
         this.p = p;
     }
 
@@ -22,7 +24,7 @@ public class EnemyAction implements ActionListener {
     }
 
     private void checkLife() {
-        if (p.getGame().checkLife()) {
+        if (game.checkLife()) {
             try {
                 for (Ghost g : ghosts) {
                     g.setCounter(0);
@@ -62,7 +64,7 @@ public class EnemyAction implements ActionListener {
             g.setCounter(0);
         }
 
-        if (p.getGame().getMap().getMap()[(y + calibrateY) / 36][(x + calibrateX) / 36] == Type.W) {
+        if (game.getMap().getMap()[(y + calibrateY) / 36][(x + calibrateX) / 36] == Type.W) {
             if (choice) {
                 if (r == 0) {
                     g.setDy(g.getDy() * -1);

@@ -7,11 +7,12 @@ public class Game {
     private GameMap map;
     private Pacman pacman;
     private Ghost[] ghosts;
+    private GameView p;
+    private PacMove pacMove;
     private int score;
     private int ateGum;
-    private GameView p;
 
-    public Game(GameView p) {
+    public Game(Frame f) {
         this.map = new GameMap();
         this.pacman = new Pacman(5 * 36, 4 * 36, this);
         this.ghosts = new Ghost[]{
@@ -19,9 +20,14 @@ public class Game {
                 new Ghost(size * 7, size * 2, Color.decode("#46bfee")), //Red
                 new Ghost(size * 2, size * 2, Color.decode("#db851c")), //Purple
                 new Ghost(size * 4, size * 7, Color.decode("#d03e19"))};//Orange
-        this.p = p;
+        this.p = new GameView(f, this);
+        this.pacMove = new PacMove(this, p);
         this.score = 0;
         this.ateGum = 0;
+    }
+
+    public PacMove getPacMove() {
+        return pacMove;
     }
 
     public int getScore() {

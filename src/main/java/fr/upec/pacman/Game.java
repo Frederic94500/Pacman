@@ -10,7 +10,6 @@ public class Game {
     private GameView p;
     private PacMove pacMove;
     private int score;
-    private int ateGum;
 
     public Game(Frame f) {
         this.map = new GameMap();
@@ -23,7 +22,6 @@ public class Game {
         this.p = new GameView(f, this);
         this.pacMove = new PacMove(this, p);
         this.score = 0;
-        this.ateGum = 0;
     }
 
     public PacMove getPacMove() {
@@ -70,11 +68,7 @@ public class Game {
     }
 
     public boolean win() {
-        return pacman.isAlive() && ateGum == 90;
-    }
-
-    public void incrementAteGum() {
-        ateGum++;
+        return pacman.isAlive() && map.isAllPacGumAte();
     }
 
     /*   public void restart () {

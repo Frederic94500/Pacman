@@ -55,17 +55,14 @@ public class GameMap {
         this.map[i][j] = Type.N;
     }
 
-    //WIP
-    /*public boolean isAllPacGumAte(){
+    public boolean isAllPacGumAte() {
         for (Type[] y : map) {
-            for (Type[] x: map) {
-                for (Type t : x) {
-                    if(t != Type.N ){
-                        return false;
-                    }
+            for (Type t : y) {
+                if (t != Type.N && t != Type.W && t != Type.P) {
+                    return false;
                 }
             }
         }
         return true;
-    }*/
+    }
 }

@@ -20,6 +20,7 @@ public class GameView extends JComponent {
         setStart(false);
         setOpaque(true);
         this.timer = new Timer(40, new EnemyAction(game.getGhosts(), game, this));
+        //timer pour pacman -> pacman pour choisir une direction
         this.frame = f;
         this.game = game;
         this.footerX = game.getMap().getMap()[0].length * size;

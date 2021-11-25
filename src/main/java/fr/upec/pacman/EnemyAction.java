@@ -67,13 +67,17 @@ public class EnemyAction implements ActionListener {
         if (game.getMap().getMap()[(y + calibrateY) / 36][(x + calibrateX) / 36] == Type.W) {
             if (choice) {
                 if (r == 0) {
-                    g.setDy(g.getDy() * -1);   g.setY(g.getY() + g.getDy()+ g.getDy()); g.setCounter(g.getCounter()+2);
+                    g.setDy(g.getDy() * -1);
+                    g.setY(g.getY() + g.getDy() + g.getDy());
+                    g.setCounter(g.getCounter() + 2);
                 } else {
                     if (g.getX() % 36 == 0 & g.getY() % 36 == 0) g.setTurn(true);
                 }
             } else {
                 if (r == 0) {
-                    g.setDx(g.getDx() * -1);  g.setX(g.getX() + g.getDx()+g.getDx());  g.setCounter(g.getCounter()+2);
+                    g.setDx(g.getDx() * -1);
+                    g.setX(g.getX() + g.getDx() + g.getDx());
+                    g.setCounter(g.getCounter() + 2);
                 } else {
                     if (g.getX() % 36 == 0 & g.getY() % 36 == 0) g.setTurn(false);
                 }

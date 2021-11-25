@@ -9,11 +9,11 @@ public class Entity {
     private int dy;
     private Color color;
 
-    public Entity(int x, int y, Color color) {
+    public Entity(int x, int y, int dx, int dy, Color color) {
         this.x = x;
         this.y = y;
-        this.dx = 4;
-        this.dy = 4;
+        this.dx = dx;
+        this.dy = dy;
         this.color = color;
     }
 

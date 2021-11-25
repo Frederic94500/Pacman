@@ -1,21 +1,21 @@
 package fr.upec.pacman;
 
 public enum Direction {
-    UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0);
+    UP(0, -4), DOWN(0, 4), LEFT(-4, 0), RIGHT(4, 0);
 
-    private final int x;
-    private final int y;
+    private final int dx;
+    private final int dy;
 
-    Direction(int x, int y) {
-        this.x = x;
-        this.y = y;
+    Direction(int dx, int dy) {
+        this.dx = dx;
+        this.dy = dy;
     }
 
     public int getX() {
-        return x;
+        return dx;
     }
 
     public int getY() {
-        return y;
+        return dy;
     }
 }

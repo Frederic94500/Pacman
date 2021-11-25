@@ -13,7 +13,7 @@ public class Game {
 
     public Game(Frame f) {
         this.map = new GameMap();
-        this.pacman = new Pacman(5 * 36, 4 * 36, this);
+        this.pacman = new Pacman(map.getPacmanCoords()[1] * 36, map.getPacmanCoords()[0] * 36, this);
         this.ghosts = new Ghost[]{
                 new Ghost(size * 7, size * 5, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 8, size * 5, Color.decode("#46bfee")), //Red

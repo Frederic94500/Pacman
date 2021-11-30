@@ -13,7 +13,7 @@ public class Game {
 
     public Game(Frame f) {
         this.map = new GameMap();
-        this.pacman = new Pacman(map.getPacmanCoords()[1] * 36, map.getPacmanCoords()[0] * 36, this);
+        this.pacman = new Pacman(this);
         this.ghosts = new Ghost[]{
                 new Ghost(size * 7, size * 5, Color.decode("#ea82e5")), //Blue
                 new Ghost(size * 8, size * 5, Color.decode("#46bfee")), //Red
@@ -67,7 +67,7 @@ public class Game {
                 ghosts[1].getX(), ghosts[1].getY(),
                 ghosts[2].getX(), ghosts[2].getY(),
                 ghosts[3].getX(), ghosts[3].getY(),
-                getMap().getPacmanCoords()[0] * 36, getMap().getPacmanCoords()[1] * 36);
+                pacman.getX(), pacman.getY());
     }
 
     public boolean win() {

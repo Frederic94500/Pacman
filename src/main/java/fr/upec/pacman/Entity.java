@@ -7,13 +7,15 @@ public class Entity {
     private int y;
     private int dx;
     private int dy;
+    private Direction direction;
     private Color color;
 
-    public Entity(int x, int y, int dx, int dy, Color color) {
+    public Entity(int x, int y, int dx, int dy, Direction direction, Color color) {
         this.x = x;
         this.y = y;
         this.dx = dx;
         this.dy = dy;
+        this.direction = direction;
         this.color = color;
     }
 

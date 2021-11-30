@@ -7,7 +7,7 @@ public class GameMap {
     private static final Type S = Type.S; // S = SUPERPOWER
     private static final Type M = Type.M; // M = MIX
     private static final Type N = Type.N;
-    private static final Type P = Type.P; // P = PACMAN
+    private static final Type P = Type.P; // P = PACMAN @deprecated Depuis que PacMan est au pixel
     private Type[][] map;
     private boolean blockingWall;
 
@@ -25,7 +25,7 @@ public class GameMap {
                 {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
                 {N, N, W, C, W, C, C, C, C, C, C, C, W, C, W, N, N},
                 {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
-                {W, C, C, C, C, C, C, C, P, C, C, C, C, C, C, C, W},
+                {W, C, C, C, C, C, C, C, C, C, C, C, C, C, C, C, W},
                 {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
                 {W, S, C, C, W, C, C, C, I, C, C, C, W, C, C, M, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
@@ -37,6 +37,9 @@ public class GameMap {
         return map;
     }
 
+    /**
+     * @deprecated Depuis que PacMan est au pixel
+     */
     public int[] getPacmanCoords() {
         int x = 0;
         int y = 0;
@@ -54,6 +57,9 @@ public class GameMap {
         return new int[]{x, y};
     }
 
+    /**
+     * @deprecated Depuis que PacMan est au pixel
+     */
     public void setPacmanCoords(int y, int x) {
         this.map[y][x] = Type.P;
     }

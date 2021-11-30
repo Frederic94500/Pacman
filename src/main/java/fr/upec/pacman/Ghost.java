@@ -7,7 +7,7 @@ public class Ghost extends Entity {
     private boolean turn;
 
     public Ghost(int x, int y, Color color) {
-        super(x, y, 4, 4, color);
+        super(x, y, 4, 4, Direction.random(), color);
         this.turn = true;
         this.counter = 0;
     }

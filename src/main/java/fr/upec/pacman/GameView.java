@@ -21,7 +21,7 @@ public class GameView extends JComponent {
         setStart(false);
         setOpaque(true);
         this.timerGhost = new Timer(40, new EnemyAction(game.getGhosts(), game, this));
-        this.timerGhost = new Timer(40, new PacAction(game, this, game.getPacman()));
+        this.timerPacman = new Timer(40, new PacAction(game, this, game.getPacman()));
         this.frame = f;
         this.game = game;
         this.footerX = game.getMap().getMap()[0].length * size;
@@ -59,6 +59,7 @@ public class GameView extends JComponent {
         g.setColor(Color.black);
         if (isStart()) {
             timerGhost.start();
+            timerPacman.start();
             if (!game.getPacman().isAlive()) {
                 lose(g);
             } else {
@@ -191,6 +192,7 @@ public class GameView extends JComponent {
 
     private void win(Graphics g) {
         this.timerGhost.stop();
+        this.timerPacman.stop();
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -201,6 +203,7 @@ public class GameView extends JComponent {
 
     private void lose(Graphics g) {
         this.timerGhost.stop();
+        this.timerPacman.stop();
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Arial", Font.PLAIN, 30));

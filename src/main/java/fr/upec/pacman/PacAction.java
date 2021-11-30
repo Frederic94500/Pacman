@@ -19,6 +19,7 @@ public class PacAction implements ActionListener {
         int[] pacmanCoordsMap = game.getMap().getPacmanCoords();
         Type[][] map = game.getMap().getMap();
 
+        //Warparound à réimplémenter
         if (pacman.getX() / 36 == 0 && pacman.getY() / 36 == 7) {
 
         }
@@ -38,6 +39,7 @@ public class PacAction implements ActionListener {
             map[7][0] = Type.P;
         }
 
+        //Détection des murs et des murs à refaire
         if (map[(pacman.getY() + pacman.getDy()) / 36][(pacman.getX() + pacman.getDx()) / 36] != Type.W &&
                 map[(pacman.getY() + pacman.getDy() + 36) / 36][(pacman.getX() + pacman.getDx() + 36) / 36] != Type.W) {
             switch (map[(pacman.getY() + pacman.getDy()) / 36][(pacman.getX() + pacman.getDx()) / 36]) {
@@ -76,7 +78,6 @@ public class PacAction implements ActionListener {
         map[pacman.getY() / 36][pacman.getX() / 36] = Type.N;
         pacman.setX(pacman.getX() + pacman.getDx());
         pacman.setY(pacman.getY() + pacman.getDy());
-        //map[(pacman.getX() + pacman.getDx()) / 36][(pacman.getY() + pacman.getDy()) / 36] = Type.P;
         view.repaint();
     }
 }

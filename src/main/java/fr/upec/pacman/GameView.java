@@ -155,7 +155,7 @@ public class GameView extends JComponent {
         g.setColor(game.getPacman().getColor());
         g.fillOval(game.getPacman().getX(), game.getPacman().getY(), size, size);
         g.setColor(Color.black);
-        g.fillOval(game.getPacman().getX() + 22, game.getPacman().getY() + 3, size + 8, size - 8);
+        g.fillOval(game.getPacman().getX() + 22, game.getPacman().getY() + 3, size + 8, size - 8); //La bouche à refaire
     }
 
     private void drawEnemy(Graphics g) {

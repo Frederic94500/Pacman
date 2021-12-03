@@ -24,7 +24,7 @@ public class EnemyAction implements ActionListener {
     }
 
     private void checkLife() {
-        if (game.checkLife()) {
+        if (game.getPacman().checkCollision()) {
             try {
                 for (Ghost g : ghosts) {
                     g.setCounter(0);

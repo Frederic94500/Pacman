@@ -16,7 +16,6 @@ public class PacAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int[] pacmanCoordsMap = game.getMap().getPacmanCoords();
         Type[][] map = game.getMap().getMap();
 
         //Warparound à réimplémenter
@@ -29,7 +28,7 @@ public class PacAction implements ActionListener {
             map[7][0] = Type.P;
         }
 
-        if (pacmanCoordsMap[0] == 7 & pacmanCoordsMap[1] == 0) {
+        /*if (pacmanCoordsMap[0] == 7 & pacmanCoordsMap[1] == 0) {
             map[7][0] = Type.N;
             map[7][16] = Type.P;
         }
@@ -37,11 +36,11 @@ public class PacAction implements ActionListener {
         if (pacmanCoordsMap[0] == 7 & pacmanCoordsMap[1] == 16) {
             map[7][16] = Type.N;
             map[7][0] = Type.P;
-        }
+        }*/
 
         //Détection des murs et des murs à refaire
         if (map[(pacman.getY() + pacman.getDy()) / 36][(pacman.getX() + pacman.getDx()) / 36] != Type.W &&
-                map[(pacman.getY() + pacman.getDy() + 36) / 36][(pacman.getX() + pacman.getDx() + 36) / 36] != Type.W) {
+                map[(pacman.getY() + pacman.getDy() + 35) / 36][(pacman.getX() + pacman.getDx() + 35) / 36] != Type.W) {
             switch (map[(pacman.getY() + pacman.getDy()) / 36][(pacman.getX() + pacman.getDx()) / 36]) {
                 case C:
                     game.addScore(100);
@@ -72,12 +71,12 @@ public class PacAction implements ActionListener {
                 default:
                     break;
             }
+            game.gainOneUp(); // Verifie s'il a 5000pts pour ajouter une vie en plus.
+            game.getMap().delete(pacman.getY() / 36, pacman.getX() / 36);
+            pacman.setX(pacman.getX() + pacman.getDx());
+            pacman.setY(pacman.getY() + pacman.getDy());
         }
 
-        game.gainOneUp(); // Verifie s'il a 5000pts pour ajouter une vie en plus.
-        map[pacman.getY() / 36][pacman.getX() / 36] = Type.N;
-        pacman.setX(pacman.getX() + pacman.getDx());
-        pacman.setY(pacman.getY() + pacman.getDy());
         view.repaint();
     }
 }

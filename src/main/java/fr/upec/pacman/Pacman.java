@@ -36,21 +36,26 @@ public class Pacman extends Entity {
         this.life++;
     }
 
-    public boolean loseLife(int bx, int by, int rx, int ry, int px, int py, int ox, int oy, int pacy, int pacx) {
-        if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
-            life--;
-            int[] oldPacCoords = game.getMap().getPacmanCoords();
-            game.getMap().delete(oldPacCoords[0], oldPacCoords[1]);
-            game.getMap().setPacmanCoords(11, 8);
-            for (Ghost g : game.getGhosts()) {
-                g.setX(36 * 8);
-                g.setY(36 * 7);
-            }
+    public boolean checkCollision() {
+        int pacX = getX();
+        int pacY = getY();
+        if (!invisible && !superPow) {
+            for (Ghost ghost : game.getGhosts()) {
+                if (ghost.getX() / 36 == pacX / 36 && ghost.getY() / 36 == pacY / 36) {
+                    life--;
+                    setX(8 * 36);
+                    setY(11 * 36);
+                    for (Ghost g : game.getGhosts()) {
+                        g.setX(36 * 8);
+                        g.setY(36 * 7);
+                    }
 
-            if (life <= 0) {
-                setAlive(false);
+                    if (life <= 0) {
+                        setAlive(false);
+                    }
+                    return true;
+                }
             }
-            return true;
         }
         return false;
     }
@@ -132,7 +137,7 @@ public class Pacman extends Entity {
     }
 
     public void superPow(Ghost g) {
-        if (g.getX() == game.getMap().getPacmanCoords()[1] * 36 && g.getY() == game.getMap().getPacmanCoords()[0] * 36) {
+        if (g.getX() / 36 == getX() / 36 && g.getY() / 36 == getY()) {
             g.setX(36 * 8);
             g.setY(36 * 7);
         }

@@ -62,14 +62,6 @@ public class Game {
         }
     }
 
-    public boolean checkLife() {
-        return pacman.loseLife(ghosts[0].getX(), ghosts[0].getY(),
-                ghosts[1].getX(), ghosts[1].getY(),
-                ghosts[2].getX(), ghosts[2].getY(),
-                ghosts[3].getX(), ghosts[3].getY(),
-                pacman.getX(), pacman.getY());
-    }
-
     public boolean win() {
         return pacman.isAlive() && map.isAllPacGumAte();
     }

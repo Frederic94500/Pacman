@@ -61,22 +61,22 @@ public class GameView extends JComponent {
             timerGhost.start();
             timerPacman.start();
             if (!game.getPacman().isAlive()) {
-                lose(g);
+                loseScreen(g);
             } else {
                 if (game.win()) {
-                    win(g);
+                    winScreen(g);
                 } else {
                     drawTerrain(g);
                     drawPacman(g);
                     drawEnemy(g);
                     drawFooter(g);
                     if (eat) {
-                        scoreView(g);
+                        scoreBubble(g);
                     }
                 }
             }
         } else {
-            startGame(g);
+            startScreen(g);
         }
     }
 
@@ -165,15 +165,13 @@ public class GameView extends JComponent {
         }
     }
 
-    private void scoreView(Graphics g) {
-        int x = size * (game.getMap().getPacmanCoords()[1]) + 40;
-        int y = game.getMap().getPacmanCoords()[0] * size;
+    private void scoreBubble(Graphics g) {
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Arial", Font.PLAIN, 10));
-        g.drawString("+" + scoreGet, x, y);
+        g.drawString("+" + scoreGet, (game.getPacman().getX() * size) + 40, (game.getPacman().getY()) * size); //bugge
     }
 
-    private void startGame(Graphics g) {
+    private void startScreen(Graphics g) {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Arial", Font.PLAIN, 25));
@@ -190,7 +188,7 @@ public class GameView extends JComponent {
         }
     }
 
-    private void win(Graphics g) {
+    private void winScreen(Graphics g) {
         this.timerGhost.stop();
         this.timerPacman.stop();
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
@@ -201,7 +199,7 @@ public class GameView extends JComponent {
         g.drawString("Press -SPACE- to restart the game.", 130, 270);
     }
 
-    private void lose(Graphics g) {
+    private void loseScreen(Graphics g) {
         this.timerGhost.stop();
         this.timerPacman.stop();
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());

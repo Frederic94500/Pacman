@@ -40,11 +40,11 @@ public class Pacman extends Entity {
         if (((pacx == px && pacy == py) || (pacx == rx && pacy == ry) || (pacx == bx && pacy == by) || (pacx == ox && pacy == oy)) && !invisible && !superPow) {
             life--;
             int[] oldPacCoords = game.getMap().getPacmanCoords();
-            game.getMap().setPacmanCoords(5, 13);
             game.getMap().delete(oldPacCoords[0], oldPacCoords[1]);
+            game.getMap().setPacmanCoords(11, 8);
             for (Ghost g : game.getGhosts()) {
-                g.setX(72);
-                g.setY(72);
+                g.setX(36 * 8);
+                g.setY(36 * 7);
             }
 
             if (life <= 0) {
@@ -97,6 +97,7 @@ public class Pacman extends Entity {
         Future future = executor.submit(new Runnable() {
             @Override
             public void run() {
+                game.getP().getTimer().setDelay(80);
                 long start = System.currentTimeMillis();
                 while (!Thread.interrupted()) {
                     superPow = true;
@@ -104,11 +105,10 @@ public class Pacman extends Entity {
                     for (Ghost g : game.getGhosts()) {
                         g.setColor(Color.BLUE);
                         superPow(g);
-                        g.setDx(2); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
-                        g.setDy(2);
                     }
                     superPowTimer = System.currentTimeMillis() - start;
                 }
+                game.getP().getTimer().setDelay(40);
                 superPow = false;
                 superPowTimer = 0;
                 setColor(Color.decode("#fdff00"));
@@ -116,10 +116,6 @@ public class Pacman extends Entity {
                 game.getGhosts()[1].setColor(Color.decode("#46bfee"));
                 game.getGhosts()[2].setColor(Color.decode("#db851c"));
                 game.getGhosts()[3].setColor(Color.decode("#d03e19"));
-                for (Ghost g : game.getGhosts()) {
-                    g.setDx(4); //Rend les Ghosts buggé (voir EnemyAction (mauvaise implémentation))
-                    g.setDy(4);
-                }
             }
         });
         executor.schedule(new Runnable() {
@@ -137,13 +133,14 @@ public class Pacman extends Entity {
 
     public void superPow(Ghost g) {
         if (g.getX() == game.getMap().getPacmanCoords()[1] * 36 && g.getY() == game.getMap().getPacmanCoords()[0] * 36) {
-            g.setX(72);
-            g.setY(72);
+            g.setX(36 * 8);
+            g.setY(36 * 7);
         }
     }
 
     public void eatMix() {
-
+        if (game.getMap().isBlockingWall()) game.getMap().setBlockingWall(false);
+        else game.getMap().setBlockingWall(true);
     }
 
     public boolean isAlive() {

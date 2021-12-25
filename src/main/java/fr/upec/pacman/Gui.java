@@ -3,18 +3,19 @@ package fr.upec.pacman;
 import javax.swing.*;
 
 public class Gui {
-    public Gui()  {
+    public Gui() {
         JFrame frame = new JFrame();
-        GameView gameView = new GameView(frame);
+        Game game = new Game(frame);
+        Type[][] map = game.getMap().getMap();
 
-        frame.setSize(590, 435);
+        frame.setSize(map[0].length * 36 + 10, map.length * 36 + 75);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Pacman");
-        frame.add(gameView);
-        frame.addKeyListener(new PacMove(gameView));
+        frame.add(game.getP());
+        frame.addKeyListener(game.getPacMove());
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        frame.setAlwaysOnTop(true);
     }
 }

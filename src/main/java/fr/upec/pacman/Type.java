@@ -7,8 +7,7 @@ package fr.upec.pacman;
  * S = SUPERPOWER
  * M = MIX
  * N = NOTHING
- * P = PACMAN
  */
 public enum Type {
-    W, C, I, S, M, N, P
+    W, C, I, S, M, N
 }

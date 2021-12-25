@@ -6,8 +6,7 @@ public class GameMap {
     private static final Type I = Type.I; // I = INVISIBLE
     private static final Type S = Type.S; // S = SUPERPOWER
     private static final Type M = Type.M; // M = MIX
-    private static final Type N = Type.N;
-    private static final Type P = Type.P; // P = PACMAN
+    private static final Type N = Type.N; // N = NOTHING
     private Type[][] map;
     private boolean blockingWall;
 
@@ -25,7 +24,7 @@ public class GameMap {
                 {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
                 {N, N, W, C, W, C, C, C, C, C, C, C, W, C, W, N, N},
                 {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
-                {W, C, C, C, C, C, C, C, P, C, C, C, C, C, C, C, W},
+                {W, C, C, C, C, C, C, C, C, C, C, C, C, C, C, C, W},
                 {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
                 {W, S, C, C, W, C, C, C, I, C, C, C, W, C, C, M, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
@@ -37,27 +36,6 @@ public class GameMap {
         return map;
     }
 
-    public int[] getPacmanCoords() {
-        int x = 0;
-        int y = 0;
-
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                if (map[i][j] == P) {
-                    x = i;
-                    y = j;
-                    break;
-                }
-            }
-        }
-
-        return new int[]{x, y};
-    }
-
-    public void setPacmanCoords(int y, int x) {
-        this.map[y][x] = Type.P;
-    }
-
     public void delete(int i, int j) {
         this.map[i][j] = Type.N;
     }
@@ -65,7 +43,7 @@ public class GameMap {
     public boolean isAllPacGumAte() {
         for (Type[] y : map) {
             for (Type t : y) {
-                if (t != Type.N && t != Type.W && t != Type.P) {
+                if (t != Type.N && t != Type.W) {
                     return false;
                 }
             }

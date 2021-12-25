@@ -39,21 +39,32 @@ public class Pacman extends Entity {
     public boolean checkCollision() {
         int pacX = getX();
         int pacY = getY();
-        if (!invisible && !superPow) {
-            for (Ghost ghost : game.getGhosts()) {
-                if (ghost.getX() / 36 == pacX / 36 && ghost.getY() / 36 == pacY / 36) {
-                    life--;
-                    setX(8 * 36);
-                    setY(11 * 36);
-                    for (Ghost g : game.getGhosts()) {
-                        g.setX(36 * 8);
-                        g.setY(36 * 7);
-                    }
 
-                    if (life <= 0) {
-                        setAlive(false);
+        if (!invisible) {
+            for (Ghost ghost : game.getGhosts()) {
+                int gX = ghost.getX();
+                int gY = ghost.getY();
+                if ((gX / 36 == pacX / 36 && gY / 36 == pacY / 36) ||
+                        (gX / 36 == (pacX) / 36 && gY / 36 == (pacY + 35) / 36) ||
+                        (gX / 36 == (pacX + 35) / 36 && gY / 36 == (pacY) / 36) ||
+                        (gX / 36 == (pacX + 35) / 36 && gY / 36 == (pacY + 35) / 36)) {
+                    if (superPow) {
+                        superPow(ghost);
+                        return false;
+                    } else {
+                        life--;
+                        setX(8 * 36);
+                        setY(11 * 36);
+                        for (Ghost g : game.getGhosts()) {
+                            g.setX(36 * 8);
+                            g.setY(36 * 7);
+                        }
+
+                        if (life <= 0) {
+                            setAlive(false);
+                        }
+                        return true;
                     }
-                    return true;
                 }
             }
         }
@@ -104,13 +115,12 @@ public class Pacman extends Entity {
             public void run() {
                 game.getP().getTimerGhost().setDelay(80);
                 long start = System.currentTimeMillis();
+                for (Ghost g : game.getGhosts()) {
+                    g.setColor(Color.BLUE);
+                }
                 while (!Thread.interrupted()) {
                     superPow = true;
                     setColor(Color.ORANGE);
-                    for (Ghost g : game.getGhosts()) {
-                        g.setColor(Color.BLUE);
-                        superPow(g);
-                    }
                     superPowTimer = System.currentTimeMillis() - start;
                 }
                 game.getP().getTimerGhost().setDelay(40);
@@ -137,10 +147,8 @@ public class Pacman extends Entity {
     }
 
     public void superPow(Ghost g) {
-        if (g.getX() / 36 == getX() / 36 && g.getY() / 36 == getY()) {
-            g.setX(36 * 8);
-            g.setY(36 * 7);
-        }
+        g.setX(36 * 8);
+        g.setY(36 * 7);
     }
 
     public void eatMix() {

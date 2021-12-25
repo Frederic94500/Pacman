@@ -29,26 +29,26 @@ class PacMove implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
                 if (!game.win() || !game.getPacman().isAlive()) {
-                    game.getPacman().setDx(Direction.LEFT.getX());
-                    game.getPacman().setDy(Direction.LEFT.getY());
+                    game.getPacman().setDx(Direction.LEFT.getDX());
+                    game.getPacman().setDy(Direction.LEFT.getDY());
                 }
                 break;
             case KeyEvent.VK_RIGHT:
                 if (!game.win() || !game.getPacman().isAlive()) {
-                    game.getPacman().setDx(Direction.RIGHT.getX());
-                    game.getPacman().setDy(Direction.RIGHT.getY());
+                    game.getPacman().setDx(Direction.RIGHT.getDX());
+                    game.getPacman().setDy(Direction.RIGHT.getDY());
                 }
                 break;
             case KeyEvent.VK_UP:
                 if (!game.win() || !game.getPacman().isAlive()) {
-                    game.getPacman().setDx(Direction.UP.getX());
-                    game.getPacman().setDy(Direction.UP.getY());
+                    game.getPacman().setDx(Direction.UP.getDX());
+                    game.getPacman().setDy(Direction.UP.getDY());
                 }
                 break;
             case KeyEvent.VK_DOWN:
                 if (!game.win() || !game.getPacman().isAlive()) {
-                    game.getPacman().setDx(Direction.DOWN.getX());
-                    game.getPacman().setDy(Direction.DOWN.getY());
+                    game.getPacman().setDx(Direction.DOWN.getDX());
+                    game.getPacman().setDy(Direction.DOWN.getDY());
                 }
                 break;
             case KeyEvent.VK_SPACE:

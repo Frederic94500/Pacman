@@ -17,7 +17,7 @@ public class EnemyAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for (Ghost g : ghosts) {
-            wall(g, !g.isTurn());
+            wall(g, game.getMap().getMap());
             p.repaint();
             checkLife(); // Verifie si ca touche
         }
@@ -36,10 +36,24 @@ public class EnemyAction implements ActionListener {
     }
 
     //Choix de la trajectoire des fantomes dynamique :
-    private void wall(Ghost g, boolean choice) {
+    private void wall(Ghost g, Type[][] map) {
         int x = g.getX();
         int y = g.getY();
-        int calibrateX = 0;
+
+        while (map[(g.getY() + g.getDy()) / 36][(g.getX() + g.getDx()) / 36] == Type.W ||
+                map[(g.getY() + g.getDy()) / 36][(g.getX() + g.getDx() + 34) / 36] == Type.W ||
+                map[(g.getY() + g.getDy() + 34) / 36][(g.getX() + g.getDx()) / 36] == Type.W ||
+                map[(g.getY() + g.getDy() + 34) / 36][(g.getX() + g.getDx() + 34) / 36] == Type.W) {
+            Direction dir = Direction.random();
+            g.setDx(dir.getDX());
+            g.setDy(dir.getDY());
+        }
+
+        g.setX(g.getX() + g.getDx());
+        g.setY(g.getY() + g.getDy());
+
+
+        /*int calibrateX = 0;
         int calibrateY = 0;
         int r = (int) (Math.random() * 2);
 
@@ -99,6 +113,6 @@ public class EnemyAction implements ActionListener {
                     g.setCounter(r * 9);
                 }
             }
-        }
+        }*/
     }
 }

@@ -1,7 +1,7 @@
 package fr.upec.pacman;
 
 public enum Direction {
-    UP(0, -4), DOWN(0, 4), LEFT(-4, 0), RIGHT(4, 0), VOID(0, 0);
+    UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0), VOID(0, 0);
 
     private final int dx;
     private final int dy;
@@ -25,11 +25,11 @@ public enum Direction {
         return null;
     }
 
-    public int getX() {
+    public int getDX() {
         return dx;
     }
 
-    public int getY() {
+    public int getDY() {
         return dy;
     }
 }

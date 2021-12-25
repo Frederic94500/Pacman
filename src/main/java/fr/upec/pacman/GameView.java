@@ -20,8 +20,8 @@ public class GameView extends JComponent {
         super();
         setStart(false);
         setOpaque(true);
-        this.timerGhost = new Timer(40, new EnemyAction(game.getGhosts(), game, this));
-        this.timerPacman = new Timer(40, new PacAction(game, this, game.getPacman()));
+        this.timerGhost = new Timer(5, new EnemyAction(game.getGhosts(), game, this));
+        this.timerPacman = new Timer(5, new PacAction(game, this, game.getPacman()));
         this.frame = f;
         this.game = game;
         this.footerX = game.getMap().getMap()[0].length * size;

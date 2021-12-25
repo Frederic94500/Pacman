@@ -102,7 +102,7 @@ public class Pacman extends Entity {
         Future future = executor.submit(new Runnable() {
             @Override
             public void run() {
-                game.getP().getTimerGhost().setDelay(80);
+                game.getP().getTimerGhost().setDelay(10);
                 long start = System.currentTimeMillis();
                 while (!Thread.interrupted()) {
                     superPow = true;
@@ -113,7 +113,7 @@ public class Pacman extends Entity {
                     }
                     superPowTimer = System.currentTimeMillis() - start;
                 }
-                game.getP().getTimerGhost().setDelay(40);
+                game.getP().getTimerGhost().setDelay(5);
                 superPow = false;
                 superPowTimer = 0;
                 setColor(Color.decode("#fdff00"));

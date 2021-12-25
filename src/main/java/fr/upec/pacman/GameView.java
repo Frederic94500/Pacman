@@ -168,7 +168,7 @@ public class GameView extends JComponent {
     private void scoreBubble(Graphics g) {
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Arial", Font.PLAIN, 10));
-        g.drawString("+" + scoreGet, (game.getPacman().getX() * size) + 40, (game.getPacman().getY()) * size); //bugge
+        g.drawString("+" + scoreGet, (game.getPacman().getX() * size) + 40, game.getPacman().getY() * size); //bugge
     }
 
     private void startScreen(Graphics g) {

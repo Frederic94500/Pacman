@@ -6,7 +6,7 @@ public class GameMap {
     private static final Type I = Type.I; // I = INVISIBLE
     private static final Type S = Type.S; // S = SUPERPOWER
     private static final Type M = Type.M; // M = MIX
-    private static final Type N = Type.N;
+    private static final Type N = Type.N; // N = NOTHING
     private Type[][] map;
     private boolean blockingWall;
 
@@ -43,7 +43,7 @@ public class GameMap {
     public boolean isAllPacGumAte() {
         for (Type[] y : map) {
             for (Type t : y) {
-                if (t != Type.N && t != Type.W && t != Type.P) {
+                if (t != Type.N && t != Type.W) {
                     return false;
                 }
             }

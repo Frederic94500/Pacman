@@ -17,6 +17,8 @@ public class PacAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Type[][] map = game.getMap().getMap();
+        int pacXMove = pacman.getX() + pacman.getDx();
+        int pacYMove = pacman.getY() + pacman.getDy();
 
         //Warparound à réimplémenter (je sais pas comment faire...)
         /*if (pacman.getX() < 0 && pacman.getY() / 36 == 7) {
@@ -39,11 +41,11 @@ public class PacAction implements ActionListener {
             map[7][0] = Type.P;
         }*/
 
-        if (map[(pacman.getY() + pacman.getDy()) / 36][(pacman.getX() + pacman.getDx()) / 36] != Type.W &&
-                map[(pacman.getY() + pacman.getDy()) / 34][(pacman.getX() + pacman.getDx() + 34) / 36] != Type.W &&
-                map[(pacman.getY() + pacman.getDy() + 34) / 36][(pacman.getX() + pacman.getDx()) / 36] != Type.W &&
-                map[(pacman.getY() + pacman.getDy() + 34) / 36][(pacman.getX() + pacman.getDx() + 34) / 36] != Type.W) {
-            switch (map[(pacman.getY() + pacman.getDy()) / 36][(pacman.getX() + pacman.getDx()) / 36]) {
+        if (map[(pacYMove) / 36][(pacXMove) / 36] != Type.W &&
+                map[(pacYMove) / 34][(pacXMove + 34) / 36] != Type.W &&
+                map[(pacYMove + 34) / 36][(pacXMove) / 36] != Type.W &&
+                map[(pacYMove + 34) / 36][(pacXMove + 34) / 36] != Type.W) {
+            switch (map[(pacYMove) / 36][(pacXMove) / 36]) {
                 case C:
                     game.addScore(100);
                     view.setScoreGet(100);
@@ -75,8 +77,8 @@ public class PacAction implements ActionListener {
             }
             game.gainOneUp(); // Verifie s'il a 5000pts pour ajouter une vie en plus.
             game.getMap().delete(pacman.getY() / 36, pacman.getX() / 36);
-            pacman.setX(pacman.getX() + pacman.getDx());
-            pacman.setY(pacman.getY() + pacman.getDy());
+            pacman.setX(pacXMove);
+            pacman.setY(pacYMove);
         }
 
         view.repaint();

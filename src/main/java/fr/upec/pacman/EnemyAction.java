@@ -5,157 +5,103 @@ import java.awt.event.ActionListener;
 
 public class EnemyAction implements ActionListener {
     private Ghost[] ghosts;
+    private Game game;
     private GameView p;
 
-    public EnemyAction(Ghost[] ghosts, GameView p) {
+    public EnemyAction(Ghost[] ghosts, Game game, GameView p) {
         this.ghosts = ghosts;
+        this.game = game;
         this.p = p;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         for (Ghost g : ghosts) {
-            if (g.isTurn()) {
-                // Axe des X
-                wall(g, false);
-                g.setX(g.getX() + g.getDx());
-                g.incrementCounter();
-                if (g.getCounter() == 12) {
-                    g.setTurn(false);
-                    g.setCounter(0);
-                }
-            } else {
-                // Axe des y
-                wall(g, true);
-                g.setY(g.getY() + g.getDy());
-                g.incrementCounter();
-                if (g.getCounter() == 36) {
-                    g.setTurn(true);
-                    g.setCounter(0);
-                }
-            }
-            p.repaint();
-            checkLife(); // Verifie si ca touche
+            wall(g, !g.isTurn()); // Algo de detection de mur et de mvt aleatoire 
+            p.repaint(); 
+            checkLife(); // Verifie si ca touche le joueur
         }
     }
 
     private void checkLife() {
-        if (p.getGame().checkLife()) {
+        if (game.getPacman().checkCollision()) {
             try {
                 for (Ghost g : ghosts) {
                     g.setCounter(0);
                 }
                 Thread.sleep(1000);
-            } catch (InterruptedException e1) {
+            } catch (InterruptedException ignored) {
             }
         }
     }
 
-    //Ce code est totalement lié par la map
+    //Choix de la trajectoire des fantomes dynamique :
     private void wall(Ghost g, boolean choice) {
         int x = g.getX();
         int y = g.getY();
+        int calibrateX = 0;
+        int calibrateY = 0;
+        int r = (int) (Math.random() * 2);
+
         if (choice) {
-            if (y == 36) {
-                g.setDy(g.getDy() * -1);
+            if (g.getDy() > 0) {
+                if (y / 36 > 0) calibrateY = 36;
+            } else {
+                if (y / 36 > 0) calibrateY = -4;
             }
-            if (y == 8 * 36) {
-                g.setDy(g.getDy() * -1);
+            calibrateX = 0;
+        } else {
+            if (g.getDx() > 0) {
+                if (x / 36 > 0) calibrateX = 36;
+            } else {
+                if (x / 36 > 0) calibrateX = -4;
             }
-            if (y == 3 * 36 & x == 4 * 36 && g.getDy() < 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 4 * 36 & (x == 4 * 36 || x == 3 * 36) && g.getDy() > 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 6 * 36 & (x == 4 * 36 || x == 3 * 36) && g.getDy() < 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 6 * 36 & (x == 6 * 36 || x == 7 * 36 || x == 8 * 36) & g.getDy() > 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 8 * 36 & x == 8 * 36 & g.getDy() < 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 8 * 36 & x == 6 * 36 & g.getDy() < 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 3 * 36 & (x == 12 * 36 || x == 10 * 36) & g.getDy() > 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 7 * 36 & x == 12 * 36 & g.getDy() < 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 2 * 36 & x == 11 * 36 & g.getDy() > 0) {
-                g.setDy(g.getDy() * -1);
-            }
-            if (y == 5 * 36 & (x == 11 * 36 || x == 10 * 36) & g.getDy() < 0) {
-                g.setDy(g.getDy() * -1);
-            }
+            calibrateY = 0;
         }
-        // X
-        else {
-            if (x == 36) {
-                g.setDx(g.getDx() * -1);
+
+        if (g.getX() == 0 || g.getX() == 15 * 36) {
+            g.setDx(g.getDx() * -1);
+            g.setCounter(0);
+        }
+
+        // Detection du mur au prochain mvt si c'est le cas la derivation du mvt est inversé en fonction du choix
+        if (game.getMap().getMap()[(y + calibrateY) / 36][(x + calibrateX) / 36] == Type.W) {
+            if (choice) {
+                if (r == 0) {
+                    g.setDy(g.getDy() * -1);
+                    g.setY(g.getY() + g.getDy() + g.getDy());
+                    g.setCounter(g.getCounter() + 2);
+                } else {
+                    if (g.getX() % 36 == 0 & g.getY() % 36 == 0) g.setTurn(true);
+                }
+            } else {
+                if (r == 0) {
+                    g.setDx(g.getDx() * -1);
+                    g.setX(g.getX() + g.getDx() + g.getDx());
+                    g.setCounter(g.getCounter() + 2);
+                } else {
+                    if (g.getX() % 36 == 0 & g.getY() % 36 == 0) g.setTurn(false);
+                }
             }
-            if (x == 14 * 36) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (x == 3 * 36 & (y == 1 * 36 || y == 2 * 36) & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (x == 5 * 36 & (y == 1 * 36 || y == 2 * 36) & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 5 * 36 & (x == 36 * 2) & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 5 * 36 & (x == 36 * 5) & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 7 * 36 & x == 5 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 7 * 36 & x == 9 * 36 & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 8 * 36 & x == 6 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 8 * 36 & x == 8 * 36 & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 4 * 36 & x == 9 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 4 * 36 & x == 13 * 36 & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 5 * 36 & x == 13 * 36 & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 6 * 36 & x == 13 * 36 & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 4 * 36 & x == 11 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 5 * 36 & x == 11 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 6 * 36 & x == 11 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 3 * 36 & x == 10 * 36 & g.getDx() > 0) {
-                g.setDx(g.getDx() * -1);
-            }
-            if (y == 3 * 36 & x == 112 * 36 & g.getDx() < 0) {
-                g.setDx(g.getDx() * -1);
+            g.setCounter(r * 9);
+        } else {
+            if (choice) {
+            	if (g.getDy() > 0) { g.setMypic(2);} else {g.setMypic(0);}  
+                g.setY(g.getY() + g.getDy());
+                g.incrementCounter();
+                if (g.getCounter() == 27 & g.getY() % 36 == 0) {
+                    g.setTurn(true);
+                    g.setCounter(r * 9);
+                }
+            } else {
+            	if (g.getDx() > 0) { g.setMypic(1);} else {g.setMypic(3);} 
+                g.setX(g.getX() + g.getDx());
+                g.incrementCounter();
+                if (g.getCounter() == 18 + r * 9 & g.getX() % 36 == 0) {
+                    g.setTurn(false);
+                    g.setCounter(r * 9);
+                }
             }
         }
     }
 }
-
-
-
-

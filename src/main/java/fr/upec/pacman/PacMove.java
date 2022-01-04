@@ -24,40 +24,34 @@ class PacMove implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        view.setEat(false);
-
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                if (!game.win() || !game.getPacman().isAlive()) {
+        //In-game
+        if (!game.win() || game.getPacman().isAlive()) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
                     game.getPacman().setDirection(Direction.LEFT);
-                }
-                break;
-            case KeyEvent.VK_RIGHT:
-                if (!game.win() || !game.getPacman().isAlive()) {
+                    break;
+                case KeyEvent.VK_RIGHT:
                     game.getPacman().setDirection(Direction.RIGHT);
-                }
-                break;
-            case KeyEvent.VK_UP:
-                if (!game.win() || !game.getPacman().isAlive()) {
+                    break;
+                case KeyEvent.VK_UP:
                     game.getPacman().setDirection(Direction.UP);
-                }
-                break;
-            case KeyEvent.VK_DOWN:
-                if (!game.win() || !game.getPacman().isAlive()) {
+                    break;
+                case KeyEvent.VK_DOWN:
                     game.getPacman().setDirection(Direction.DOWN);
-                }
-                break;
-            case KeyEvent.VK_SPACE:
-                if (game.getPacman().isAlive()) {
-                    view.setStart(true);
-                } else {
-                    view.getFrame().dispose();
-                    App.main(null);
-                }
-                if (game.win()) {
-                    view.getFrame().dispose();
-                    App.main(null);
-                }
+                    break;
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            if (game.getPacman().isAlive()) {
+                view.setStart(true);
+            } else {
+                view.getFrame().dispose();
+                App.main(null);
+            }
+            if (game.win()) {
+                view.getFrame().dispose();
+                App.main(null);
+            }
         }
 
         view.repaint();

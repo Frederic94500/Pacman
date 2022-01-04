@@ -17,8 +17,8 @@ public class PacAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Type[][] map = game.getMap().getMap();
-        int pacXMove = pacman.getX() + pacman.getDx();
-        int pacYMove = pacman.getY() + pacman.getDy();
+        int pacXMove = pacman.getX() + pacman.getDirection().getDx();
+        int pacYMove = pacman.getY() + pacman.getDirection().getDy();
 
         if (pacXMove == 0 && pacYMove == 252) {
             pacXMove = 572;

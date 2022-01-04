@@ -35,20 +35,12 @@ public class Entity {
         this.y = y;
     }
 
-    public int getDx() {
-        return dx;
+    public Direction getDirection() {
+        return direction;
     }
 
-    public void setDx(int dx) {
-        this.dx = dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public void setDy(int dy) {
-        this.dy = dy;
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     public Color getColor() {

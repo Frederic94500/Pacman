@@ -25,11 +25,11 @@ public enum Direction {
         return null;
     }
 
-    public int getDX() {
+    public int getDx() {
         return dx;
     }
 
-    public int getDY() {
+    public int getDy() {
         return dy;
     }
 }

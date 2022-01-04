@@ -1,7 +1,7 @@
 package fr.upec.pacman;
 
 public enum Direction {
-    UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0), VOID(0, 0);
+    UP(0, -2), DOWN(0, 2), LEFT(-2, 0), RIGHT(2, 0), VOID(0, 0);
 
     private final int dx;
     private final int dy;

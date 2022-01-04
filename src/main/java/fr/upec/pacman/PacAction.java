@@ -20,12 +20,13 @@ public class PacAction implements ActionListener {
         int pacXMove = pacman.getX() + pacman.getDx();
         int pacYMove = pacman.getY() + pacman.getDy();
 
-        //Warparound implémenter 
-    	if (pacXMove == 0  && pacYMove  == 252)  {pacXMove = 572;} 
-  	  else {
-  	     if (pacXMove == 576 && pacYMove  == 252)  {pacXMove = 4;}
-              }
-    	
+        if (pacXMove == 0 && pacYMove == 252) {
+            pacXMove = 572;
+        }
+        if (pacXMove == 576 && pacYMove == 252) {
+            pacXMove = 4;
+        }
+
         if (map[(pacYMove) / 36][(pacXMove) / 36] != Type.W &&
                 map[(pacYMove) / 34][(pacXMove + 34) / 36] != Type.W &&
                 map[(pacYMove + 34) / 36][(pacXMove) / 36] != Type.W &&

@@ -14,19 +14,19 @@ public class GameMap {
         //i = longeur = y | j = largeur = x
         this.map = new Type[][]{
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
-                {W, M, C, C, N, C, C, C, I, C, C, C, N, C, C, I, W},
+                {W, M, C, C, W, C, C, C, I, C, C, C, C, C, C, I, W},
                 {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
-                {W, C, C, C, C, C, C, C, C, C, C, C, C, C, C, C, W},
+                {W, C, C, C, C, C, C, C, C, C, C, C, W, C, C, C, W},
                 {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
-                {N, N, W, C, W, C, C, C, C, C, C, C, W, C, W, N, N},
+                {N, N, W, C, W, C, W, C, C, C, C, C, W, C, W, N, N},
                 {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
-                {N, N, N, N, W, C, C, M, S, M, C, C, W, N, N, N, N},
+                {N, N, N, N, W, C, N, M, S, M, N, C, W, N, N, N, N},
                 {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
-                {N, N, W, C, W, C, C, C, C, C, C, C, W, C, W, N, N},
+                {N, N, W, C, W, C, C, C, C, C, W, C, W, C, W, N, N},
                 {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
-                {W, C, C, C, C, C, C, C, C, C, C, C, C, C, C, C, W},
+                {W, C, C, C, W, C, C, C, C, C, C, C, C, C, C, C, W},
                 {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
-                {W, S, C, C, W, C, C, C, I, C, C, C, W, C, C, M, W},
+                {W, S, C, C, C, C, C, C, I, C, C, C, W, C, C, M, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W}
         };
         this.blockingWall = false;
@@ -68,10 +68,6 @@ public class GameMap {
             map[7][12] = N;
             map[7][6] = W;
             map[7][10] = W;
-            map[1][4] = W;
-            map[1][12] = W;
-            map[13][4] = N;
-            map[13][12] = N;
         } else {
             map[7][2] = N;
             map[7][14] = N;
@@ -79,10 +75,6 @@ public class GameMap {
             map[7][12] = W;
             map[7][6] = N;
             map[7][10] = N;
-            map[1][4] = N;
-            map[1][12] = N;
-            map[13][4] = W;
-            map[13][12] = W;
         }
     }
 }

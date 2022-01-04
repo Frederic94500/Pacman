@@ -1,12 +1,14 @@
 package fr.upec.pacman;
 
+import fr.upec.pacman.EntityState.PacmanState;
+
 import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Pacman extends Entity {
+public class Pacman extends Entity implements PacmanState {
     private Game game;
     private int life;
     private boolean alive;

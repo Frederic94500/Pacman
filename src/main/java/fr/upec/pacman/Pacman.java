@@ -1,10 +1,8 @@
 package fr.upec.pacman;
 
+import fr.upec.pacman.EntityState.NormalPacman;
+
 import java.awt.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Pacman extends Entity {
     private Game game;
@@ -17,7 +15,7 @@ public class Pacman extends Entity {
     private boolean lifeTake;
 
     public Pacman(Game game) {
-        super(8 * 36, 11 * 36, Direction.VOID, Color.decode("#fdff00"));
+        super(8 * 36, 11 * 36, Direction.VOID, Color.decode("#fdff00"), new NormalPacman());
         this.game = game;
         this.life = 3;
         this.alive = true;
@@ -26,6 +24,7 @@ public class Pacman extends Entity {
         this.superPow = false;
         this.superPowTimer = 0;
         this.lifeTake = false;
+        setState(new NormalPacman(this));
     }
 
     public int getLife() {
@@ -40,7 +39,7 @@ public class Pacman extends Entity {
         int pacX = getX();
         int pacY = getY();
 
-        if (!invisible) {
+        if (!invisible || superPow) {
             for (Ghost ghost : game.getGhosts()) {
                 int gX = ghost.getX();
                 int gY = ghost.getY();
@@ -75,63 +74,32 @@ public class Pacman extends Entity {
         return invisible;
     }
 
-    public void eatInvisible() {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
-        Future<?> future = executor.submit(() -> {
-            long start = System.currentTimeMillis();
-            while (!Thread.interrupted()) {
-                invisible = true;
-                setColor(Color.decode("#FDFD96"));
-                invisibleTimer = System.currentTimeMillis() - start;
-            }
-            invisible = false;
-            invisibleTimer = 0;
-            setColor(Color.decode("#fdff00"));
-        });
-        executor.schedule(() -> {
-            future.cancel(true);
-        }, 10, TimeUnit.SECONDS);
-        executor.shutdown();
+    public void setInvisible(boolean invisible) {
+        this.invisible = invisible;
     }
 
     public long getInvisibleTimer() {
         return invisibleTimer;
     }
 
+    public void setInvisibleTimer(long invisibleTimer) {
+        this.invisibleTimer = invisibleTimer;
+    }
+
     public boolean isSuperPow() {
         return superPow;
     }
 
-    public void eatSuperPow() {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
-        Future<?> future = executor.submit(() -> {
-            game.getP().getTimerGhost().setDelay(60);
-            long start = System.currentTimeMillis();
-            for (Ghost g : game.getGhosts()) {
-                g.setColor(Color.BLUE);
-            }
-            while (!Thread.interrupted()) {
-                superPow = true;
-                setColor(Color.ORANGE);
-                superPowTimer = System.currentTimeMillis() - start;
-            }
-            game.getP().getTimerGhost().setDelay(20);
-            superPow = false;
-            superPowTimer = 0;
-            setColor(Color.decode("#fdff00"));
-            game.getGhosts()[0].setColor(Color.decode("#ea82e5"));
-            game.getGhosts()[1].setColor(Color.decode("#46bfee"));
-            game.getGhosts()[2].setColor(Color.decode("#db851c"));
-            game.getGhosts()[3].setColor(Color.decode("#d03e19"));
-        });
-        executor.schedule(() -> {
-            future.cancel(true);
-        }, 10, TimeUnit.SECONDS);
-        executor.shutdown();
+    public void setSuperPow(boolean superPow) {
+        this.superPow = superPow;
     }
 
     public long getSuperPowTimer() {
         return superPowTimer;
+    }
+
+    public void setSuperPowTimer(long superPowTimer) {
+        this.superPowTimer = superPowTimer;
     }
 
     public void superPow(Ghost g) {

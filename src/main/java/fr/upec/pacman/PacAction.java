@@ -37,31 +37,20 @@ public class PacAction implements ActionListener {
             switch (map[(pacYMove) / 36][(pacXMove) / 36]) {
                 case C:
                     game.addScore(100);
-                    view.setScoreGet(100);
-                    view.setEat(true);
                     break;
                 case I:
                     game.addScore(300);
                     pacman.setState(new InvisiblePacman(pacman));
                     pacman.getState().state();
-                    view.setScoreGet(300);
-                    view.setEat(true);
                     break;
                 case S:
                     game.addScore(500);
                     pacman.setState(new SuperPovPacman(game, pacman));
                     pacman.getState().state();
-                    view.setScoreGet(500);
-                    view.setEat(true);
                     break;
                 case M:
                     game.addScore(1000);
                     game.getPacman().eatMix();
-                    view.setScoreGet(1000);
-                    view.setEat(true);
-                    break;
-                case N:
-                    view.setEat(false);
                     break;
                 default:
                     break;

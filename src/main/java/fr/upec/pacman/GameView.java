@@ -7,13 +7,11 @@ public class GameView extends JComponent {
     public final static int size = 36;
     private final int footerX;
     private final int footerY;
-    private boolean start; // pour commencer la partie
-    private boolean eat;
+    private boolean start; //Pour commencer la partie
     private Game game;
-    private Timer timerGhost; // Ajouter la classe de Action listener
+    private Timer timerGhost; //Ajouter la classe de Action listener
     private Timer timerPacman;
     private Frame frame;
-    private int scoreGet;
 
     //Constructeur
     public GameView(Frame f, Game game) {
@@ -26,11 +24,6 @@ public class GameView extends JComponent {
         this.game = game;
         this.footerX = game.getMap().getMap()[0].length * size;
         this.footerY = game.getMap().getMap().length * size;
-        this.scoreGet = 0;
-    }
-
-    public void setScoreGet(int scoreGet) {
-        this.scoreGet = scoreGet;
     }
 
     public Frame getFrame() {
@@ -47,10 +40,6 @@ public class GameView extends JComponent {
 
     public void setStart(boolean start) {
         this.start = start;
-    }
-
-    public void setEat(boolean eat) {
-        this.eat = eat;
     }
 
     @Override
@@ -70,9 +59,6 @@ public class GameView extends JComponent {
                     drawPacman(g);
                     drawEnemy(g);
                     drawFooter(g);
-                    if (eat) {
-                        scoreBubble(g);
-                    }
                 }
             }
         } else {
@@ -155,7 +141,6 @@ public class GameView extends JComponent {
         g.setColor(game.getPacman().getColor());
         g.fillOval(game.getPacman().getX(), game.getPacman().getY(), size, size);
         g.setColor(Color.black);
-        g.fillOval(game.getPacman().getX() + 22, game.getPacman().getY() + 3, size + 8, size - 8); //La bouche à refaire
     }
 
     private void drawEnemy(Graphics g) {
@@ -163,12 +148,6 @@ public class GameView extends JComponent {
             g.setColor(ghost.getColor());
             g.fillOval(ghost.getX(), ghost.getY(), size, size);
         }
-    }
-
-    private void scoreBubble(Graphics g) {
-        g.setColor(Color.YELLOW);
-        g.setFont(new Font("Arial", Font.PLAIN, 10));
-        g.drawString("+" + scoreGet, (game.getPacman().getX() * size) + 40, game.getPacman().getY() * size); //bugge
     }
 
     private void startScreen(Graphics g) {

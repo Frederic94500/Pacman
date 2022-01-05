@@ -1,5 +1,8 @@
 package fr.upec.pacman;
 
+import fr.upec.pacman.EntityState.InvisiblePacman;
+import fr.upec.pacman.EntityState.SuperPovPacman;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,13 +42,15 @@ public class PacAction implements ActionListener {
                     break;
                 case I:
                     game.addScore(300);
-                    game.getPacman().eatInvisible();
+                    pacman.setState(new InvisiblePacman(pacman));
+                    pacman.getState().state();
                     view.setScoreGet(300);
                     view.setEat(true);
                     break;
                 case S:
                     game.addScore(500);
-                    game.getPacman().eatSuperPow();
+                    pacman.setState(new SuperPovPacman(game, pacman));
+                    pacman.getState().state();
                     view.setScoreGet(500);
                     view.setEat(true);
                     break;

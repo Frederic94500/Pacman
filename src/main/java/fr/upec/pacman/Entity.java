@@ -51,6 +51,14 @@ public class Entity implements EntityState {
         this.color = color;
     }
 
+    public EntityState getState() {
+        return state;
+    }
+
+    public void setState(EntityState state) {
+        this.state = state;
+    }
+
     @Override
     public void colorState() {
         state.colorState();

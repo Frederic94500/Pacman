@@ -17,7 +17,7 @@ public class Pacman extends Entity {
     private boolean lifeTake;
 
     public Pacman(Game game) {
-        super(8 * 36, 11 * 36, 0, 0, Direction.VOID, Color.decode("#fdff00"));
+        super(8 * 36, 11 * 36, Direction.VOID, Color.decode("#fdff00"));
         this.game = game;
         this.life = 3;
         this.alive = true;

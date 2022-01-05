@@ -5,16 +5,12 @@ import java.awt.*;
 public class Entity {
     private int x;
     private int y;
-    private int dx;
-    private int dy;
     private Direction direction;
     private Color color;
 
-    public Entity(int x, int y, int dx, int dy, Direction direction, Color color) {
+    public Entity(int x, int y, Direction direction, Color color) {
         this.x = x;
         this.y = y;
-        this.dx = dx;
-        this.dy = dy;
         this.direction = direction;
         this.color = color;
     }

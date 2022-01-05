@@ -4,6 +4,6 @@ import java.awt.*;
 
 public class Ghost extends Entity {
     public Ghost(int x, int y, Color color) {
-        super(x, y, 4, 4, Direction.random(), color);
+        super(x, y, Direction.random(), color);
     }
 }

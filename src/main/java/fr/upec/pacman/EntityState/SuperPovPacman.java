@@ -31,7 +31,8 @@ public class SuperPovPacman implements EntityState {
             game.getP().getTimerGhost().setDelay(60);
             long start = System.currentTimeMillis();
             for (Ghost g : game.getGhosts()) {
-                g.setColor(Color.BLUE);
+                g.setState(new AfraidGhost(g));
+                g.state();
             }
             while (!Thread.interrupted()) {
                 colorState();
@@ -45,10 +46,10 @@ public class SuperPovPacman implements EntityState {
             pacman.setState(new NormalPacman(pacman));
             pacman.getState().state();
 
-            game.getGhosts()[0].setColor(Color.decode("#ea82e5"));
-            game.getGhosts()[1].setColor(Color.decode("#46bfee"));
-            game.getGhosts()[2].setColor(Color.decode("#db851c"));
-            game.getGhosts()[3].setColor(Color.decode("#d03e19"));
+            for (Ghost g : game.getGhosts()) {
+                g.setState(g.getNormalState());
+                g.state();
+            }
         });
         executor.schedule(() -> {
             future.cancel(true);

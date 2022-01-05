@@ -1,22 +1,22 @@
 package fr.upec.pacman;
 
+import fr.upec.pacman.EntityState.EntityState;
+
 import java.awt.*;
 
-public class Entity {
+public class Entity implements EntityState {
     private int x;
     private int y;
-    private int dx;
-    private int dy;
     private Direction direction;
     private Color color;
+    private EntityState state;
 
-    public Entity(int x, int y, int dx, int dy, Direction direction, Color color) {
+    public Entity(int x, int y, Direction direction, Color color, EntityState state) {
         this.x = x;
         this.y = y;
-        this.dx = dx;
-        this.dy = dy;
         this.direction = direction;
         this.color = color;
+        this.state = state;
     }
 
     public int getX() {
@@ -49,5 +49,15 @@ public class Entity {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public void colorState() {
+        state.colorState();
+    }
+
+    @Override
+    public void state() {
+        state.state();
     }
 }

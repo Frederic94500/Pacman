@@ -1,6 +1,6 @@
 package fr.upec.pacman;
 
-import fr.upec.pacman.EntityState.PacmanState;
+import fr.upec.pacman.EntityState.NormalPacman;
 
 import java.awt.*;
 import java.util.concurrent.Executors;
@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Pacman extends Entity implements PacmanState {
+public class Pacman extends Entity {
     private Game game;
     private int life;
     private boolean alive;
@@ -19,7 +19,7 @@ public class Pacman extends Entity implements PacmanState {
     private boolean lifeTake;
 
     public Pacman(Game game) {
-        super(8 * 36, 11 * 36, 0, 0, Direction.VOID, Color.decode("#fdff00"));
+        super(8 * 36, 11 * 36, Direction.VOID, Color.decode("#fdff00"), new NormalPacman());
         this.game = game;
         this.life = 3;
         this.alive = true;

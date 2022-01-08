@@ -35,35 +35,33 @@ public class Pacman extends Entity {
         this.life++;
     }
 
-    public boolean checkCollision() {
+    public boolean checkCollision(Ghost ghost) {
         int pacX = getX();
         int pacY = getY();
+        int gX = ghost.getX();
+        int gY = ghost.getY();
 
         if (!invisible || superPow) {
-            for (Ghost ghost : game.getGhosts()) {
-                int gX = ghost.getX();
-                int gY = ghost.getY();
-                if ((gX / 36 == pacX / 36 && gY / 36 == pacY / 36) ||
-                        (gX / 36 == (pacX) / 36 && gY / 36 == (pacY + 35) / 36) ||
-                        (gX / 36 == (pacX + 35) / 36 && gY / 36 == (pacY) / 36) ||
-                        (gX / 36 == (pacX + 35) / 36 && gY / 36 == (pacY + 35) / 36)) {
-                    if (superPow) {
-                        superPow(ghost);
-                        return false;
-                    } else {
-                        life--;
-                        setX(8 * 36);
-                        setY(11 * 36);
-                        for (Ghost g : game.getGhosts()) {
-                            g.setX(36 * 8);
-                            g.setY(36 * 7);
-                        }
-
-                        if (life <= 0) {
-                            setAlive(false);
-                        }
-                        return true;
+            if ((gX / 36 == pacX / 36 && gY / 36 == pacY / 36) ||
+                    (gX / 36 == (pacX) / 36 && gY / 36 == (pacY + 35) / 36) ||
+                    (gX / 36 == (pacX + 35) / 36 && gY / 36 == (pacY) / 36) ||
+                    (gX / 36 == (pacX + 35) / 36 && gY / 36 == (pacY + 35) / 36)) {
+                if (superPow) {
+                    superPow(ghost);
+                    return false;
+                } else {
+                    life--;
+                    setX(8 * 36);
+                    setY(11 * 36);
+                    for (Ghost g : game.getGhosts()) {
+                        g.setX(36 * 8);
+                        g.setY(36 * 7);
                     }
+
+                    if (life <= 0) {
+                        setAlive(false);
+                    }
+                    return true;
                 }
             }
         }

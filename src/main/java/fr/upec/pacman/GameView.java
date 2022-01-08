@@ -70,7 +70,7 @@ public class GameView extends JComponent {
     private void drawTerrain(Graphics g) {
         g.fill3DRect(0, 0, game.getMap().getMap()[0].length * size, game.getMap().getMap().length * size, start);
 
-        int x = 0;
+        int x;
         int y = 0;
         // x = width y = height  // size taille du bloc
 

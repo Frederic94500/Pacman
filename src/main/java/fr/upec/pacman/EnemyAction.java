@@ -19,12 +19,12 @@ public class EnemyAction implements ActionListener {
         for (Ghost g : ghosts) {
             wall(g, game.getMap().getMap());
             p.repaint();
-            checkLife(); // Verifie si ca touche
+            checkLife(g); // Verifie si ca touche
         }
     }
 
-    private void checkLife() {
-        if (game.getPacman().checkCollision()) {
+    private void checkLife(Ghost ghost) {
+        if (game.getPacman().checkCollision(ghost)) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ignored) {

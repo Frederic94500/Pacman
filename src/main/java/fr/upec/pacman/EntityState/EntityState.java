@@ -1,7 +1,7 @@
 package fr.upec.pacman.EntityState;
 
 public interface EntityState {
-    public void colorState();
+    void colorState();
 
-    public void state();
+    void state();
 }

@@ -14,13 +14,13 @@ public class GameMap {
         //i = longeur = y | j = largeur = x
         this.map = new Type[][]{
                 {W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W},
-                {W, M, C, C, W, C, C, C, I, C, C, C, C, C, C, I, W},
+                {W, M, C, C, W, C, C, C, I, C, C, C, C, C, C, M, W},
                 {W, C, W, C, W, C, W, W, W, W, W, C, W, C, W, C, W},
                 {W, C, C, C, C, C, C, C, C, C, C, C, W, C, C, C, W},
                 {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
                 {N, N, W, C, W, C, W, C, C, C, C, C, W, C, W, N, N},
                 {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
-                {N, N, N, N, W, C, N, M, S, M, N, C, W, N, N, N, N},
+                {N, N, N, N, W, C, N, C, S, C, N, C, W, N, N, N, N},
                 {W, W, W, N, W, C, W, C, W, C, W, C, W, N, W, W, W},
                 {N, N, W, C, W, C, C, C, C, C, W, C, W, C, W, N, N},
                 {W, W, W, C, W, C, W, W, W, W, W, C, W, C, W, W, W},
@@ -36,7 +36,7 @@ public class GameMap {
         return map;
     }
 
-    public void delete(int i, int j) {
+    public void replaceNothing(int i, int j) {
         this.map[i][j] = Type.N;
     }
 

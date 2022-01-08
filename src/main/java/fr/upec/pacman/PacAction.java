@@ -56,7 +56,7 @@ public class PacAction implements ActionListener {
                     break;
             }
             game.gainOneUp(); // Verifie s'il a 5000pts pour ajouter une vie en plus.
-            game.getMap().delete(pacman.getY() / 36, pacman.getX() / 36);
+            game.getMap().replaceNothing(pacman.getY() / 36, pacman.getX() / 36);
             pacman.setX(pacXMove);
             pacman.setY(pacYMove);
         }
